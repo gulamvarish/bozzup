@@ -1,0 +1,481 @@
+
+/*Registration*/
+
+
+.form-control::-webkit-input-placeholder { /* Edge */
+  color: black;
+}
+
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: black;
+}
+
+.form-control::placeholder {
+  color: black;
+}
+
+.errorcustom{     width: 100%;  margin-top: .25rem;font-size: 80%; color: #dc3545; }
+
+
+
+ .loginright{background: #0017AF; }
+  img.loginimage1 {
+    position: absolute;
+    right: 0;
+    opacity: 0.3;
+    background-color: #c9d6ff00;
+
+  }
+
+  img.loginimage2 {
+    position: absolute;
+    left: -21px;
+    top: 50px;
+    opacity: 0.3;
+    background-color: #c9d6ff00;
+      width: 120px;
+}
+.logintext{ margin-top: 65%; text-align: center; color: #fff; }
+
+.logintext h4, .registartionleft h4{
+    font-size: 36px !important;
+    font-weight: 600 !important;
+    font-family: 'Poppins';  color: #fff;
+    margin-bottom: 20px; 
+  }
+
+
+
+  .logintext p{
+    width: 80%;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    font-family: 'Poppins';  color: #fff;
+    margin-bottom: 20px; 
+    margin: 0 auto;
+  }
+
+  img.loginimage3 {
+    position: absolute;
+    left: -20px;
+        bottom: 20px;
+}
+
+img.loginimage4 {
+    position: absolute;
+    left: 20%;
+    bottom: 17%;
+}
+
+img.loginimage6 {
+    position: absolute;
+    bottom: 40px;
+    right: 10%;
+    opacity: 0.3;
+    background-color: #c9d6ff00;
+    width: 200px;
+}
+
+img.loginimage5 {
+    position: absolute;
+    bottom: 20px;
+    right: 22%;
+    z-index: 1;
+    width: 200px;
+}
+
+
+.registartionleft{padding: 50px 80px;}
+
+img.leftlogo {
+    width: 200px;
+    margin-bottom: 60px;
+}
+
+.registartionleft h4{color: black;text-align: center; margin-bottom: 40px;font-weight: 500 !important;}
+
+.registartionleft .form-control {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: 'Poppins';  
+  color: #000000;
+  background: #F5F5F5;
+  border: 0;
+  height: 40px;
+
+}
+
+
+button.supplier {
+    background: #478E00;
+    padding: 7px 33px;
+    border: 0;
+    font-size: 14px !important;
+  font-weight: 600 !important;
+  font-family: 'Poppins';  
+}
+button.supplier:hover {background: #0017AF;}
+
+.signp, .signp a {
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  font-family: 'Poppins';
+  color: #000000; 
+  margin-top: 25px; 
+}
+.signp a {text-decoration: underline;}
+
+
+
+/*sidebar{}*/
+
+#wpsc_sm_filters1{ height: 100vh; min-height: 500px; background-color: #fff; padding: 100px 25px 25px 25px;  }
+
+#wpsc_sm_filters1 hr{border-top: 1px solid #0017af;
+    margin-bottom: 20px; width: 100%;}
+
+.sidebarlogo{ width:100%;text-align: center; }
+
+.logotopimage{ width:40%; margin-bottom: 15px; }
+
+.logobottomimage {width: 100%;}
+
+.logotopimage {
+    width: 40%;
+    margin-bottom: 15px;
+}
+
+
+.sidebar-link {
+    text-decoration: none !important;
+    font-weight: 500;
+    font-size: 12px;
+    color: #000 !important;
+    display: block;
+    padding: 8px 0;
+    text-align: left;
+    line-height: 18px;
+    width: 100%;
+}
+
+#wpsc_sign_out {
+    position: absolute;
+    bottom: 5%;
+}
+
+.sidebar-link img {
+    margin-right: 15px;
+    width: 24px;
+    float: left;
+    z-index: 999;
+}
+
+
+.right-sidebar {
+    padding-top: 50px;
+    
+
+}
+
+.right-sidebarpage{border-left: 5px solid #0017af; }
+
+.createcutomerbtn, .createcutomerbtn:hover, #register{   
+    background-color: #478E00 !important;
+    height: 40px ;
+    width: 145px;
+    text-align: center;
+    border: 1px solid #478E00 ;
+    color: #fff ;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%) ;
+    font-size: 14px ;
+    line-height: 27px ;
+    font-family: 'Poppins', sans-serif ;
+}
+
+#user th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: transparent !important;
+    color: #000;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    font-family: 'Poppins';
+    text-transform: capitalize;
+}
+
+
+
+
+
+#user th.register{width: 82px !important;}
+
+#user th.action {  width: 39px !important;}
+th.username, th.name, th.email, th.company{ width: 17% !important;}
+
+#user {
+   border-collapse: collapse !important;
+    width: 100% !important;
+
+    border: 0px solid #dee2e6 !important;
+
+}
+
+#user td, div.dataTables_wrapper div.dataTables_length label, .dataTables_info, div.dataTables_wrapper div.dataTables_filter label {
+    color: #000;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins';
+}
+
+#user_filter label{width: 100%;margin: 15px 0;}
+
+#user_filter label input[type=search]{
+    width: 95%;
+        border: 1px solid #c7bfbf;
+        border-radius: 5px;
+}
+
+#user td, #user th {
+    border: 0px solid #ddd!important;
+    padding: 15px 8px;
+}
+
+#user tbody tr{
+
+    background-color: #F5F5F5 !important;
+    border-bottom: solid white 10px !important;
+}
+
+.paginate_button {
+   color: #0017AF;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins';
+    margin-left: 5px;
+}
+
+
+.form-control{color: #000;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins';
+    border-color: #8c9094 !important;
+    height: 40px;
+
+}
+
+    #user td .fa{ 
+
+    font-size: 16px !important;
+    font-weight: 600 !important; 
+    color: #584f4f;
+    margin-right: 5px;
+
+  }
+
+  .form-group label{ 
+    color: #000;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins'; }
+
+#helpmailform .form-control{ height: 30px;}
+
+#helpmailform .form-group label{ font-size: 12px !important;}
+
+#helpmailform .form-group {margin-bottom: 5px;}
+
+.helpemail .modal-title{font-size: 16px !important;font-weight: 600 !important; font-family: 'Poppins';}
+
+.helpemail .modal-header{ padding: 10px; }
+
+textarea#formmessage {
+    height: 50px !important;
+}
+
+.emailhelpbtn, .emailhelpbtn:hover{
+    background-color: #478E00 !important;
+    height: 40px;
+    width: 145px;
+    text-align: center;
+    border: 1px solid #478E00;
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%);
+    font-size: 14px;
+    line-height: 27px;
+    font-family: 'Poppins', sans-serif;
+        margin-top: 10px;
+}
+
+  @media screen and (max-width: 1100px){
+
+     .sidebar-link img{margin-right: 6px;}
+  }
+
+@media screen and (max-width: 1023px){
+
+.right-sidebar{ border-left: 0px !important;padding:0 }
+
+div#wpsc_sm_filters1 {
+
+    width: 100%;
+
+    float: none;
+
+    max-width: 100%;
+    flex: none;
+
+    padding: 50px 25px 25px 25px !important;
+    height: auto;
+    min-height: 40px;
+}
+
+
+.sidebarlogo {
+    width: 50% !important;
+    text-align: center !important;
+    margin: 0 auto;
+}
+
+a.sidebar-link {
+    width: 161px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #002c6d;
+    margin-right: 10px;
+}
+p.text {
+    margin-top: 3px;
+    margin-bottom: 0;
+}
+#wpsc_sign_out {
+    right: 27px;
+    bottom: 30px !important;
+    padding: 5px 10px !important;
+    font-size: 12px !important;
+    line-height: 18px !important;
+    height: 29px;
+    float: none !important;
+}
+
+/*.subscriber #wpsc_sign_out{right: unset;bottom: 0 !important;}*/
+
+.sidebarmain .col-md-10{max-width: 100%; flex: revert;}
+.right-sidebarpage{border-left: 0px solid #0017af; }
+}
+
+  @media screen and (max-width: 991px){
+
+   table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before{ margin-top: 16px !important; }
+  }
+
+  @media screen and (max-width: 910px){ 
+
+    
+
+    a.sidebar-link{padding: 10px 15px;width: 147px;}
+
+
+}
+  @media screen and (max-width: 800px){
+
+    .registartionleft h4{font-size: 22px !important;}
+
+    .registartionleft{padding: 50px 50px;}
+
+    .logintext{margin-top: 80%;}
+
+
+}
+
+
+
+@media screen and (max-width: 799px){
+
+        .registartionleft, .loginright{max-width: 100%; flex: none;}
+
+        .loginright{height: 800px;}
+
+        .logintext {  margin-top: 40%;}
+
+        .pmpro_checkout-field label, .pmpro_checkout-field input{ width: 90%; }
+}
+
+@media screen and (max-width: 767px){
+
+    .sidebar-link img {
+        float: none !important;
+    }
+
+    a.sidebar-link {
+        width: 97px;
+        text-align: center;
+        padding: 5px 0px;
+    }
+
+    div#user_filter { text-align: right;}
+    div#user_length { text-align: left;}
+
+}
+
+@media screen and (max-width: 758px){
+#user th.action{display: none;}
+}
+
+@media screen and (max-width: 567px){
+
+    #wpsc_sign_out {
+        /*right: 0;
+        bottom: unset !important; */     
+        
+        height: 29px;
+        position: revert;
+        /*margin-top: 10px;*/
+    }
+
+    a.sidebar-link {
+
+        width: 47%;        
+        margin-bottom: 10px;
+   }
+
+
+}
+
+@media screen and (max-width: 479px){
+
+    #pmpro_user_fields .pmpro_checkout-field{width: 100%;}
+
+    img.loginimage5, img.loginimage6{    width: 150px;}
+
+    img.loginimage4{width: 25px;}
+
+    img.loginimage3{bottom: 6%;    width: 70px;}
+
+    img.loginimage2, img.loginimage1{width: 80px;}
+
+    .loginright {  height: 600px;}
+
+    .logintext h4, .registartionleft h4{font-size: 20px !important;}
+
+    a.sidebar-link { width: 46%;  }
+
+   div#user_wrapper { margin-top: 20px;}
+
+   div#user_filter { text-align: left; margin-top: 25px;}
+
+   .right-sidebar .col-12.text-right{text-align: left !important; padding: 0;}
+
+
+
+}
+
+@media screen and (max-width: 359px){
+
+
+    a.sidebar-link {
+    width: 45%;   
+   }
+}

@@ -1,0 +1,10 @@
+ .table thead th:last-child {
+    width: 109px;
+}
+ .table thead th:nth-child(2), .table td:nth-child(2) {
+    text-align:center !important;
+}
+tr.row1 td {
+    padding-top: 100px;
+    
+}

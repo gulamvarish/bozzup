@@ -1,0 +1,2654 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+.bootstrap-iso{
+
+  font-size: 13px !important;
+
+}
+
+
+
+#wpsc_tickets_container {
+
+  border-radius: 4px;
+
+  /*border: 1px solid #1C5D8A;  Hide preloader background border */
+
+  background-color: #fff;
+
+  color: #2C3E50;
+
+  min-height: 300px;
+
+  width: 100%;
+
+}
+
+
+
+#wpsc_tickets_container .wpsc_loading_icon{
+
+  margin-top: 118px;
+
+}
+
+
+
+.wpsc_reply_widget .wpsc_loading_icon{
+
+  margin-top: 60px !important;
+
+  margin-bottom: 60px !important;
+
+}
+
+
+
+.wpsc_tl_action_bar{
+
+  padding: 4px 0;
+
+  background-color:transparent !important;
+
+  float: right;
+
+  z-index: 0;
+
+  position: relative;
+      width: 100%;
+      
+
+}
+
+
+
+.wpsc_create_ticket_btn{
+
+  background-color: #E74C3C;
+
+  color: #fff !important;
+
+  margin-bottom: 3px !important;
+
+}
+
+
+
+.wpsc_action_btn{
+
+  background-color: #FFF;
+
+  color: #383333 !important;
+
+  margin-bottom: 3px !important;
+
+}
+
+
+
+.wpsc_search_btn{
+
+  cursor: pointer;
+
+}
+
+
+
+.wpsc_search_btn_sarch{
+
+  margin-left: 10px;
+
+  float: left;
+
+}
+
+
+
+.wpsc_search_btn_filter{
+
+    position: absolute;
+    right: 10px;
+    top: 14px;
+
+}
+
+
+
+#wpsc_ticket_search{
+
+  padding: 0 5px !important;
+
+  background-color:#fff !important;
+
+  height: 40px !important;
+
+  width:145px!important;
+
+  text-align: center;
+
+  border: 1px solid #000 !important;
+
+    color: #000 !important;
+
+box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%) !important;
+position: absolute;
+right: 0;
+top: 0;
+
+}
+
+
+
+#wpsc_ticket_search::-webkit-input-placeholder { /* Edge */
+
+  color: black !important;
+
+  font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins';
+
+}
+
+
+
+#wpsc_ticket_search:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+  color: black !important;
+
+  font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins';
+
+}
+
+
+
+#wpsc_ticket_search::placeholder {
+
+  color: black !important;
+
+  font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins';
+
+}
+
+.w-auto {
+
+  width:auto!important;
+
+}
+
+.d-flex {
+
+  display:flex!important;
+
+}
+
+.align-items-center{
+
+  align-items: center!important;
+
+}
+
+.wpsp_custom_filter_container{
+
+  width: auto;
+
+    margin-left: auto;
+
+    background-color: #fff;
+
+    border: 1px solid #cccccc !important;
+
+    position: absolute;
+
+    z-index: 999999;
+
+    top: 7%;
+
+    right: 15px;
+
+}
+
+.w-100{
+
+  width:100%!important;
+
+}
+
+.p-0{
+
+  padding:0!important;
+
+}
+
+.wpsp_filter_btn{
+
+  margin: 3px 0 !important;
+
+}
+
+
+
+.wpsp_filter_body{
+
+  max-height: 250px;
+
+  overflow-y: auto;
+
+  padding: 15px 0;
+
+}
+
+
+
+.wpsp_filter_footer{
+
+  padding: 10px 0;
+
+  background-color: #F3F3F7;
+
+}
+
+
+
+.wpsc_sidebar, .wpsc_it_body{
+
+  padding-top: 20px;
+
+}
+
+.right-sidebar{
+
+ padding-top: 50px;
+border-left: 5px solid #0017af;
+
+  
+
+}
+
+
+
+form#frm_additional_filters {
+
+    position: absolute;
+
+    
+
+    right: 25px;
+
+        width: 90%;
+
+            top: 20px;
+
+            height: 0;
+
+
+
+}
+
+
+
+
+
+
+
+.wpsp_sidebar_labels{
+
+  font-size: 15px;
+
+  margin: 10px 0;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+}
+
+.wpsc_ticket_search_box{
+
+  /*updated by rkumar*/
+
+ 
+
+  width:100%;
+
+
+ position: absolute;
+right: 25px;
+top: 34px;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*#wpsc_sign_out{ position: absolute; bottom: 5%;  }*/
+
+
+
+/*.wpsc_ticket_search_box{ width: 100px !important; }*/
+
+
+
+#wpsc_md_filters .wpsp_sidebar_labels.active, #wpsc_md_filters .wpsp_sidebar_labels:hover{
+
+  font-weight: bold;
+
+}
+
+
+
+#wpsc_sm_filters1{ height: 100vh; min-height: 500px; background-color: #fff; padding: 100px 25px 25px 25px; }
+
+#wpsc_sm_filters1 hr{border-top: 1px solid #0017af;}
+
+
+
+.sidebar-link{text-decoration: none !important; font-weight: 500; font-size: 12px; color: #000 !important;display: block;
+
+    padding: 8px 0; text-align: left; line-height: 18px;}
+
+
+
+.sidebar-link:focus{border: 0; position: relative;}
+
+
+
+.sidebar-link img{ margin-right: 15px;    width: 24px; float: left; z-index: 999; }
+
+
+
+.contenthide{ display: none; }
+
+
+
+.nofoundimg{ width: 260px; }
+
+
+
+.sidebarlogo{ width:100%;text-align: center; }
+
+.logotopimage{ width:40%; margin-bottom: 15px; }
+
+.logobottomimage {width: 100%;}
+
+
+
+/*.btnneworder{ margin-left: 25% !important; }*/
+
+
+
+.currentlogin{ color: #000 !important;text-transform: capitalize; }
+
+
+
+p.nofoundp{ width: 70%; margin: 0 auto;font-family: 'Poppins', sans-serif !important; }
+
+
+
+.nofouncurrentlogin{     
+
+
+
+  font-weight: 600 !important;
+
+    font-size: 30px !important;
+
+    color: #000 !important;
+
+    
+
+    margin: 30px 0 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+
+  }
+
+
+
+
+
+ .Nofound #wpsc_load_list_new_ticket_btn{
+
+        font-size: 12px !important;
+
+        font-weight: 500 !important;
+
+        font-family: 'Poppins';
+
+        
+
+       margin-top: 25px;
+
+        background: #478E00 !important;
+
+        color:#fff !important;;
+
+      }
+
+ 
+
+
+
+#wpsc_load_list_reset_filters_btn,
+ #wpsc_load_ticket_list_btn,
+  #wpsc_create_ticket_reset
+  { font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins';    
+    border: 1px solid #000 !important;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%) !important;
+    padding: 10px 25px;
+      }
+
+
+
+ #wpsc_load_ticket_list_btn{ margin-left: 25px; }
+/* .subscriber #wpsc_load_list_reset_filters_btn{ margin-left: 30% !important; }*/
+
+
+.headingcreateticket{
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 24px !important;
+
+
+
+  }
+
+
+
+  .main-right {
+
+    background: #F5F5F5;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+}
+
+
+
+.wpsc_ct_field_label{
+
+  font-weight: 500 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 12px !important;
+
+    color: #000;
+
+  }
+
+
+
+  .form-control{ border-color: #1D1D1D; }
+
+
+
+
+
+
+
+@media (max-width: 767px){
+
+  .bootstrap-iso .wpsc_action_btn.visible-xs{
+
+    display: inline !important;
+
+  }
+
+
+
+}
+
+
+
+.wpsc_ticket_list_container{
+
+  padding-top: 40px;
+
+  min-height: 500px !important;
+
+}
+
+
+
+.wpsc_ticket_list_container td,.wpsc_ticket_list_container th,.wpsc_ticket_list_container tr,.wpsc_ticket_list_container table{
+
+  border: none !important;
+
+}
+
+
+
+.wpsc_ticket_list_container td,.wpsc_ticket_list_container th{
+
+  white-space: nowrap;
+
+}
+
+
+
+.wpsc_ticket_list_container th{
+
+  background-color: #424949;
+
+  color: #ffffff;
+
+}
+
+
+
+.wpsc_ticket_list_container tr:hover{
+
+  cursor: pointer;
+
+}
+
+
+
+.wpsc_ticket_list_container input[type=checkbox]{
+
+  margin: 0 !important;
+
+  vertical-align: middle !important;
+
+}
+
+
+
+.wpsp_admin_label{
+
+  border-radius: 4px;
+
+  font-weight: bold;
+
+  padding: 5px 10px;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+}
+
+
+
+.wpsc_thread{
+
+  display: table;
+
+  width: 100%;
+
+  padding: 10px;
+
+  background-color: #FFFFFF;
+
+  border-radius: 5px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #c3c3c3;
+
+}
+
+
+
+.wpsc_thread.note{
+
+  background-color: #FEF9E7;
+
+}
+
+.wpsc_thread.reported {
+    width: 97%;
+    float: right;
+}
+
+.thread_avatar, .thread_body{
+
+  display: table-cell;
+
+  vertical-align: top;
+
+}
+
+
+
+.thread_avatar{
+
+  width: 40px;
+
+}
+
+
+
+.thread_avatar img{
+
+  border-radius: 5px;
+
+}
+
+
+
+.thread_body{
+
+  padding: 0 15px 5px 15px;
+
+}
+
+
+
+.thread_body i{
+
+      display: block;
+
+}
+
+
+
+.thread_user_name strong{
+
+      font-weight: 600 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 16px !important;
+
+}
+
+
+
+.thread_user_name i {
+
+  margin-left: 5px;
+
+}
+
+
+
+.thread_messege, .thread_messege p{
+
+  font-size: 13px !important;
+
+}
+
+
+
+.thread_action_btn{
+
+  float: right;
+
+  cursor: pointer;
+
+  margin-left: 10px;
+
+  color: #a7a9ab;
+
+  font-size: 14px;
+
+}
+
+
+
+.thread_action_btn:hover{
+
+  color:black;
+
+}
+
+
+
+.wpsc_raised_by_action:hover{
+
+  color:black;
+
+}
+
+
+
+.wpsc_thread_log{
+
+  padding: 10px;
+
+  margin-bottom: 20px;
+
+  background-color: #D6EAF8;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+
+}
+
+
+
+.wpsc_reply_widget{
+
+  margin-bottom: 20px;
+
+}
+
+
+
+.bootstrap-iso .attachment {
+
+  text-align:left !important;
+
+}
+
+
+
+#wpsc_frm_create_ticket .attachment{
+
+  width: 100% !important;
+
+}
+
+
+
+.wpsc_reply_widget .attachment, .wpsc_reply_widget .submit{
+
+  padding: 5px 0;
+
+}
+
+
+
+.attachment_link span{
+
+    font-weight: 500 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 12px !important;
+
+    color: #000;
+
+   
+
+    cursor: pointer;
+
+    padding: 10px 0 10px 0;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+    width: 180px;
+    display: block;
+
+}
+
+
+
+.attachment_link span i{ background: #fff; padding: 11px 15px; margin-right: 10px; }
+
+
+
+.cancelorder{ color: red;text-decoration: underline;    font-weight: 500 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 12px !important;
+
+    }
+
+
+
+.wpsc_reply_widget button, .wpsc_reply_widget .btn-group{
+
+  float: right;
+
+  margin-top: 5px;
+
+}
+
+
+
+.btn {
+
+  margin-right: 2px !important;
+
+}
+
+
+
+.individual_ticket_widget .wpsp_sidebar_labels{
+
+  font-size: 12px;
+
+  cursor: auto;
+
+}
+
+
+
+.wpsc_sf_del{
+
+  padding: 1px 5px !important;
+
+}
+
+
+
+.raisedby_img{
+
+  width: 100%
+
+}
+
+
+
+.raisedby_img img{
+
+  border-radius: 5px;
+
+}
+
+
+
+.raisedby_name{
+
+  width: 100%;
+
+  font-size: 17px;
+
+  margin: 15px 0;
+
+}
+
+
+
+.raised_by_div{
+
+  margin-bottom: 10px;
+
+  background-color: #D6DBDF;
+
+  overflow: hidden;
+
+  color: #000;
+
+  border: none !important;
+
+}
+
+
+
+.raised_by_div div{
+
+  vertical-align: middle;
+
+}
+
+
+
+.raised_by_div .thread_avatar{
+
+  width: 20px;
+
+}
+
+
+
+.raised_by_div .thread_body{
+
+  padding: 0 15px 0 15px;
+
+}
+
+
+
+.raised_by_div .thread_user_name{
+
+  margin-bottom: 0;
+
+}
+
+
+
+.wpsc_page_heading{
+
+  margin-left: 30px;
+
+  margin-bottom: 35px !important;
+
+}
+
+
+
+.wpsc_ct_field_label{
+
+  font-size: 15px;
+
+}
+
+
+
+.create_ticket_fields_container{
+
+  padding-lef: 20px;
+
+  padding-top: 15px;
+
+}
+
+
+
+.create_ticket_frm_submit{
+
+  padding: 0 30px;
+
+  margin: 30px 0;
+
+}
+
+
+
+.assigned_agent{
+
+  padding-bottom: 20px !important;
+
+}
+
+
+
+.attachment_container{
+
+  margin-top: 10px;
+
+}
+
+
+
+.attachment_cancel{
+
+    float: right;
+
+    margin: -40px 0px 0 0;
+
+    cursor: pointer;
+    position: relative;
+
+}
+
+
+
+.captcha_container{
+
+  margin-bottom: 10px;
+
+  display: flex;
+
+  padding: 20px;
+
+  margin-left: 15px;
+
+  background-color: #B2BABB;
+
+  color: #000;
+
+  font-size: 15px;
+
+  border-radius: 5px;
+
+  font-weight: bold;
+
+}
+
+
+
+.widget_header{
+
+  margin-bottom: 3px !important;
+
+  font-size: 16px !important;
+
+}
+
+
+
+.widget_divider{
+
+  margin-top: 4px !important;
+
+  margin-bottom: 6px !important;
+
+}
+
+
+
+#wpsc_message_login{
+
+  padding: 5px;
+
+  border-radius: 4px;
+
+}
+
+
+
+.wpsc_attachment_tbl table, .wpsc_attachment_tbl th, .wpsc_attachment_tbl td{
+
+      border: hidden !important;
+
+      padding: 0px !important;
+
+}
+
+.attachmentprogress{float: none !important; width: 97% !important;}
+
+.wpsc_ticket_thread_expander{
+
+  margin-top: 10px;
+
+  color: #003eff;
+
+  cursor: pointer;
+
+}
+
+
+
+.thread_messege{
+
+    overflow: hidden;
+
+}
+
+
+
+.wpsc_ticket_thread_content img{
+
+    cursor: pointer;
+
+}
+
+
+
+.wpsc_textarea{
+
+  height: 160px !important;
+
+  width: 100%  !important;
+
+}
+
+
+
+#wpsc_ticket_fields{
+
+  margin: 10px 0;
+
+}
+
+
+
+#wpsc_ticket_aof_fields{
+
+  margin: 10px 0;
+
+}
+
+
+
+.wpsc_tl_action_bar button{ 
+
+ 
+
+  padding: 10px 19px !important;
+
+  margin-bottom: 0 !important;
+
+       margin-right: 25px !important;
+
+      font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins';
+
+}
+
+button#btn_delete_tickets {
+font-size: 12px !important;
+    font-weight: 500 !important;
+    font-family: 'Poppins';    
+    border: 1px solid #000 !important;
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%) !important;
+    padding: 10px 25px;
+    
+
+}
+
+#wpsc_individual_ticket_list_btn, #wpsc_individual_refresh_btn, #wpsc_individual_delete_btn, #wpsc_individual_copyurl_btn{
+
+  border: 1px solid #000;
+  font-weight: 500 !important;
+      color: #000 !important;
+
+}
+div#wpsc_ticket_fields_widget {
+   background: #F5F5F5;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+
+#wpsc_register_email_error, #wpsc_register_username_error{
+
+  color: red;
+
+
+
+}
+
+
+
+.thread_messege ul{
+
+  list-style-type:disc !important;
+
+  padding-inline-start: 40px;
+
+}
+
+
+
+.wpsc_seen_info{
+
+  float:right;
+
+  cursor:pointer;
+margin-top: 8px;
+}
+
+
+
+#wpsc_additional_users{
+
+  margin: 10px 0;
+
+}
+
+
+
+#biographical_info{
+
+  margin: 10px 0;
+
+}
+
+
+
+.bootstrap-iso .mce-tinymce{
+
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+
+}
+
+
+
+
+
+
+
+.thread_messege #wpsc_timer_table {
+
+  width: auto !important;
+
+  border-collapse: collapse;
+
+  border-top: 1px solid #ddd;
+
+}
+
+
+
+.thread_messege #wpsc_timer_table td, .thread_messege #wpsc_timer_table th {
+
+  border: 1px solid #ddd;
+
+  padding: 8px;
+
+}
+
+
+
+.wpsc_reg_required_sym{
+
+  color:red;
+
+}
+
+
+
+/*****Css written by Gulam Varish 16042021 start*****/
+
+#btnid75{ background-color: blue; border: 2px solid blue; }
+
+#btnid74{ background-color: red; border:  2px solid red; }
+
+#btnid6{ background-color: green; border: 2px solid green; }
+
+#btnid4{ background-color: #ff9955; border: 2px solid #ff9955; }
+
+#btnid3{ background-color: #6c757d; border: 2px solid #6c757d; }
+
+
+
+/*#sentreview{  background-color:rgb(255 153 85);background-image: none; border: 0; }*/
+
+
+
+/*updated by rkumar and commented above line*/
+
+#sentreview{  background-color:rgb(255,182,5);background-image: none; border: 0; }
+
+
+
+#sentfor{background-color: rgb(128 128 128);background-image: none;border: 0;}
+
+#approved{background-color: rgb(98 185 120);background-image: none;border: 0;}
+
+#rejected{background-color: rgb(250 96 66);background-image: none;border: 0;}
+
+#modification{background-color: rgb(0 0 128);background-image: none;border: 0;}
+
+
+
+.yellow{  background-color:rgb(255,182,5) !important;background-image: none !important; }
+
+.garey{background-color: rgb(128 128 128) !important;;background-image: none !important;}
+
+.green{background-color: rgb(98 185 120) !important;;background-image: none !important;}
+
+ .red{background-color: rgb(250 96 66) !important;;background-image: none !important;}
+
+.blue{background-color: rgb(0 0 128) !important;;background-image: none !important;}
+
+
+.ticketstatuscolor {
+    border-radius: 4px !important;
+    font-weight: bold !important;
+    padding: 7px 10px !important;
+    font-size: 10px !important;
+    text-transform: uppercase !important;
+    border: 0 !important;
+    color: #fff !important;
+    float: right;
+    margin-right: 10px !important;
+    cursor: initial !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+.radiobtn{ padding: 15px !important; color: #fff !important; margin-right: 7px !important; }
+
+
+
+.radiobtn.checked{border: 2px solid #000 !important; background-color: #6c757d !important;}
+
+
+
+#wpsc_individual_submit_reply_btn{padding: 15px}
+
+
+
+
+
+#main .entry-footer{ display: none; }
+
+.btn-li{
+
+  margin-right: 5px;
+
+}
+
+.btn-ul{
+
+  margin:0;
+
+  padding: 0;
+
+  list-style: none;
+
+  display: flex; 
+
+}
+
+.btn-li .btn {
+
+  text-transform: uppercase;
+
+  padding: 11px 15px;
+
+ /* background: transparent !important;
+
+    color: #000 !important;
+
+    border: 1px solid #000 !important;
+
+    box-shadow: 0 1px 6px 0 rgb(0 0 0 / 26%) !important;*/
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    font-family: 'Poppins';
+
+}
+
+@media screen and (max-width: 575px){
+
+  .btn-ul{
+
+    flex-wrap: wrap;
+
+  }
+
+  .btn-li{
+
+    margin-bottom: 5px;
+
+  }
+
+}
+
+@media screen and (min-width: 576px){
+
+  .btn-sm-lg{
+
+    font-size: 18px!important;
+
+    padding: 10px 16px;
+
+    line-height: 1.3333333;
+
+    border-radius: 6px;
+
+  }
+
+}
+
+#tbl_wpsc_ticket_list {
+
+  border-collapse: collapse;
+
+  width: 100%;
+
+}
+
+
+
+#tbl_wpsc_ticket_list td, #tbl_wpsc_ticket_list th {
+
+  border: 0px solid #ddd!important;
+
+  padding: 15px 8px;
+
+}
+
+
+
+#tbl_wpsc_ticket_list .wpsc_tl_row_item{background-color: #f7f6fb;border-bottom: solid white 10px !important;}
+
+
+
+#tbl_wpsc_ticket_list .wpsc_tl_row_item:hover {background-color: #f7f6fb !important;}
+
+
+
+#tbl_wpsc_ticket_list th {
+
+  padding-top: 12px;
+
+  padding-bottom: 12px;
+
+  text-align: left;
+
+  background-color: transparent !important;
+
+    color: #000;
+
+    font-size: 12px !important;
+
+    font-weight: 600 !important;
+
+    font-family: 'Poppins';
+
+
+
+  /*by rkumar*/
+
+  text-transform:capitalize;
+
+}
+
+
+
+#tbl_wpsc_ticket_list td{ 
+
+  color: #000;
+
+    font-size: 12px !important;
+
+    font-weight: 500 !important;
+
+    font-family: 'Poppins';}
+
+
+
+/*.logincenter{position: relative;height: 70vh;}*/
+
+.login-form-div{
+
+  width:400px;
+
+  padding: 20px 25px 10px 25px;
+
+  margin-bottom:20px;
+
+  border: 2px solid #ced9fab8;
+
+
+
+    border-radius: 10px;
+
+    min-height: 420px;
+
+
+
+  /*box-shadow: 0 10px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%) !important;*/
+
+ 
+
+}
+
+
+
+.customersupplier{
+
+    background: none !important;
+
+    color: #707070 !important;
+
+    font-size: 16px !important;
+
+    font-weight: 500 !important;
+
+    font-family: 'Poppins';
+
+    border-radius: 20px !important;
+
+    margin-bottom: 10px !important;
+
+    padding: 8px 20px !important;
+
+        margin-right: 0 !important;
+
+}
+
+.customersupplier:hover{background: #fff !important;color: #000 !important; border-color: #fff !important;border-radius: 20px;}
+
+
+
+ form input[type="radio"]:checked + label {
+
+   background: #fff !important; border-color: #fff !important;color: #000 !important;
+
+ }
+
+
+
+
+
+@media screen and (min-width:400px){
+
+  .login-form-div{
+
+    width:100%;
+
+    margin: auto;
+
+  }
+
+}
+
+body .wpbstarter-page-title-area, body  #mastheadx, footer .site-info{
+
+  display:none;
+
+}
+
+/*body.logged-in .wpbstarter-page-title-area, body.logged-in  #mastheadx, body.logged-in footer .site-info{
+
+  display:block;
+
+}*/
+
+
+
+.login-row{
+
+    display: -ms-flexbox;
+
+    display: flex!important;
+
+    -ms-flex-wrap: wrap!important;
+
+    flex-wrap: wrap;
+
+    margin-right: -15px;
+
+    margin-left: -15px;
+
+}
+
+.logo-img img{
+
+
+
+/*  background-image: url("../../asset/images/login.png");
+
+  background-repeat: no-repeat;
+
+    background-position: top left;    
+
+    background-size: 100%;*/
+
+    width:75% ;
+
+   
+
+}
+
+
+
+.logo-img-dashboard{
+
+
+
+  background-image: url("../../asset/images/login.png");
+
+  background-repeat: no-repeat;
+
+    background-position: top left;    
+
+    background-size: 100%;
+
+    height: 47px;
+
+    width: 200px;
+
+    margin-left: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+.logo-img-title {
+
+    font-weight: 500 !important;
+
+    font-size: 24px !important;
+
+    width: 100%;
+
+    text-align: left;
+
+    line-height: 30px !important;
+
+    margin: 0 auto;
+
+    color: #000 !important;
+
+    margin-top: 50px !important;
+
+}
+
+
+
+/*body.home.logged-in{background-image:none ;}*/
+
+
+
+
+
+.dontsignup-main{ margin-left: 8%;  font-weight: 400;font-size: 24px;line-height: 28px;color: #3b485e;}
+
+
+.dontsignup-p{
+
+   font-weight: 500;
+
+    font-size: 16px;
+
+    font-family: 'Poppins', sans-serif !important;
+
+    margin-bottom: 10px;
+    color: #000;   
+}
+
+.dontsignup {
+
+    
+
+    color: #000;   
+
+    text-align: left; 
+
+    font-weight: 500;
+
+    font-size: 16px;
+
+    font-family: 'Poppins', sans-serif !important;
+
+    margin-bottom: 10px;
+
+}
+
+span#usertypemesg {
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.dontsignup a, .dontsignup a:hover{ color: #0380B8; text-decoration: none;font-weight: 600;}
+
+
+
+#wpsc_create_ticket_submit, wpsc_create_ticket_submit_later{color: #fff;
+
+    font-weight: 500 !important;
+
+    font-family: 'Poppins' !important;
+
+    font-size: 12px !important;}
+
+#wpsc_create_ticket_submit_later{
+
+    background-color: #17a2b8;
+
+    color: #fff;
+
+}
+
+
+
+.freetrial{
+
+
+
+  background: #003CFF !important;
+
+    color: #fff !important;
+
+    padding: 10px 30px !important;
+
+    font-weight: 500 !important;
+
+    font-size: 18px !important;
+
+    margin: 30px 0 0 0;
+
+    border-radius: 5px !important;
+
+
+
+    font-family: 'Poppins', sans-serif !important;
+
+}
+
+  }
+
+.card-required{
+
+    color: #3b485e !important;    
+
+    font-weight: 500 !important;
+
+    font-size: 14px !important;
+
+    margin: 0 0 0 7% !important;
+
+    border-radius: 0 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+
+
+
+}
+
+
+
+.copyrightmain{   
+
+    margin-top: 30px;
+
+  }
+
+.addressmain h3{
+
+  color: #000 !important;    
+
+    font-weight: 600 !important;
+
+    font-size: 18px !important;
+
+    margin: 10px 0 10px 0 !important;
+
+    font-family: 'Poppins', sans-serif !important;
+
+   
+
+  }
+
+
+.addressmain {
+    padding: 22px 0 !important;
+}
+
+  .addressmain address{
+
+    color: #000 !important;    
+
+    font-weight: 500 !important;
+
+    font-size: 14px !important;
+
+    margin: 10px 0 10px 0 !important;
+
+   line-height: 24px;
+
+   font-family: 'Poppins', sans-serif !important;
+
+  }
+
+
+
+.copyright{
+
+
+
+    color: #000 !important;    
+
+    font-weight: 500 !important;
+
+    font-size: 9px !important;
+
+    font-family: 'Poppins', sans-serif !important;
+
+     
+
+}
+
+
+
+.privacy{
+
+    color: #000 !important;
+
+    padding: 0 7% !important;
+
+    font-weight: 500 !important;
+
+    font-size: 10px !important;
+
+    
+
+    border-radius: 0 !important;
+
+    /*box-shadow:0 6px 10px 0 rgb(0 0 0 / 17%), 0 2px 10px 0 rgb(0 0 0 / 16%) !important;*/
+
+  }
+
+
+
+
+
+  /*new login*/
+
+
+
+/* div#wpsc_tickets_container, .loginmaincontainer {
+
+    background-image: linear-gradient(75deg, #C9D6FF 0%, #E2E2E2 100%);
+
+    
+
+}*/
+
+.loginmaincontainer{ padding-top: 30px;padding-bottom: 30px; }
+
+
+
+#frm_wpsc_sign_in #inputEmail, #frm_wpsc_sign_in #inputPassword{
+
+  border-radius: 10px !important;
+
+  font-weight: 500 !important;
+
+  font-size: 16px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #000 !important;
+
+  padding: 12px 15px!important;
+
+    height: 50px !important;
+
+}
+
+
+
+
+
+#frm_wpsc_sign_in input::-webkit-input-placeholder { /* Edge */
+
+  color: black !important;
+
+}
+
+
+
+#frm_wpsc_sign_in input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+
+  color: black !important;
+
+}
+
+
+
+#frm_wpsc_sign_in input::placeholder {
+
+  color: black !important;
+
+}
+
+
+
+
+
+#frm_wpsc_sign_in .checkbox label p, #frm_wpsc_sign_in .checkbox a{
+
+  font-weight: 500 !important;
+
+  font-size: 12px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #000 !important;
+
+  
+
+}
+
+
+
+#frm_wpsc_sign_in .checkbox a{text-decoration: underline;}
+
+
+
+#frm_wpsc_sign_in .checkbox label input{border-radius: 10px; }
+
+
+
+ #frm_wpsc_sign_in .checkbox label input[type="checkbox"]:checked {
+
+   background: #fff !important; border-color: #fff !important;color: #000 !important;
+
+ }
+
+
+
+ #wpsc_sign_in_btn{ 
+
+  background: #478E00 !important; 
+
+  color: #fff !important;
+
+  font-weight: 600 !important;
+
+  font-size: 18px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  width: 65%;
+
+  margin-left: 18%;
+
+  padding: 13px 25px;
+
+}
+
+
+
+
+
+.pricing-box1{
+
+  min-height: 386px !important;
+
+  background-size: 100% !important;
+
+  padding: 15px 20px;
+  background-repeat: no-repeat !important
+
+  
+
+  
+
+}
+
+.pricing-box1 h3{
+
+  font-weight: 500 !important;
+
+  font-size: 28px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #fff !important;
+
+  margin: 10px 0 10px 0;
+
+}
+
+
+
+.pricing-box3, .pricing-box2{padding: 15px 20px; background-color: #fff;  border-radius: 20px;box-shadow: 0 6px 10px 0 rgb(0 0 0 / 17%), 0 2px 10px 0 rgb(0 0 0 / 16%) !important;}
+
+.pricing-box3 h3, .pricing-box2 h3{
+
+  font-weight: 600 !important;
+
+  font-size: 28px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #000 !important;
+
+  margin: 10px 0 10px 0;
+
+
+
+
+
+
+
+}
+
+
+
+.pricing-box3 h5, .pricing-box2 h5{
+
+  font-weight: 600 !important;
+
+  font-size: 18px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #000 !important;
+
+  
+
+
+
+
+
+
+
+}
+
+
+
+
+
+.pricing-box3 ul , .pricing-box2  ul{margin: 0;padding: 0;}
+
+
+
+.pricing-box3 ul li, .pricing-box2  ul li{ 
+
+
+
+  list-style: none;background: url("../../asset/images/icon/listico.png") no-repeat;background-size: 12px 12px; padding-left: 20px;
+
+background-position-y: 6px; 
+
+  font-weight: 500 !important;
+
+  font-size: 12px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #404040 !important;
+
+  margin-bottom: 8px;
+
+}
+
+
+
+.pricing-box3 p strong, .pricing-box2 p strong{
+
+
+
+  font-weight: 600 !important;
+
+  font-size: 24px !important;
+
+  font-family: 'Poppins', sans-serif !important;
+
+  color: #000 !important;
+
+  margin-bottom: 10px; 
+
+
+
+}
+
+
+
+.pricing-box3 .btn, .pricing-box2 .btn {
+
+    background: #478E00 !important;
+
+    color: #fff !important;
+
+    font-weight: 600 !important;
+
+    font-size: 18px !important;
+
+    font-family: 'Poppins', sans-serif !important;
+
+    width: 65%;
+
+    margin-left: 18%;
+
+    padding: 9px 25px;
+
+}
+
+
+
+.wpsc_it_body {
+    background: #F5F5F5;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+}
+
+
+.thread_user_name.replied{ background-color: #ffffe0; color: #000;padding: 5px 10px; margin-bottom: 5px;}
+
+.thread_user_name.reported{ background-color: #f0f8ff;color: #000;padding: 5px 10px; margin-bottom: 5px;}
+
+.hentry{ margin-bottom: 0 !important; }
+
+@media screen and (max-width:400px){
+
+/*.logincenter{ height: 100vh; }
+
+  body.home{background-size: 80%;     background-position: center 5%;}*/
+
+  /*.dontsignup-main{
+
+    width:100%;
+
+    margin: auto;
+
+  }
+
+  .dontsignup-main p{font-size: 12px;}
+
+  body.home .wpbstarter-content-area-padding{ padding: 0; }*/
+
+
+
+  .form-signin-heading{ padding: 13px 0 !important;    margin: 0 !important; font-size: 20px !important;}
+
+}
+
+
+
+
+
+@media screen and (max-width: 767px){
+
+ 
+
+}
+
+
+
+@media screen and (max-width: 479px){
+
+ 
+
+
+
+  .logo-img-title{    font-size: 16px !important;line-height: 20px !important;}
+
+
+
+  .login-form-div{ width: 100%; }
+
+
+
+  .dontsignup-main {
+
+    margin-left: 5%;
+
+    font-weight: 400;
+
+    font-size: 16px;
+
+    line-height: 24px;
+
+    
+
+}
+
+
+
+
+
+.card-required{font-size: 12px !important;margin: 0 !important;}
+
+.copyright{margin: 50px 0 0 auto !important;font-size: 16px !important;}
+
+.privacy{margin: 20px 25px 0 25px;}
+
+
+
+
+
+
+
+}
+
+
+
+
+
+/*responsive*/
+
+
+
+#wpsc_frm_create_ticket .col-sm-6, #wpsc_frm_create_ticket .col-sm-12{ float: left; }
+
+
+
+
+@media screen and (max-width: 1300px){
+
+.wpsc_tl_action_bar button{padding: 10px 7px !important;   margin-right: 14px !important;}
+}
+
+@media screen and (max-width: 1100px){
+
+   .sidebar-link img{margin-right: 6px !important;}
+
+   .wpsc_tl_action_bar button{padding: 10px 7px !important;    margin-right: 14px !important;}
+
+   .wpsc_ticket_search_box{    right: 6px; }
+}
+
+
+  @media screen and (max-width: 1023px){
+
+
+
+div#wpsc_sm_filters1 {
+
+    width: 100%;
+
+    float: none;
+
+    max-width: 100%;
+
+    
+
+}
+
+
+
+
+
+
+
+.col-sm-12.col-md-11.right-sidebar .col-sm-6{ padding: 0; }
+
+
+
+  /*  a.sidebar-link {
+    width: 161px;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #002c6d;
+    margin-right: 10px;
+
+
+}
+
+p.text {
+    margin-top: 3px;
+    margin-bottom: 0;
+}*/
+
+/*#wpsc_sign_out {
+
+    position: relative !important;
+
+    top: 11px;
+
+    right: 30px;
+
+    bottom: 0 !important;
+
+}*/
+
+div#wpsc_sm_filters1{border-right: 0px; height: auto;     min-height: 40px;  padding: 50px 25px 25px 25px !important;}
+
+/*
+new sidebar*/
+
+.sidebarlogo {
+    width: 50% !important;
+    text-align: center !important;
+    margin: 0 auto;
+
+    
+}
+
+.right-sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-left: 0px !important;
+}
+
+.wpsc_ticket_search_box{    top: -16px; }
+
+}
+
+@media (max-width: 991px) and (min-width: 768px){
+
+  .bootstrap-iso .wpsc_action_btn.visible-sm{
+
+    display: inline !important;
+
+  }
+
+  .pricing-box-main .col-md-3 {
+        float: left;
+        max-width: 50% !important;
+
+        margin-bottom: 25px;
+       
+    }
+
+    .pricing-box1 {min-height: 325px !important;}
+
+    .customersupplier{padding: 8px 10px !important;font-size: 12px !important;}
+
+    #frm_wpsc_sign_in .col-md-6{float: left; max-width: 50% !important;}
+
+    #frm_wpsc_sign_in #inputEmail, #frm_wpsc_sign_in #inputPassword{font-size: 12px !important;}
+
+    .pull-right.forgot-password{ float: none !important; }
+
+    #wpsc_sign_in_btn{width: 80%;  margin-left: 8%;  padding: 9px 25px;}
+
+    /*#wpsc_sign_out{top: 20px;}*/
+}
+
+
+
+@media screen and (max-width: 979px){
+
+.table-responsive .btn-ul li button{ font-size: 14px !important; }
+
+.col-sm-12.col-md-11.right-sidebar .col-sm-6{ width: 100%;max-width: 100%; }
+
+
+
+.col-sm-8.submit {
+
+    width: 100% !important;
+
+    max-width: 100%;
+
+}
+
+
+
+
+
+}
+
+
+
+@media screen and (max-width: 875px){
+
+
+
+.table-responsive .btn-ul li button{padding:10px 8px !important; }
+
+ #tbl_wpsc_ticket_list th{font-size: 10px !important;}
+
+ .registartionleft h4{font-size: 22px !important;}
+
+
+ /*
+new sidebar*/
+
+/*.sidebar-link img{ float: none !important; }
+
+/*a.sidebar-link {
+      width: 125px !important;;
+      text-align: center;
+}*/
+.wpsc_tl_action_bar button{     margin-right: 3px !important;}
+
+#wpsc_ticket_search{    width: 120px!important;}
+
+button#btn_delete_tickets {right: -30px;}
+
+.wpsc_ticket_list_nxt_pre_page{max-width: 100% !important}
+
+}
+
+
+
+@media screen and (max-width: 767px){
+
+
+
+form#frm_additional_filters{position: absolute;right: 5px;width: 98%; top: 0; left: 5px;}
+
+.wpsc_ticket_search_box{ width: 100%; right: 10px;margin-top: 0; top: 0;}
+
+
+
+.wpsc_ticket_list_container{ padding-top: 20px; }
+
+.col-sm-8.submit label{display: block;}
+
+
+
+/*For Order Status msg*/
+
+
+
+.col-sm-8.col-md-9.wpsc_it_body, .col-sm-8.submit, .col-sm-4.col-md-3.wpsc_sidebar.individual_ticket_widget {
+
+    width: 100% !important;
+
+    max-width: 100%;
+
+}
+
+.col-sm-8.col-md-8.wpsc_it_body {width: 100% !important;
+    max-width: 96%;
+    padding: 15px;
+    margin: 50px auto 0 auto;
+
+  }
+
+
+
+.wpsc_tl_action_bar button{margin-bottom: 5px !important;}
+
+
+
+.wpsc_tl_action_bar{ padding-bottom: 0; }
+
+
+
+  #wpsc_frm_create_ticket .create_ticket_fields_container,   #wpsc_frm_create_ticket .create_ticket_frm_submit{padding: 0; margin-top: 20px;}
+  #wpsc_frm_create_ticket .wpsc_ct_field_label, #wpsc_frm_create_ticket .attachment_link label { font-size: 12px !important;}
+.dontsignup{ margin-bottom: 25px; }
+#frm_wpsc_sign_in .col-md-6{float: left; max-width: 50% !important;}
+  .pricing-box-main .col-md-3 {
+      min-height: 430px;
+  }
+/*.btnall .col-sm-6:first-child{width: 70%; float: left;}
+.btnall .col-sm-6:last-child{width: 30%; float: left;}*/
+
+#wpsc_ticket_search{position: absolute; right: 0; top: 4px;}
+
+.wpsp_custom_filter_container {width: 70%;}
+
+/*a.sidebar-link {
+    width: 49.4%;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 0 0 5px 0;
+}*/
+
+#wpsc_ticket_search{width: 120px !important;}
+
+/*#wpsc_sign_out {
+     position: revert !important; 
+    top: unset;
+    right: 70%;
+        float: left !important;
+    
+}*/
+
+button#btn_delete_tickets{ right: -30px; }
+ #wpsc_create_ticket_reset, #wpsc_load_ticket_list_btn{padding: 10px 12px;}
+
+ .col-sm-6.text-right.btncol, .col-sm-6.headingcol{ float: left; padding: 0;}
+
+ button#wpsc_create_ticket_reset {
+    float: left;
+
+}
+
+/*.subscriber #wpsc_load_list_reset_filters_btn {
+    margin-left: 55% !important;
+  }*/
+
+
+}
+
+@media screen and (max-width: 600px){
+
+
+/*.subscriber #wpsc_load_list_reset_filters_btn {
+    margin-left: 30% !important;
+  }*/
+
+  #wpsc_frm_tkt_reply .btn{ font-size: 12px !important; }
+
+  .col-sm-8.col-md-8.wpsc_it_body{max-width: 94%;}
+
+}
+
+@media screen and (max-width: 567px){
+
+  .logo-img-title{font-size: 16px !important;}
+
+    .login-right.col-md-8 {  margin-bottom: 25px;}
+
+    .pricing-box-main .col-md-3 {
+         min-height: auto;
+          margin-bottom: 25px;
+          max-width: 100% !important;
+      }
+
+      .privacy{padding: 0 !important; margin-right: 25px;    font-size: 11px !important;}
+
+      .copyrightmain { margin-top: 10px;    font-size: 11px !important;}
+
+      .customersupplier{font-size: 12px !important;}
+
+
+
+}
+
+
+
+@media screen and (max-width: 560px){
+
+
+
+/*  #wpsc_sign_out{top: 60%;}*/
+
+ /* a.sidebar-link{ padding: 10px 35px;margin-bottom: 5px;  }*/
+
+}
+
+
+
+
+
+@media screen and (max-width: 534px){   
+
+  /*For New Order*/
+
+
+
+  #wpsc_frm_create_ticket .col-sm-6, #wpsc_frm_create_ticket .col-sm-12{ width: 100%;padding: 0; }
+
+
+
+  #wpsc_frm_create_ticket .create_ticket_fields_container,   #wpsc_frm_create_ticket .create_ticket_frm_submit{padding: 0; margin-top: 20px;}
+
+
+
+  #wpsc_frm_create_ticket .wpsc_ct_field_label, #wpsc_frm_create_ticket .attachment_link label { font-size: 12px !important;}
+
+  .btnall .col-sm-6{width: 70%; float: left;}
+  /*.btnall .col-sm-6:last-child{width: 100%; float: left; padding: 0;}*/
+
+  button#btn_delete_tickets{top: 46px;right: -17px;font-size: 10px !important;padding: 10px 12px !important;}
+
+
+  .wpsc_tl_action_bar button{ margin-right: 0px !important;}
+
+  #wpsc_ticket_search { width: 110px !important;}
+
+  .wpsc_tl_action_bar button{padding: 10px 2px !important;font-size: 10px !important;}
+
+  .right-sidebar{margin-top: 10px !important;}
+  div#wpsc_sm_filters1{padding: 50px 20px 25px 20px !important;}
+
+  }
+
+
+
+  @media screen and (max-width: 479px){
+
+
+
+  .create_ticket_frm_submit .btn { width: 100% !important;margin-bottom: 10px; }
+
+
+
+  .col-sm-8.submit .btn{ font-size: 12px; padding: 6px 7px; }
+
+  #wpsc_frm_tkt_reply .btn {
+    font-size: 16px !important;
+    width: 100%;
+}
+
+
+
+/*a.sidebar-link{ padding: 10px 24px;  }*/
+
+.checkbox {  display: inline-block !important;}
+
+
+
+.pull-right.forgot-password {
+
+    display: block;
+
+    float: left !important;
+
+    width: 100%;
+
+}
+
+/*a.sidebar-link {
+    width: 49.3%;
+    
+}*/
+
+  }
+
+
+
+  @media screen and (max-width: 359px){
+
+
+
+    /*a.sidebar-link{ padding: 10px 16px;  }*/
+
+
+
+    .dontsignup{width: 200px;font-size: 12px; }
+
+    
+
+    /*.subscriber #wpsc_load_list_reset_filters_btn {
+        margin-left: 25% !important;
+      }*/
+
+  }
+
+
+
+
+
+
+
+
+
+/*****Css written by Gulam Varish 16042021 end*****/
+
+
+ 
+
+
+
+
+
