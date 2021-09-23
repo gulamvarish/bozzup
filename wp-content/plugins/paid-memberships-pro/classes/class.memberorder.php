@@ -1078,6 +1078,7 @@
 					$this->billing->zip     = $this->Zip;
 					$this->billing->country = $this->CountryCode;
 					$this->billing->phone   = $this->PhoneNumber;
+					
 				}
 			}
 		}

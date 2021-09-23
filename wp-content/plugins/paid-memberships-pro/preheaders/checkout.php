@@ -115,7 +115,7 @@ if ( $tospage ) {
 }
 
 //load em up (other fields)
-global $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bcompany, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth, $ExpirationYear;
+global $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bcompany, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth, $ExpirationYear;
 
 if ( isset( $_REQUEST['order_id'] ) ) {
 	$order_id = intval( $_REQUEST['order_id'] );
@@ -182,6 +182,16 @@ if ( isset( $_REQUEST['bphone'] ) ) {
 	$bphone = sanitize_text_field( stripslashes( $_REQUEST['bphone'] ) );
 } else {
 	$bphone = "";
+}
+if ( isset( $_REQUEST['bvatno'] ) ) {
+	$bvatno = sanitize_text_field( stripslashes( $_REQUEST['bvatno'] ) );
+} else {
+	$bvatno = "";
+}
+if ( isset( $_REQUEST['gdpr'] ) ) {
+	$gdpr = sanitize_text_field( stripslashes( $_REQUEST['gdpr'] ) );
+} else {
+	$gdpr = "";
 }
 
 if ( isset ( $_REQUEST['bcompany'] ) ) {
@@ -281,6 +291,8 @@ $pmpro_required_billing_fields = array(
 	"bstate"          => $bstate,
 	"bzipcode"        => $bzipcode,
 	"bphone"          => $bphone,
+	"bvatno"          => $bvatno,
+	"gdpr"            => $gdpr,
 	"bemail"          => $bemail,
 	"bcompany"        => $bcompany,
 	"bcountry"        => $bcountry,
@@ -727,6 +739,8 @@ if ( ! empty( $pmpro_confirmed ) ) {
 				"pmpro_bzipcode",
 				"pmpro_bcountry",
 				"pmpro_bphone",
+				"pmpro_bvatno",
+				"pmpro_gdpr",				
 				"pmpro_bemail",
 				"pmpro_CardType",
 				"pmpro_AccountNumber",
@@ -743,6 +757,8 @@ if ( ! empty( $pmpro_confirmed ) ) {
 				$bzipcode,
 				$bcountry,
 				$bphone,
+				$bvatno,
+				$gdpr,
 				$bemail,
 				$CardType,
 				hideCardNumber( $AccountNumber ),
@@ -908,6 +924,8 @@ if ( empty( $submit ) ) {
 		$bzipcode      = get_user_meta( $current_user->ID, "pmpro_bzipcode", true );
 		$bcountry      = get_user_meta( $current_user->ID, "pmpro_bcountry", true );
 		$bphone        = get_user_meta( $current_user->ID, "pmpro_bphone", true );
+		$bvatno        = get_user_meta( $current_user->ID, "pmpro_bvatno", true );
+		$gdpr          = get_user_meta( $current_user->ID, "pmpro_gdpr", true );
 		$bcompany      = get_user_meta( $current_user->ID, "company", true );
 		$bemail        = get_user_meta( $current_user->ID, "pmpro_bemail", true );
 		$bconfirmemail = $bemail;    //as of 1.7.5, just setting to bemail

@@ -399,7 +399,7 @@ function update_user(){
  /*check login*/
 $this->page_access();
 
-global $wpdb;
+      global $wpdb;
       $user = wp_get_current_user();
       $user->ID;
      
@@ -408,29 +408,40 @@ global $wpdb;
 
       //$sql   = "SELECT * FROM wp_users WHERE `created_by` = $user->ID";
       $query = "SELECT * FROM wp_users INNER JOIN wp_usermeta ON wp_users.ID = wp_usermeta.user_id
-      WHERE FIND_IN_SET($user->ID, wp_users.created_by) and wp_users.ID =$edituserid  and wp_usermeta.meta_key = 'wp_capabilities' and wp_usermeta.meta_value like '%subscriber%'
+      WHERE wp_users.ID =$edituserid  and wp_usermeta.meta_key = 'wp_capabilities' and wp_usermeta.meta_value like '%subscriber%'
       ORDER BY wp_users.user_nicename";
 
      
       $users = $wpdb->get_results($query);
      /* echo "<pre>";
       print_r($users);
-       echo "</pre>";*/
-
+       echo "</pre>";
+*/
 
 
 
       /*$this->left_sidebar();*/
                   echo '<div class="col-sm-12 col-md-10 right-sidebar">
+                   <div class="col-12 text-center" id="message">';
+
+                         if(!empty($_SESSION['status'])){
+                            echo '<div class="alert alert-success" role="alert" >'.$_SESSION['status'].'</div>';
+                            }
+
+                            if(!empty($_SESSION['error'])){
+                            echo '<div class="alert alert-danger" role="alert" >'.$_SESSION['error'].'</div>';
+                            }
+
+                       echo '</div>
                     <div class="col-12">
-                    <h3>Edit Customer</h3>
+                    <h3>Edit Profile</h3>
                         <div class="col-12 text-center" id="message"></div>                        
                             <form id="newusercreate">
                           <div class="form-group row">
                           
                             <div class="col-sm-12">
                             <label>Username</label>
-                              <input type="text" class="form-control getfieldvalue" id="username" text="Enter Username" placeholder="Username" value="'.$users[0]->user_login.'">
+                              <input type="text" class="form-control getfieldvalue" id="username" text="Enter Username" placeholder="Username" value="'.$users[0]->user_login.'" readonly>
                             </div>
                           </div>
                           <div class="form-group row">
@@ -488,6 +499,13 @@ global $wpdb;
                     
                 </div>  
             </div>';
+
+             if(!empty($_SESSION['status'])){
+                   unset($_SESSION["status"]);      
+            }
+            if(!empty($_SESSION['error'])){
+                             unset($_SESSION["error"]);
+             }
 
 }
 
@@ -830,6 +848,7 @@ function update_user_data(){
 
 
 
+
         $username       = sanitize_text_field($username);
         $password22     = $password;
         $oldpassword1   = $oldpassword;
@@ -885,9 +904,9 @@ if($password !=''){
             /*Add company created_by*/
             update_user_meta( $userid, 'company', $compay);
 
-            $_SESSION['status'] = 'Customer has updated successfully';
+            $_SESSION['status'] = 'Profile has updated successfully';
 
-            wp_send_json(array('status' => 1, 'message' => __('Customer has updated successfully')));
+            wp_send_json(array('status' => 1, 'message' => __('Profile has updated successfully')));
 
         } else {
             $_SESSION['error'] = $user_id->get_error_message();
@@ -976,17 +995,21 @@ function exit_email(){
        
         $email = $_REQUEST['data'];        
 
-        $table_name = $wpdb->prefix . "users";
+        $table_name = $wpdb->prefix . "users";       
 
-       
+        $result = $wpdb->get_results ("SELECT * FROM  $table_name WHERE `user_email` = '".$email."'");
 
-        $result = $wpdb->get_results ("SELECT * FROM  $table_name WHERE `user_email` = '".$email."'"); 
+         
+        $username = $result[0]->user_login;
+        $fname    = get_user_meta($result[0]->ID, 'first_name', true);
+        $lname    = get_user_meta($result[0]->ID, 'last_name', true);
+        $company  = get_user_meta($result[0]->ID, 'company', true);
 
        
 
         if (count($result)>0) {
            
-            wp_send_json(array('status' => 1, 'message' => __('Customer with email address already exists!')));
+            wp_send_json(array('status' => 1, 'message' => __('Customer with email address already exists!'), 'username'=>$username, 'fname'=>$fname, 'lname'=>$lname, 'company'=>$company));
         } else {
             
             wp_send_json(array('status' => 0, 'message' => __('')));

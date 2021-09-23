@@ -36,10 +36,12 @@
 <?php if(!empty($pmpro_invoice) && !empty($pmpro_invoice->id)) { ?>
 
 	<?php
+		
 		$pmpro_invoice->getUser();
+
 		$pmpro_invoice->getMembershipLevel();
 
-		$confirmation_message .= "<p>" . sprintf(__('Below are details about your membership account and a receipt for your initial membership invoice. A welcome email with a copy of your initial membership invoice has been sent to %s.', 'paid-memberships-pro' ), $pmpro_invoice->user->user_email) . "</p>";
+		$confirmation_message .= "<p>" . sprintf(__('Below are details about your membership account. A welcome email with details of your membership has been sent to %s.', 'paid-memberships-pro' ), $pmpro_invoice->user->user_email) . " You can also download your Invoice from the <a href=".home_url('/membership-account/').">settings</a> section</p>";
 
 		// Check instructions
 		if ( $pmpro_invoice->gateway == "check" && ! pmpro_isLevelFree( $pmpro_invoice->membership_level ) ) {
@@ -62,7 +64,7 @@
 <div class="row d-flex justify-content-center">
 
     <div class="col-sm-10 mt-4">
-    	<div class="col-sm-12 mt-4">	<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?> btn" href="javascript:window.print()"><?php _e('Download / Print', 'paid-memberships-pro' );?></a>
+    	<div class="col-sm-12 mt-4">	<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?> btn" href="<?php echo home_url('/'); ?>membership-account/membership-invoice/?invoice=<?php echo $pmpro_invoice->code; ?>"><?php _e('Download Invoice', 'paid-memberships-pro' );?></a>
   	 	
   	 </div>
   	 <div class="clearfix"></div>
@@ -96,18 +98,21 @@
 
 	<div class="col-sm-6 float-left invoice-right <?php echo pmpro_get_element_class( 'pmpro_invoice_details' ); ?>">
 		<?php if(!empty($pmpro_invoice->billing->street)) { ?>
-			<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-billing-address' ); ?>">
+			<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-billing-address' ); ?>" style="display: none;">
 				<strong><?php _e('Billing Address', 'paid-memberships-pro' );?></strong>
 				<p>
-					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span>
-					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span>
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name1' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span><br>
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_company1' ); ?>"><?php echo get_user_meta($current_user->ID, 'company', true); ?></span><br>
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone1' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span><br>
+
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street1' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span><br>
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_zip1' ); ?>"><?php echo $pmpro_invoice->billing->zip; ?></span><br>
 					<?php if ( $pmpro_invoice->billing->city && $pmpro_invoice->billing->state ) { ?>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_city' ); ?>"><?php echo $pmpro_invoice->billing->city; ?></span>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_state' ); ?>"><?php echo $pmpro_invoice->billing->state; ?></span>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_zip' ); ?>"><?php echo $pmpro_invoice->billing->zip; ?></span>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_country' ); ?>"><?php echo $pmpro_invoice->billing->country; ?></span>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_city1' ); ?>"><?php echo $pmpro_invoice->billing->city; ?></span>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_state1' ); ?>"><?php echo $pmpro_invoice->billing->state; ?></span>						
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_country1' ); ?>"><?php echo $pmpro_invoice->billing->country; ?></span><br>						
 					<?php } ?>
-					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span>
+					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_vatno1' ); ?>"><?php echo get_user_meta($current_user->ID, 'pmpro_bvatno', true);  ?></span>
 				</p>
 			</div> <!-- end pmpro_invoice-billing-address -->
 		<?php } ?>
@@ -184,7 +189,7 @@
 	}
 	else
 	{
-		$confirmation_message .= "<p>" . sprintf(__('Below are details about your membership account. A welcome email has been sent to %s.', 'paid-memberships-pro' ), $current_user->user_email) . "</p>";
+		$confirmation_message .= "<p>" . sprintf(__('Below are details about your membership account. A welcome email with details of your membership has been sent to %s.', 'paid-memberships-pro' ), $current_user->user_email) . "</p>";
 
 		/**
 		 * All devs to filter the confirmation message.
@@ -202,6 +207,17 @@
 		<li class="account-name"><h4 ><?php _e(__('Membership Card', 'paid-memberships-pro' ))?></h4></li>
 		<li><strong><?php _e('Membership Level', 'paid-memberships-pro' );?>:</strong> <span class="account-name"><?php if(!empty($current_user->membership_level)) echo esc_html( $current_user->membership_level->name ); else _e("Pending", 'paid-memberships-pro' );?></span></li>
 	</ul>
+
+
+</div>
+<div class="col-sm-12 mt-4 p-0">
+  <p class="<?php echo pmpro_get_element_class( 'pmpro_actions_nav' ); ?>">
+	<?php if ( ! empty( $current_user->membership_level ) ) { ?>
+		<a href="<?php echo home_url(); ?>"><?php _e( 'Go to dashboard', 'paid-memberships-pro' ); ?></a><br><br>
+	<?php } else { ?>
+		<?php _e( 'If your account is not activated within a few minutes, please contact the site owner.', 'paid-memberships-pro' ); ?>
+	<?php } ?>
+</p> <!-- end pmpro_actions_nav -->
 </div>
 <?php
 

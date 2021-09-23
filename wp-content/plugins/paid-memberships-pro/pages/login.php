@@ -1,3 +1,3 @@
-<?php
-	echo pmpro_shortcode_login('');
+<?php
+	echo pmpro_shortcode_login('');
 ?>

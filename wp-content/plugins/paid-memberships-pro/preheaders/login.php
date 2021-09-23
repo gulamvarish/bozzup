@@ -1,5 +1,5 @@
-<?php
-
-/**
- * Not doing anything here yet.
+<?php
+
+/**
+ * Not doing anything here yet.
  */

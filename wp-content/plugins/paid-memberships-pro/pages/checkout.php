@@ -1,6 +1,6 @@
 <?php
 	global $gateway, $pmpro_review, $skip_account_fields, $pmpro_paypal_token, $wpdb, $current_user, $pmpro_msg, $pmpro_msgt, $pmpro_requirebilling, $pmpro_level, $pmpro_levels, $tospage, $pmpro_show_discount_code, $pmpro_error_fields;
-	global $discount_code, $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth,$ExpirationYear;
+	global $discount_code, $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth,$ExpirationYear;
 
 	/**
 	 * Filter to set if PMPro uses email or text as the type for email field inputs.
@@ -177,7 +177,7 @@
 
 			<div class="pmpro_checkout-field pmpro_checkout-field-bcompany">
 				<label for="bcompany"><?php _e('Company Name', 'paid-memberships-pro' );?></label>
-				<input id="bcompany" name="bcompany" type="text" class="input pmpro_required" size="30" value="" />
+				<input id="bcompany" name="bcompany" type="text" class="input pmpro_required" value="" />
 
 				
 
@@ -247,7 +247,7 @@
 	<?php
 		$pmpro_include_billing_address_fields = apply_filters('pmpro_include_billing_address_fields', true);
 		if($pmpro_include_billing_address_fields) { ?>
-	<div id="pmpro_billing_address_fields" class="<?php echo pmpro_get_element_class( 'pmpro_checkout', 'pmpro_billing_address_fields' ); ?>" <?php if(!$pmpro_requirebilling || apply_filters("pmpro_hide_billing_address_fields", false) ){ ?>style="display: none;"<?php } ?>>
+	<div id="pmpro_billing_address_fields" class="<?php echo pmpro_get_element_class( 'pmpro_checkout', 'pmpro_billing_address_fields' ); ?>" style="float: left;" <?php if(!$pmpro_requirebilling || apply_filters("pmpro_hide_billing_address_fields", false) ){ ?>style="display: none;"<?php } ?>>
 		<hr />
 		<h3>
 			<span class="<?php echo pmpro_get_element_class( 'pmpro_checkout-h3-name' ); ?>"><?php _e('Billing Address', 'paid-memberships-pro' );?></span>
@@ -259,6 +259,7 @@
 			</div> <!-- end pmpro_checkout-field-bfirstname -->
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-blastname', 'pmpro_checkout-field-blastname' ); ?>">
 				<label for="blastname"><?php _e('Last Name', 'paid-memberships-pro' );?></label>
+				
 				<input id="blastname" name="blastname" type="text" class="<?php echo pmpro_get_element_class( 'input', 'blastname' ); ?>" size="30" value="<?php echo esc_attr($blastname); ?>" />
 			</div> <!-- end pmpro_checkout-field-blastname -->
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-baddress1', 'pmpro_checkout-field-baddress1' ); ?>">
@@ -342,7 +343,19 @@
 				<label for="bphone"><?php _e('Phone', 'paid-memberships-pro' );?></label>
 				<input id="bphone" name="bphone" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bphone' ); ?>" size="30" value="<?php echo esc_attr(formatPhone($bphone)); ?>" />
 			</div> <!-- end pmpro_checkout-field-bphone -->
-			<?php if($skip_account_fields) { ?>
+
+			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bvatno', 'pmpro_checkout-field-bvatno' ); ?>">
+				<label for="bvatno"><?php _e('Vat Number', 'paid-memberships-pro' );?></label>
+				<input id="bvatno" name="bvatno" type="text" class="<?php echo pmpro_get_element_class( 'input'); if (in_array("bvatno", $pmpro_error_fields)) {  echo " pmpro_error";  } ?> pmpro_required"  value="<?php echo esc_attr($bvatno); ?>" />
+			</div> <!-- end pmpro_checkout-field-bvatno -->
+
+			
+
+			<?php 
+			
+
+
+			if($skip_account_fields) { ?>
 			<?php
 				if($current_user->ID) {
 					if(!$bemail && $current_user->user_email) {
@@ -370,6 +383,10 @@
 					<input type="hidden" name="bconfirmemail_copy" value="1" />
 				<?php } ?>
 			<?php } ?>
+			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-gdpr', 'pmpro_checkout-field-gdpr' ); ?>">
+				<label for="gdpr" class="gdpr-label">
+				<input id="gdpr" name="gdpr" type="radio" class="<?php echo pmpro_get_element_class('gdpr' ); ?>" checked  value="1" / ><span><?php _e('I agree to the GDPR terms', 'paid-memberships-pro' );?></span></label>
+			</div> <!-- end pmpro_checkout-field-gdpr -->
 		</div> <!-- end pmpro_checkout-fields -->
 	</div> <!--end pmpro_billing_address_fields -->
 	<?php } ?>

@@ -18,13 +18,68 @@
 			$pmpro_invoice->getUser();
 			$pmpro_invoice->getMembershipLevel();
 		?>
-		<h3 style="margin:20px 0 30px 0; "><?php _e("Invoices Download/Print", 'paid-memberships-pro' );?></h3>
-		<h4><?php printf(__('Invoice #%s on %s', 'paid-memberships-pro' ), $pmpro_invoice->code, date_i18n(date( 'Y-m-d', $pmpro_invoice->getTimestamp())));?></h4>
-		<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?>" href="javascript:window.print()"><?php _e('Print', 'paid-memberships-pro' ); ?></a>
-		<ul>
+
+<div class="row m-0">
+    <div class="col-sm-6 p-0">
+    	<h3 style="margin:20px 0 30px 0; "><?php printf(__('Invoice #%s', 'paid-memberships-pro' ), $pmpro_invoice->code);?></h3>
+    </div>
+    <div class="col-sm-6">
+    	<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?>" href="javascript:window.print()"><?php _e('Print', 'paid-memberships-pro' ); ?></a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+    	<?php if(!empty($pmpro_invoice->billing->street)) { ?>
+				<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-billing-address' ); ?>">
+					<strong><?php _e('Bill To', 'paid-memberships-pro' );?></strong>
+					<p class="mb-0">
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name1' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span><br>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_company1' ); ?>"><?php echo get_user_meta($current_user->ID, 'company', true); ?></span><br>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone1' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span><br>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street1' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span>
+
+						<?php if($pmpro_invoice->billing->city && $pmpro_invoice->billing->state) { ?>
+							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_zip1' ); ?>"><?php echo $pmpro_invoice->billing->zip; ?></span><br>
+							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_city1' ); ?>"><?php echo $pmpro_invoice->billing->city; ?></span><br>
+							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_state1' ); ?>"><?php echo $pmpro_invoice->billing->state; ?></span><br>
+							
+							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_country1' ); ?>">
+
+								<?php 
+
+								global $pmpro_countries;
+
+								
+
+								foreach($pmpro_countries as $abbr => $country) {
+									
+									if($abbr == $pmpro_invoice->billing->country) {echo $country; }
+								}
+
+								//echo $pmpro_invoice->billing->country; 
+
+
+
+							?></span><br>
+						<?php } ?>
+						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_vatno1' ); ?>"><?php echo get_user_meta($current_user->ID, 'pmpro_bvatno', true); ?></span>
+					</p>
+				</div> <!-- end pmpro_invoice-billing-address -->
+			<?php } ?>
+    </div>
+    </div>
+    <hr />
+    <div class="row">
+    <div class="col-sm-12">
+    	<!-- <h4><?php printf(__('Invoice #%s on %s', 'paid-memberships-pro' ), $pmpro_invoice->code, date_i18n(date( 'Y-m-d', $pmpro_invoice->getTimestamp())));?></h4> -->
+		
+		<ul style="padding-left:20px;">
+			<li><strong><?php _e('Invoice Id', 'paid-memberships-pro' );?>:</strong> #<?php echo $pmpro_invoice->code; ?></li>
+			<li><strong><?php _e('Invoice Date', 'paid-memberships-pro' );?>:</strong> <?php echo  date_i18n(date( 'Y-m-d', $pmpro_invoice->getTimestamp())); ?></li>
 			<?php do_action("pmpro_invoice_bullets_top", $pmpro_invoice); ?>
-			<li><strong><?php _e('Account', 'paid-memberships-pro' );?>:</strong> <?php echo $pmpro_invoice->user->display_name?> (<?php echo $pmpro_invoice->user->user_email?>)</li>
-			<li><strong><?php _e('Membership Level', 'paid-memberships-pro' );?>:</strong> <?php echo $pmpro_invoice->membership_level->name?></li>
+			<!-- <li><strong><?php _e('Account', 'paid-memberships-pro' );?>:</strong> <?php echo $pmpro_invoice->user->display_name?> (<?php echo $pmpro_invoice->user->user_email?>)</li> -->
+			<li><strong><?php _e('Plan', 'paid-memberships-pro' );?>:</strong> <?php echo $pmpro_invoice->membership_level->name?></li>
 			<?php if ( ! empty( $pmpro_invoice->status ) ) { ?>
 				<li><strong><?php _e('Status', 'paid-memberships-pro' ); ?>:</strong>
 				<?php
@@ -42,6 +97,15 @@
 			<?php } ?>
 			<?php do_action("pmpro_invoice_bullets_bottom", $pmpro_invoice); ?>
 		</ul>
+    </div>
+</div>
+
+
+
+
+
+		
+		
 
 		<?php
 			// Check instructions
@@ -50,26 +114,11 @@
 			}
 		?>
 
-		<hr />
+		
 		<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice_details' ); ?>">
-			<?php if(!empty($pmpro_invoice->billing->street)) { ?>
-				<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-billing-address' ); ?>">
-					<strong><?php _e('Billing Address', 'paid-memberships-pro' );?></strong>
-					<p>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span>
-						<?php if($pmpro_invoice->billing->city && $pmpro_invoice->billing->state) { ?>
-							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_city' ); ?>"><?php echo $pmpro_invoice->billing->city; ?></span>
-							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_state' ); ?>"><?php echo $pmpro_invoice->billing->state; ?></span>
-							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_zip' ); ?>"><?php echo $pmpro_invoice->billing->zip; ?></span>
-							<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_country' ); ?>"><?php echo $pmpro_invoice->billing->country; ?></span>
-						<?php } ?>
-						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span>
-					</p>
-				</div> <!-- end pmpro_invoice-billing-address -->
-			<?php } ?>
-
-			<?php if ( ! empty( $pmpro_invoice->accountnumber ) || ! empty( $pmpro_invoice->payment_type ) ) { ?>
+		<div class="row">
+	    <div class="col-sm-6">
+	    	<?php if ( ! empty( $pmpro_invoice->accountnumber ) || ! empty( $pmpro_invoice->payment_type ) ) { ?>
 				<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-payment-method' ); ?>">
 					<strong><?php _e('Payment Method', 'paid-memberships-pro' );?></strong>
 					<?php if($pmpro_invoice->accountnumber) { ?>
@@ -81,7 +130,9 @@
 					<?php } ?>
 				</div> <!-- end pmpro_invoice-payment-method -->
 			<?php } ?>
-
+	    </div>
+	    <div class="col-sm-6">
+	    	
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_invoice-total' ); ?>">
 				<strong><?php _e('Total Billed', 'paid-memberships-pro' );?></strong>
 				<p>
@@ -94,8 +145,24 @@
 					?>
 				</p>
 			</div> <!-- end pmpro_invoice-total -->
+	    </div>
+	    </div>	
+
+			
+
 		</div> <!-- end pmpro_invoice_details -->
 		<hr />
+		<div class="row">
+	    <div class="col-sm-12 text-center">
+	    	 <a href="/">
+		    	<img class="invoicelogo" src = "<?php echo get_stylesheet_directory_uri().'/images/logo.png'; ?>" alt="logo"/ width="300px">
+		    </a><br><br>
+		    <p> Bozzup by Francesco De Leo<br> 
+Address: Triq Santa Marta, Santa Marta Court Fl.3<br>  
+Zip code: VCT 2251 City: Ir-Rabat Country: Ghawdex, Malta <br> 
+VAT N. MT26129919</p>
+	    </div>
+	    </div>
 		<?php
 	}
 	else

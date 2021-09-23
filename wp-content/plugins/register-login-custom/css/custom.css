@@ -96,7 +96,7 @@ img.leftlogo {
 .registartionleft h4{color: black;text-align: center; margin-bottom: 40px;font-weight: 500 !important;}
 
 .registartionleft .form-control {
-  font-size: 12px !important;
+  font-size: 16px !important;
   font-weight: 500 !important;
   font-family: 'Poppins';  
   color: #000000;
@@ -130,7 +130,7 @@ button.supplier:hover {background: #0017AF;}
 
 /*sidebar{}*/
 
-#wpsc_sm_filters1{ height: 100vh; min-height: 500px; background-color: #fff; padding: 100px 25px 25px 25px;  }
+#wpsc_sm_filters1{ height: 100vh; min-height: 500px; background-color: #fff; padding: 25px 25px 25px 25px;  }
 
 #wpsc_sm_filters1 hr{border-top: 1px solid #0017af;
     margin-bottom: 20px; width: 100%;}
@@ -258,7 +258,7 @@ th.username, th.name, th.email, th.company{ width: 17% !important;}
 
 
 .form-control{color: #000;
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     font-family: 'Poppins';
     border-color: #8c9094 !important;
@@ -277,7 +277,7 @@ th.username, th.name, th.email, th.company{ width: 17% !important;}
 
   .form-group label{ 
     color: #000;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     font-family: 'Poppins'; }
 

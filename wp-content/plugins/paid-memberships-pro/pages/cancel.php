@@ -103,13 +103,14 @@
 		}
 		else
 		{  
-			
 			wp_logout();
-			wp_redirect(home_url());
-
-			exit;
 		?>
 
+
+      <script type="text/javascript">
+        window.location.href = "/";
+    </script>
+     <?php     ?>
 			<p class="<?php echo pmpro_get_element_class( 'pmpro_cancel_return_home' ); ?>"><a href="<?php echo get_home_url()?>"><?php _e('Click here to go to the home page.', 'paid-memberships-pro' );?></a></p>
 			<?php
 		}

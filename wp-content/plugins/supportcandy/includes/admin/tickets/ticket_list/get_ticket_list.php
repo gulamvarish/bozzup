@@ -229,6 +229,11 @@ $offset = ($filter['page']-1)*$post_per_page;
 							$label = 'Status';
 						}
 
+						if($label=='Agent Created'){
+							$label ='Supplier';
+
+						}
+
 
 						   if ($filter_type=='string' || $filter_type=='number') {
 							if($field->slug == 'ticket_id'){
@@ -772,17 +777,17 @@ echo $filter['custom_filter']['ticket_status'][0];*/
           	
 			?>
 
-			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('3');" class="btn btn-sm-lg btn-primary w-100" id="sentfor">OPEN (TO SEND) <?php echo $ret['Open(To send)']; ?></button></li>
-			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('4');" class="btn btn-sm-lg btn-primary w-100" id="sentreview">Sent for Approval <?php echo $ret['Sent for Approval']; ?></button></li>
+			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('3');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '3'){ echo "btnselected"; } ?>" id="sentfor">OPEN (TO SEND) <?php echo $ret['Open(To send)']; ?></button></li>
+			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('4');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '4'){ echo "btnselected"; } ?>" id="sentreview">Sent for Approval <?php echo $ret['Sent for Approval']; ?></button></li>
 <?php }else{ ?>
-<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('4');" class="btn btn-sm-lg btn-primary w-100" id="sentreview">WAITING FOR YOUR APPROVAL <?php echo $ret['WAITING FOR YOUR APPROVAL']; ?></button></li>
+<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('4');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '4'){ echo "btnselected"; } ?>" id="sentreview">WAITING FOR YOUR APPROVAL <?php echo $ret['WAITING FOR YOUR APPROVAL']; ?></button></li>
 
 <?php } ?>
 			
 		
-			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('6');" class="btn btn-sm-lg btn-primary w-100" id="approved">Approved <?php echo $ret['Approve']; ?></button></li>
-			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('74');" class="btn btn-sm-lg btn-primary w-100" id="rejected">Rejected <?php echo $ret['Reject']; ?></button></li>
-			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('75');" class="btn btn-sm-lg btn-primary w-100" id="modification">Modification Requested <?php echo $ret['Request Modification']; ?></button></li>
+			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('6');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '6'){ echo "btnselected"; } ?>" id="approved">Approved <?php echo $ret['Approve']; ?></button></li>
+			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('74');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '74'){ echo "btnselected"; } ?>" id="rejected">Rejected <?php echo $ret['Reject']; ?></button></li>
+			<li class="btn-li w-100"><button onclick="wpsc_set_button_filter('75');" class="btn btn-sm-lg btn-primary w-100 <?php if($filter['custom_filter']['ticket_status'][0] == '75'){ echo "btnselected"; } ?>" id="modification">Modification Requested <?php echo $ret['Request Modification']; ?></button></li>
 		</ul>
 	</div>
 <table id="tbl_wpsc_ticket_list" class="table" >

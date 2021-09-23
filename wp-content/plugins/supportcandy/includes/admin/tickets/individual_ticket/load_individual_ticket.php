@@ -180,12 +180,7 @@ $after_close_redirect = apply_filters('wpsc_after_close_redirect', true, $ticket
 			      'value'   => $ticket_id,
 			      'compare' => '='
 					),
-					array(
-						'key'     => 'order_status',
-			      'value'   => '3',
-			      'compare' => '!='
-					)
-				)
+									)
 			);
 			$threads = get_posts($args);
 
@@ -1084,10 +1079,10 @@ $directionality = $wpscfunction->check_rtl();
 						alert('Description required, mandatory');
 						return false;
 					}
-					if(!dataform.has('desc_attachment[]')) {
-						alert('Please add attachment');
+					/*if(!dataform.has('desc_attachment[]')) {
+						alert('Please add attachment 1');
 						return false;
-					}
+					}*/
 
       	}
 
@@ -1182,10 +1177,10 @@ $directionality = $wpscfunction->check_rtl();
 									alert('Description required, mandatory');
 									return;
 								}
-								if(!dataform.has('desc_attachment[]')) {
+								/*if(!dataform.has('desc_attachment[]')) {
 										alert('Please add attachment');
 										return false;
-									}
+									}*/
 
 							}else{
 								// if approve,reject and have descripton

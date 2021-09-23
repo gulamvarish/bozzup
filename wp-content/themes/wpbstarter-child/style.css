@@ -73,6 +73,8 @@ a.pmpro_a-print.btn {
 
 .col-sm-12.payment-main h4 {color: #000; font-size: 18px; font-weight: 500;   }
 
+span.pmpro_price_part_span.pmpro_price_part-total{border-top: 0px solid #CCC !important; }
+
 table.payment-table {
     width: 100%;
 }
@@ -210,30 +212,35 @@ ul#menu-homepage-menu li a{
    
 }
 
-#pmpro_user_fields .pmpro_checkout-field{ width: 50%; float: left; }
+#pmpro_user_fields .pmpro_checkout-field, #pmpro_billing_address_fields .pmpro_checkout-field{ width: 50%; float: left; }
 
 .pmpro_checkout-field label, .pmpro_checkout-field input, .InputElement, .ElementsApp input{ 
 
 
     color: #000 !important;;
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     font-family: 'Poppins';
 
 
 }
 
-.pmpro_checkout-field input, .StripeElement {
+.pmpro_checkout-field input, .StripeElement, .pmpro_checkout-field select  {
 
     border: 1px solid #000 !important;
 
     padding: 11px !important;
     height: 40px;
     border-radius: 3px;
+   
 
 }
 
+.pmpro_checkout-field select  {width: 100% !important;max-width: 96% !important; padding: 0 !important;}
 
+.gdpr-label .gdpr{ width: 35px; float: left;}
+
+label.gdpr-label span{position: relative;   top: 10px;   left: 10px;}
 
 .pmpro_asterisk {color: #f00;}
 

@@ -1,6 +1,6 @@
 <?php
 
-global $wpdb, $current_user, $pmpro_msg, $pmpro_msgt, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bcompany, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth, $ExpirationYear, $pmpro_requirebilling;
+global $wpdb, $current_user, $pmpro_msg, $pmpro_msgt, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bcompany, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth, $ExpirationYear, $pmpro_requirebilling;
 
 // Redirect non-user to the login page; pass the Billing page as the redirect_to query arg.
 if ( ! is_user_logged_in() ) {
@@ -86,6 +86,10 @@ if ($submit) {
         $bcountry = trim(sanitize_text_field($_REQUEST['bcountry']));
     if (isset($_REQUEST['bphone']))
         $bphone = trim(sanitize_text_field($_REQUEST['bphone']));
+    if (isset($_REQUEST['bvatno']))
+        $bvatno = trim(sanitize_text_field($_REQUEST['bvatno']));
+    if (isset($_REQUEST['gdpr']))
+        $gdpr = trim(sanitize_text_field($_REQUEST['gdpr']));
     if (isset($_REQUEST['bcompany']))
         $bcompany = trim(sanitize_email($_REQUEST['bcompany']));
     if (isset($_REQUEST['bemail']))
@@ -118,6 +122,10 @@ if ($submit) {
         $bzipcode = "";
     if (!isset($bphone))
         $bphone = "";
+    if (!isset($bvatno))
+        $bvatno = "";
+    if (!isset($gdpr))
+        $gdpr = "";
     if (!isset($bcompany))
         $bcompany = "";
     if (!isset($bemail))
@@ -145,6 +153,8 @@ if ($submit) {
         "bstate" => $bstate,
         "bzipcode" => $bzipcode,
         "bphone" => $bphone,
+        "bvatno" => $bvatno,
+        "gdpr"   => $gdpr,
         "bemail" => $bemail,
         "bcompany" => $bcompany,        
         "bcountry" => $bcountry,
@@ -206,8 +216,10 @@ if ($submit) {
             $morder->billing->city = $bcity;
             $morder->billing->state = $bstate;
             $morder->billing->country = $bcountry;
-            $morder->billing->zip = $bzipcode;
-            $morder->billing->phone = $bphone;
+            $morder->billing->zip    = $bzipcode;
+            $morder->billing->phone  = $bphone;
+            $morder->billing->bvatno = $bvatno;
+            $morder->billing->gdpr = $gdpr;
 
             //$gateway = pmpro_getOption("gateway");
             $morder->gateway = $gateway;
@@ -238,8 +250,8 @@ if ($submit) {
 
         if ($worked) {
             //update the user meta too
-            $meta_keys = array("pmpro_bfirstname", "pmpro_blastname", "pmpro_baddress1", "pmpro_baddress2", "pmpro_bcity", "pmpro_bstate", "pmpro_bzipcode", "pmpro_bcountry", "pmpro_bphone", "pmpro_bcompany", "pmpro_bemail", "pmpro_CardType", "pmpro_AccountNumber", "pmpro_ExpirationMonth", "pmpro_ExpirationYear");
-            $meta_values = array($bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bcompany, $bemail, $CardType, hideCardNumber($AccountNumber), $ExpirationMonth, $ExpirationYear);
+            $meta_keys = array("pmpro_bfirstname", "pmpro_blastname", "pmpro_baddress1", "pmpro_baddress2", "pmpro_bcity", "pmpro_bstate", "pmpro_bzipcode", "pmpro_bcountry", "pmpro_bphone", "pmpro_bvatno", "pmpro_gdpr", "pmpro_bcompany", "pmpro_bemail", "pmpro_CardType", "pmpro_AccountNumber", "pmpro_ExpirationMonth", "pmpro_ExpirationYear");
+            $meta_values = array($bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bcompany, $bemail, $CardType, hideCardNumber($AccountNumber), $ExpirationMonth, $ExpirationYear);
             pmpro_replaceUserMeta($current_user->ID, $meta_keys, $meta_values);
 
             //message
@@ -264,6 +276,8 @@ if ($submit) {
     $bzipcode = get_user_meta($current_user->ID, "pmpro_bzipcode", true);
     $bcountry = get_user_meta($current_user->ID, "pmpro_bcountry", true);
     $bphone = get_user_meta($current_user->ID, "pmpro_bphone", true);
+    $bvatno = get_user_meta($current_user->ID, "pmpro_bvatno", true);
+    $gdpr   = get_user_meta($current_user->ID, "pmpro_gdpr", true);
     $bcompany = get_user_meta($current_user->ID, "company", true);
     $bemail = get_user_meta($current_user->ID, "pmpro_bemail", true);
     $bconfirmemail = get_user_meta($current_user->ID, "pmpro_bemail", true);

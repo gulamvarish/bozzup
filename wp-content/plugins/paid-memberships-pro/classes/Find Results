@@ -1,0 +1,266 @@
+Searching 3199 files for "billing_phone"
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\adminpages\orders-csv.php:
+  201  		"o.billing_state",
+  202  		"o.billing_zip",
+  203: 		"o.billing_phone",
+  204  		"o.payment_type",
+  205  		"o.cardtype",
+  ...
+  271  	"billing_zip",
+  272  	"billing_country",
+  273: 	"billing_phone",
+  274  	"membership_id",
+  275  	"level_name",
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\adminpages\orders.php:
+  222  		$order->billing->country = sanitize_text_field( wp_unslash( $_POST['billing_country'] ) );
+  223  	}
+  224: 	if ( ! in_array( 'billing_phone', $read_only_fields ) && isset( $_POST['billing_phone'] ) ) {
+  225: 		$order->billing->phone = sanitize_text_field( $_POST['billing_phone'] );
+  226  	}
+  227  	if ( ! in_array( 'subtotal', $read_only_fields ) && isset( $_POST['subtotal'] ) ) {
+  ...
+  542  			</tr>
+  543  			<tr>
+  544: 				<th scope="row" valign="top"><label for="billing_phone"><?php esc_html_e( 'Billing Phone', 'paid-memberships-pro' ); ?>
+  545  						:</label></th>
+  546  				<td>
+  547  					<?php
+  548: 					if ( in_array( 'billing_phone', $read_only_fields ) && $order_id > 0 ) {
+  549: 						echo esc_html( $order->billing_phone );
+  550  					} else {
+  551  										?>
+  552: 											<input id="billing_phone" name="billing_phone" type="text" size="50"
+  553  												   value="<?php echo esc_attr( $order->billing->phone ); ?>"/>
+  554  					<?php } ?>
+  ...
+ 1277  				'o.billing_state',
+ 1278  				'o.billing_zip',
+ 1279: 				'o.billing_phone',
+ 1280  				'o.payment_type',
+ 1281  				'o.cardtype',
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\classes\class.memberorder.php:
+   95  				$this->billing->zip = $dbobj->billing_zip;
+   96  				$this->billing->country = $dbobj->billing_country;
+   97: 				$this->billing->phone = $dbobj->billing_phone;
+   98  
+   99  				//split up some values
+  ...
+  748  									`billing_zip` = '" . esc_sql($this->billing->zip) . "',
+  749  									`billing_country` = '" . esc_sql($this->billing->country) . "',
+  750: 									`billing_phone` = '" . esc_sql($this->billing->phone) . "',
+  751  									`subtotal` = '" . esc_sql( $this->subtotal ) . "',
+  752  									`tax` = '" . esc_sql( $this->tax ) . "',
+  ...
+  787  				//insert
+  788  				$this->sqlQuery = "INSERT INTO $wpdb->pmpro_membership_orders
+  789: 								(`code`, `session_id`, `user_id`, `membership_id`, `paypal_token`, `billing_name`, `billing_street`, `billing_city`, `billing_state`, `billing_zip`, `billing_country`, `billing_phone`, `subtotal`, `tax`, `couponamount`, `certificate_id`, `certificateamount`, `total`, `payment_type`, `cardtype`, `accountnumber`, `expirationmonth`, `expirationyear`, `status`, `gateway`, `gateway_environment`, `payment_transaction_id`, `subscription_transaction_id`, `timestamp`, `affiliate_id`, `affiliate_subid`, `notes`, `checkout_id`)
+  790  								VALUES('" . esc_sql( $this->code ) . "',
+  791  									   '" . esc_sql( session_id() ) . "',
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\classes\class.pmproemail.php:
+  296  				$this->data["billing_zip"] = $invoice->billing->zip;
+  297  				$this->data["billing_country"] = $invoice->billing->country;
+  298: 				$this->data["billing_phone"] = $invoice->billing->phone;
+  299  				$this->data["cardtype"] = $invoice->cardtype;
+  300  				$this->data["accountnumber"] = hideCardNumber($invoice->accountnumber);
+  ...
+  396  				$this->data["billing_zip"] = $invoice->billing->zip;
+  397  				$this->data["billing_country"] = $invoice->billing->country;
+  398: 				$this->data["billing_phone"] = $invoice->billing->phone;
+  399  				$this->data["cardtype"] = $invoice->cardtype;
+  400  				$this->data["accountnumber"] = hideCardNumber($invoice->accountnumber);
+  ...
+  467  								"billing_zip" => $invoice->billing->zip,
+  468  								"billing_country" => $invoice->billing->country,
+  469: 								"billing_phone" => $invoice->billing->phone,
+  470  								"cardtype" => $invoice->cardtype,
+  471  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+  ...
+  521  								"billing_zip" => $invoice->billing->zip,
+  522  								"billing_country" => $invoice->billing->country,
+  523: 								"billing_phone" => $invoice->billing->phone,
+  524  								"cardtype" => $invoice->cardtype,
+  525  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+  ...
+  572  								"billing_zip" => $invoice->billing->zip,
+  573  								"billing_country" => $invoice->billing->country,
+  574: 								"billing_phone" => $invoice->billing->phone,
+  575  								"cardtype" => $invoice->cardtype,
+  576  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+  ...
+  620  								"billing_zip" => $invoice->billing->zip,
+  621  								"billing_country" => $invoice->billing->country,
+  622: 								"billing_phone" => $invoice->billing->phone,
+  623  								"cardtype" => $invoice->cardtype,
+  624  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+  ...
+  668  								"billing_zip" => $invoice->billing->zip,
+  669  								"billing_country" => $invoice->billing->country,
+  670: 								"billing_phone" => $invoice->billing->phone,
+  671  								"cardtype" => $invoice->cardtype,
+  672  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+  ...
+  722  								"billing_zip" => $invoice->billing->zip,
+  723  								"billing_country" => $invoice->billing->country,
+  724: 								"billing_phone" => $invoice->billing->phone,
+  725  								"cardtype" => $invoice->cardtype,
+  726  								"accountnumber" => hideCardNumber($invoice->accountnumber),
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\css\frontend.css:
+  455  .pmpro_invoice-field-billing_street,
+  456  .pmpro_invoice-field-billing_country,
+  457: .pmpro_invoice-field-billing_phone {
+  458  	display: block;
+  459  }
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\email\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\includes\confirmation.php:
+  110  						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_country' ); ?>"><?php echo $pmpro_invoice->billing->country; ?></span>
+  111  					<?php } ?>
+  112: 					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span>
+  113  				</p>
+  114  			</div> <!-- end pmpro_invoice-billing-address -->
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\includes\setup.sql:
+  293    `billing_country` varchar(128) NOT NULL,
+  294  
+  295:   `billing_phone` varchar(32) NOT NULL,
+  296  
+  297    `subtotal` varchar(16) NOT NULL DEFAULT '',
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\includes\upgradecheck.php:
+  317  		  `billing_zip` varchar(16) NOT NULL DEFAULT '',
+  318  		  `billing_country` varchar(128) NOT NULL,
+  319: 		  `billing_phone` varchar(32) NOT NULL,
+  320  		  `subtotal` varchar(16) NOT NULL DEFAULT '',
+  321  		  `tax` varchar(16) NOT NULL DEFAULT '',
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\ca\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\ca_AD\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\ca_ES\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\da_DK\billing_admin.html:
+    7  	!!billing_street!!<br />					
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  	
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\de_DE\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\el\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\el_GR\billing_admin.html:
+    8  	!!billing_street!!<br />
+    9  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+   10: 	!!billing_phone!!
+   11  </p>
+   12  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\et_EE\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\fr_FR\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\it_IT\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\nl_NL\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\sv_SE\billing_admin.html:
+    7  	!!billing_street!!<br />
+    8  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+    9: 	!!billing_phone!!
+   10  </p>
+   11  
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\languages\email\vi_VN\billing_admin.html:
+   15  	!!billing_city!!, !!billing_state!! !!billing_zip!!	!!billing_country!!
+   16  
+   17: 	!!billing_phone!!
+   18  
+   19  </p>
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\pages\confirmation.php:
+  104  					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name1' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span><br>
+  105  					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_company1' ); ?>"><?php echo get_user_meta($current_user->ID, 'company', true); ?></span><br>
+  106: 					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone1' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span><br>
+  107  
+  108  					<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street1' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span><br>
+
+D:\wamp\www\bozzup\wp-content\plugins\paid-memberships-pro\pages\invoice.php:
+   37  						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_name1' ); ?>"><?php echo $pmpro_invoice->billing->name; ?></span><br>
+   38  						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_company1' ); ?>"><?php echo get_user_meta($current_user->ID, 'company', true); ?></span><br>
+   39: 						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_phone1' ); ?>"><?php echo formatPhone($pmpro_invoice->billing->phone); ?></span><br>
+   40  						<span class="<?php echo pmpro_get_element_class( 'pmpro_invoice-field-billing_street1' ); ?>"><?php echo $pmpro_invoice->billing->street; ?></span>
+   41  
+
+D:\wamp\www\bozzup\wp-content\plugins\pmpro-email-templates-addon\pmpro-email-templates.php:
+  417  				$new_data['billing_zip'] = $invoice->billing->zip;
+  418  				$new_data['billing_country'] = $invoice->billing->country;
+  419: 				$new_data['billing_phone'] = $invoice->billing->phone;
+  420  				$new_data['cardtype'] = $invoice->cardtype;
+  421  				$new_data['accountnumber'] = hideCardNumber($invoice->accountnumber);
+
+D:\wamp\www\bozzup\wp-content\plugins\pmpro-email-templates-addon\adminpages\emailtemplates.php:
+  373  					<tr>
+  374  
+  375: 						<td>!!billing_phone!!</td>
+  376  
+  377  						<td><?php _e('Billing Info Phone #', 'pmproet');?></td>
+
+44 matches across 26 files

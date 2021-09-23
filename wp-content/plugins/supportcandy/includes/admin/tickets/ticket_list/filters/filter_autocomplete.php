@@ -14,6 +14,8 @@ if (!isset($source)) {
 	$field_slug = isset($_REQUEST) && isset($_REQUEST['field']) ? sanitize_text_field($_REQUEST['field']) : '';
 }
 
+
+
 if($field_slug == 'ticket_id'){
 	$field_slug = 'id';
 }
@@ -26,7 +28,10 @@ if ($filter['label'] == 'deleted') {
 
 /*Added By Gulam*/
 $agentid   = "SELECT DISTINCT `agent_created`  FROM ".$wpdb->prefix."wpsc_ticket WHERE `customer_email` = '".$current_user->user_email."' AND `active` = '1'";
+
 $agentids     = $wpdb->get_results($agentid);
+
+
 $agentuserid = array();
 
 				if (isset($agentids) && !empty($agentids)) {
@@ -121,8 +126,12 @@ switch ($field_slug) {
 			$meta = array();
 			$meta['relation'] = 'OR';
 			$term1 = explode(' ',$term);
+
+
 			
 			foreach ($term1 as $key => $value) {
+
+
 				$meta[] = array(
 					'key'       => 'label',
 					'value'     => $value,
@@ -153,7 +162,8 @@ switch ($field_slug) {
 					'compare'   => 'LIKE'
 				);
 			}
-			
+
+
 			$agents = get_terms([
 				'taxonomy'   => 'wpsc_agents',
 				'hide_empty' => false,
@@ -162,20 +172,23 @@ switch ($field_slug) {
 				'order'      => 'ASC',
 				'meta_query'     => $meta
 			]);
+
+
 			
 			foreach($agents as $agent){
-
 				
 
 				$termuserid = $wpdb->get_results( "SELECT * FROM $wpdb->termmeta WHERE `term_id` = '".$agent->term_id."' AND `meta_key` LIKE 'user_id'");
-				//print_r($termuserid);
+				
+			/*	echo "<pre>";
+				print_r($termuserid);*/
 
 				
 				 
-			if(in_array($termuserid[0]->meta_value, $agentuserid))			 			
+				if(in_array($termuserid[0]->meta_value, $agentuserid))			 			
   				{  							
-			 	   
-			 	$company  = get_user_meta( $termuserid[0]->meta_value, 'company', true );				
+			 	   $company  = get_user_meta( $termuserid[0]->meta_value, 'company', true );
+				
 				$agent_name = get_term_meta($agent->term_id,'label',true);
 				$output[]   = array(
 					'label'    => $company,
@@ -237,11 +250,17 @@ switch ($field_slug) {
 				if($_SESSION['user_type'] == 'subscriber'){
 					
 
-
-					$where .= "WHERE t.customer_email = '".$current_user->user_email."' AND t.active = '1'";
-
+					if(empty($_REQUEST['term'])){
+					 $where .= "WHERE t.customer_email = '".$current_user->user_email."' AND t.active = '1'";
+					}
 				}elseif($_SESSION['user_type']== 'supplier'){
-					$where .= "WHERE t.agent_created = '".$agenterm[0]->term_id."' AND t.active = '1'";
+
+					if(empty($_REQUEST['term'])){
+						$where .= "WHERE t.agent_created = '".$agenterm[0]->term_id."' AND t.active = '1'";
+					}
+					
+
+
 				}
 
 				
@@ -277,7 +296,7 @@ switch ($field_slug) {
 		  
 				//combining query
               
-				 $sql = $sql . $join_str .$where  . $limit;
+				  $sql = $sql . $join_str .$where  . $limit;
 				 $ticket_data = $wpdb->get_results($sql);
 				 			
 
@@ -285,6 +304,8 @@ switch ($field_slug) {
 				$tickets = json_decode(json_encode($ticket_data), true);
 	 
 				foreach($tickets as $ticket){
+
+
 
 					if(in_array($field_slug,$get_all_meta_keys)){
 						$result = $wpscfunction->get_ticket_meta($ticket['id'],$field_slug,true);
@@ -307,7 +328,13 @@ switch ($field_slug) {
 
 			
 			if($field_slug == 'customer_name'){
+
+
 				$users = get_users(array('search'=>'*'.$term.'*'));
+
+
+
+
 	/*			 $createdbyexplode    = explode(",",$users->created_by);
 
 			 		 print_r($createdbyexplode);*/
@@ -318,7 +345,7 @@ switch ($field_slug) {
      			 $useridcheck         = $current_user->ID;
      			 
 				 	}elseif($_SESSION['user_type']== 'subscriber'){
-				 		 $arraycheck         = $agentuserid;
+				 		 $arraycheck         =  $agentuserid;
      			   $useridcheck        =  $user->id;
 				 	}
 

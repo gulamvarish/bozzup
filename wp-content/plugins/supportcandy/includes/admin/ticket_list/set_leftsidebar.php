@@ -19,8 +19,11 @@
 			  <a href="/membership-account" class="sidebar-link"><img onclick="sidebar_menu();" src = "<?php echo plugin_dir_url('/').'supportcandy/asset/images/icon/setting.png'; ?>" alt="Setting"/><p class="text">Setting</p></a>
 			   
 			 
-			  <?php 
-			  } ?>
+			  <?php }elseif($_SESSION['user_type']=='subscriber'){ ?>
+
+			  	 <a href="/edit-user?id=<?php echo $current_user->ID; ?>" class="sidebar-link"><img onclick="sidebar_menu();" src = "<?php echo plugin_dir_url('/').'supportcandy/asset/images/icon/customer.png'; ?>" alt="Customers"/><p class="text">Edit Profile</p></a>
+
+			  <?php }  ?>
 			  <a href="javascript:void(0)" id="helpemail" class="sidebar-link mailModal" data-toggle="modal" data-target="#mailModal"><img onclick="sidebar_menu();" src = "<?php echo plugin_dir_url('/').'supportcandy/asset/images/icon/help.png'; ?>" alt="help"/><p class="text">Help</p></a> 
 		<?php $wpsc_support_page_id = get_option('wpsc_support_page_id');
 		$support_page_url = get_permalink($wpsc_support_page_id);

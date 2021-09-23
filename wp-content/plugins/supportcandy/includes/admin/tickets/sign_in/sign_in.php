@@ -29,6 +29,13 @@ $wpsc_recaptcha_type       		= get_option('wpsc_recaptcha_type');
 <div class="container loginmaincontainer">
 
   <div class="row login-row"> 	
+ <?php 	
+
+if( $_REQUEST['checkemail'] == 'confirm'){
+
+	echo "<div class='confirmemail col-md-12 text-center bg-success mb-3 p-1' style='color:#fff'>We sent an email to you with your login information and a link to reset
+your password. Back to <a href='/' style='color:#fff'>login</a></div>";
+} ?>
 
 <div class="login-right col-md-8">
 
@@ -50,7 +57,11 @@ $wpsc_recaptcha_type       		= get_option('wpsc_recaptcha_type');
 
 	<div class="login-form-div">
 
+
+
 <?php 
+
+
 
 do_action('wpsc_before_signin_module');
 
@@ -344,7 +355,7 @@ Automatically your dashboard will be updated</div>
 		<h3>Smart Pricing for You!</h3>
 
 	</div>
-
+   
 </div>
 
 <?php
@@ -391,7 +402,7 @@ Automatically your dashboard will be updated</div>
 
 	<h3 class="text-center"><?php the_title(); ?></h3>
 
-	<h5>What you'll get</h5>
+	<!-- <h5>What you'll get</h5> -->
 
 
 
@@ -477,7 +488,7 @@ if($title == 'Monthly Plan'){
 
 
 <!-- <a href="<?php echo home_url(); ?>/registration-supplier/?level=4" class="btn">Choose</a> -->
-<div class="col-md-3 ">
+<div class="col-md-3 pagesfooter">
 
 
 
@@ -493,9 +504,9 @@ if($title == 'Monthly Plan'){
 
 </div>
 
-<div class="col-md-12 copyrightmain p-0">
+<!--<div class="col-md-12 copyrightmain p-0">
 
- <p class="copyright">© 2021 BozzUp Francesco De Leo. All Rights Reserved</p>
+  <p class="copyright">© 2021 BozzUp Francesco De Leo. All Rights Reserved</p>
 
 <div class="col-md-12 addressmain">
 
@@ -513,15 +524,13 @@ if($title == 'Monthly Plan'){
 
 </address>
 
-</div>
-
-<a href="/privacy-policy" class="btn privacy" role="button">Privacy Policy</a>
-
-<a href="/cookie-policy" class="btn privacy" role="button">Cookie Policy</a>
+</div> 
 
 
 
-</div>
+
+
+</div>-->
 
 </div> 
 
@@ -530,7 +539,89 @@ if($title == 'Monthly Plan'){
 
 
 </div>
+<div class="col-md-12 mt-3"><p style="color: #478E00 ">Get 2 months free when you purchase a one-year plan.</p></div>
 
+
+
+  <div class="row">
+
+  	<div class="col-md-12">
+
+  		<h3>Features and Price plans</h3>
+  		<p><strong>Are you a supplier of customised promotional products?</strong></p>
+  		<p>Do you have mockups your customers have to approve?</p>
+
+  		<strong>With Bozzup you can easily manage, organise and keep under control the review and approval of your customers’ mockups with just one glance and a few clicks!</strong>
+
+  	</div>
+  	<div class="col-md-12 howbozzup">
+  	  <h3 class="bozzupheading">How Bozzup Works</h3>
+  	  <h4>4 simple steps</h4>
+  	  <ol>
+  	  	<li>Create a customer.</li>
+  	  	<li>Upload the mockup to be approved.</li>
+  	  	<li>Send the mockup to customer.</li>
+  	  	<li>Wait! You’ll receive a message when your customer approves, rejects, or asks for a modification and your dashboard is automatically updated.</li>  	  
+  	  </ol>
+
+  	  <h3 class="text-center bozzupfunctions">Bozzup functions better than a software of a big company, at a much smaller price!</h3>
+  	  <h4>Save time, avoid losing information</h4>
+  	  <ul>
+  	  	<li>Save a lot of time to manage all your customers’ orders and mockup information.</li>
+  	  	<li>Stop wasting time to find customer’s information about the mockup to realise in different places: email, whatsapp, skype, messenger, calls, etc</li>
+  	  	<li>Stop losing information about the mockups to make or getting frustrated looking for them in a lot of emails, messages your customers sent to you.</li>
+  	  	<li>Never lose track of customers who still need to review and approve the mockups you sent. Bozzup will automatically send a reminder to your customers if they haven’t reviewed their mockups by any custom deadline you set! (coming soon)</li>  	  
+  	  </ul>
+  	  <h3 class="bozzupheading">Easy-to-use, all-in-one dashboard</h3>
+  	  <h5 class="text-center getpeace">Get peace of mind and eliminate stress by keeping and managing <br>all the information in one place:<br>BozzUp – The Mockup Approval R-evolution!</h5>
+
+  	  <div class="customerreceiving">If you are a customer receiving mockups to review from your suppliers: Bozzup is free for you.</div>
+
+
+  	</div>
+  	
+
+  </div>
+  <div class="row freedashboard">
+  	<div class="col-md-6 ">
+  		<strong>A free dashboard to review the mockups of your orders of promotional products</strong>
+  		<ul>
+  			<li>You receive a message when a supplier sends to you a mockup to review and approve.</li>
+  			<li>You can approve, reject or request a modification of the mockup.</li>
+  			<li>Your dashboard will be automatically updated.</li>
+  			<li>Bozzup is a well-organised archive of all your orders from your suppliers.</li>
+  			<li>You can easily find a supplier, an order and the approved mockup.</li>
+  			<li>If your suppliers use Bozzup you can see all orders of different suppliers on your dashboard, so ask to your suppliers to sign-up! </li>
+  			<li>With the Customer Pro Version you can also to re-order your products to your supplier with one click! (coming soon).</li>
+  		</ul>
+  	</div>
+  	<div class="col-md-6">
+  	<strong>Features / Roadmap:</strong>
+  		<ul>
+  			<li>Automatic sending of reminders (coming soon)</li>
+  			<li>Import contacts (coming soon)</li>
+  			<li>Import orders (coming soon)</li>
+  			<li>Add your own branding (coming soon)</li>
+  			<li>Google integration: Calendar, Drive (coming soon)</li>
+  			<li>Logos archive (coming soon)</li>
+  			<li>Log in through Google or Facebook (coming soon)</li>
+  			<li>API integration (coming soon)</li>
+  			<li>Upload mockups to dashboard by email (coming soon)</li>
+  			<li>iOS & Android support (coming soon)</li>
+  		</ul>
+  	</div>
+  </div>
+  <div class="row">
+  	
+  		<div class="col-md-12 text-center mt-4">
+			©2021 BozzUp Francesco De Leo. All Rights Reserved - Trq Santa Marta, Rabat Gozo, Malta VCT2551 - Vat No: MT26129919
+			</div>
+			<div class="col-md-12 text-center mt-2">
+				<a href="/privacy-policy" class="btn privacy" role="button">Privacy Policy</a>
+
+			<a href="/cookie-policy" class="btn privacy" role="button">Cookie Policy</a>
+			</div>
+  </div>
   </div>
 
 <?php do_action('wpsc_after_guest_module'); ?>
@@ -719,7 +810,7 @@ function wpsc_user_type(myvalue) {
     }
     
 }
-
+setTimeout(function(){ jQuery('.confirmemail').remove(); }, 5000);
 </script>
 
 <?php if (!$wpsc_recaptcha_type && $wpsc_login_captcha): ?>

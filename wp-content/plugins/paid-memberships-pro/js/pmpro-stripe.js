@@ -59,6 +59,15 @@ jQuery( document ).ready( function( $ ) {
 	$( '.pmpro_form' ).submit( function( event ) {
 		var name, address;
 
+		/*var bvatno = $( '#bvatno' ).val()
+
+		if(bvatno == ''){
+
+			console.log(bvatno);
+			$('#bvatno').addClass( "pmpro_error" );	
+			return true;
+		}*/
+
 		// Prevent the form from submitting with the default action.
 		event.preventDefault();
 

@@ -240,6 +240,9 @@ function wpsc_get_tickets(){
 
 /*Filter created by rkumar*/
 function wpsc_set_button_filter(filter_status){
+
+  
+
   var dataform = new FormData();
   dataform.append('custom_filter[s]', '');
   dataform.append('custom_filter[ticket_status][]', filter_status);
@@ -261,6 +264,20 @@ function wpsc_set_button_filter(filter_status){
   .done(function (response_str) {
     wpsc_get_tickets();
     //wpsc_doScrolling('#wpsc_tickets_container',1000);
+
+    setTimeout(function(){
+
+      var filter   = [];
+    filter['4']  = 'sentreview';
+    filter['6']  = 'approved';
+    filter['74'] = 'rejected';
+    filter['75'] = 'modification';
+    filter['3']  = 'sentfor';
+
+    jQuery('.btn-li .btn').removeClass('btnselected');
+    jQuery('#'+filter[filter_status]).addClass('btnselected');
+
+   }, 500);
     
   });
 

@@ -1264,21 +1264,21 @@ margin-top: 8px;
 
 /*#sentreview{  background-color:rgb(255 153 85);background-image: none; border: 0; }*/
 
-
+.btnselected { border: 2px solid #840e0e !important; }
 
 /*updated by rkumar and commented above line*/
 
-#sentreview{  background-color:rgb(255,182,5);background-image: none; border: 0; }
+#sentreview{  background-color:rgb(255,182,5);background-image: none; border: 2px solid rgb(255,182,5); }
 
 
 
-#sentfor{background-color: rgb(128 128 128);background-image: none;border: 0;}
+#sentfor{background-color: rgb(128 128 128);background-image: none;border: 2px solid rgb(128 128 128);}
 
-#approved{background-color: rgb(98 185 120);background-image: none;border: 0;}
+#approved{background-color: rgb(98 185 120);background-image: none;border: 2px solid rgb(98 185 120);}
 
-#rejected{background-color: rgb(250 96 66);background-image: none;border: 0;}
+#rejected{background-color: rgb(250 96 66);background-image: none;border: 2px solid rgb(250 96 66);}
 
-#modification{background-color: rgb(0 0 128);background-image: none;border: 0;}
+#modification{background-color: rgb(0 0 128);background-image: none;border: 2px solid rgb(0 0 128);}
 
 
 
@@ -1528,7 +1528,7 @@ margin-top: 8px;
 
  form input[type="radio"]:checked + label {
 
-   background: #fff !important; border-color: #fff !important;color: #000 !important;
+   background: #ddd!important; border-color: #fff !important;color: #000 !important;
 
  }
 
@@ -1697,7 +1697,7 @@ span#usertypemesg {
 
     font-family: 'Poppins' !important;
 
-    font-size: 12px !important;}
+    font-size: 14px !important;}
 
 #wpsc_create_ticket_submit_later{
 
@@ -1808,7 +1808,7 @@ span#usertypemesg {
 
     font-weight: 500 !important;
 
-    font-size: 9px !important;
+    font-size: 12px !important;
 
     font-family: 'Poppins', sans-serif !important;
 
@@ -1826,7 +1826,7 @@ span#usertypemesg {
 
     font-weight: 500 !important;
 
-    font-size: 10px !important;
+    font-size: 14px !important;
 
     
 
@@ -1962,13 +1962,13 @@ span#usertypemesg {
 
 .pricing-box1{
 
-  min-height: 386px !important;
+  min-height: 320px !important;
 
   background-size: 100% !important;
 
   padding: 15px 20px;
-  background-repeat: no-repeat !important
-
+  background-repeat: no-repeat !important;
+      border-radius: 20px;
   
 
   
@@ -2120,6 +2120,28 @@ background-position-y: 6px;
 .thread_user_name.reported{ background-color: #f0f8ff;color: #000;padding: 5px 10px; margin-bottom: 5px;}
 
 .hentry{ margin-bottom: 0 !important; }
+
+
+/*Features and Price plans*/
+
+
+
+
+.bozzupheading{ background-color: #80808075; padding: 25px; color: #040347 !important;margin: 30px 0 !important; }
+
+.howbozzup h4{ margin: 20px 0 !important; }
+
+.howbozzup ol, .howbozzup ul, .freedashboard ul{ padding: 0 0 0 20px; }
+
+.howbozzup ol li, .howbozzup ul li, .freedashboard ul li{margin-bottom: 5px;font-size: 16px !important; padding: 0;}
+
+.bozzupfunctions{ color: #000; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; }
+
+.getpeace{  color: #000; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; line-height: 22px !important; }
+
+.customerreceiving{background-color: #fea803; padding: 25px; color: #fff !important;margin: 30px 0 !important;font-size: 24px; text-align: center; }
+
+.freedashboard strong{margin: 20px 0 !important;font-size: 18px; display: inline-block;}
 
 @media screen and (max-width:400px){
 
@@ -2323,7 +2345,7 @@ new sidebar*/
        
     }
 
-    .pricing-box1 {min-height: 325px !important;}
+    .pricing-box1 {min-height: 300px !important;}
 
     .customersupplier{padding: 8px 10px !important;font-size: 12px !important;}
 
@@ -2446,8 +2468,12 @@ form#frm_additional_filters{position: absolute;right: 5px;width: 98%; top: 0; le
 .dontsignup{ margin-bottom: 25px; }
 #frm_wpsc_sign_in .col-md-6{float: left; max-width: 50% !important;}
   .pricing-box-main .col-md-3 {
-      min-height: 430px;
+      min-height: initial;
+          margin-bottom: 30px;
   }
+
+.pagesfooter{ margin-bottom: 0 !important; }
+
 /*.btnall .col-sm-6:first-child{width: 70%; float: left;}
 .btnall .col-sm-6:last-child{width: 30%; float: left;}*/
 
@@ -2514,7 +2540,7 @@ button#btn_delete_tickets{ right: -30px; }
           max-width: 100% !important;
       }
 
-      .privacy{padding: 0 !important; margin-right: 25px;    font-size: 11px !important;}
+      .privacy{padding: 0 !important; margin-right: 25px;    font-size: 14px !important;}
 
       .copyrightmain { margin-top: 10px;    font-size: 11px !important;}
 

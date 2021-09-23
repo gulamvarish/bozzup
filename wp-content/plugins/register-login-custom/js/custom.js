@@ -384,13 +384,13 @@ if(username!=''  && fname !='' && email !='' && company !='' && oldpassword !=''
               
               if(data.status==1){                    
                  
-                   document.location.href="/customers"; 
+                   document.location.href="/edit-user/?id="+userid; 
                          /*jQuery("#message").append('<div class="alert alert-success" role="alert" >'+data.message+'</div>');*/
                           setTimeout(function(){jQuery(".alert-success").remove(); },  5000);               
   
               }else if(data.status==0){
                   
-                           document.location.href="/customers"; 
+                           document.location.href="/edit-user/?id="+userid; 
                          /*jQuery("#message").append('<div class="alert alert-success" role="alert" >'+data.message+'</div>');*/
                           setTimeout(function(){jQuery(".alert-error").remove(); },  5000); 
               }
@@ -517,6 +517,14 @@ jQuery(document).on('change','#email',function(e){
                         
                           jQuery("#email").attr('emailexit', '1');  
                           jQuery("#email").after('<span class="errorcustom">'+data.message+'</span>');
+                          
+                          jQuery("#username").val(data.username).attr('readonly', 'readonly');
+                          jQuery("#fname").val(data.fname).attr('readonly', 'readonly');
+                          jQuery("#lname").val(data.lname).attr('readonly', 'readonly');
+                          jQuery("#company").attr('placeholder', data.company).attr('readonly', 'readonly');
+                          jQuery("#password, #cpassword").attr('readonly', 'readonly');
+
+
                           setTimeout(function(){jQuery(".errorcustom").remove(); },  5000);
 
           
