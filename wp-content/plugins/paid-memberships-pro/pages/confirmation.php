@@ -64,14 +64,14 @@
 <div class="row d-flex justify-content-center">
 
     <div class="col-sm-10 mt-4">
-    	<div class="col-sm-12 mt-4">	<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?> btn" href="<?php echo home_url('/'); ?>membership-account/membership-invoice/?invoice=<?php echo $pmpro_invoice->code; ?>"><?php _e('Download Invoice', 'paid-memberships-pro' );?></a>
+    	<div class="col-sm-12 mt-4">	<a class="<?php echo pmpro_get_element_class( 'pmpro_a-print' ); ?> btn" href="<?php echo home_url('/'); ?>membership-account/membership-invoice/?invoice=<?php echo $pmpro_invoice->id; ?>"><?php _e('Download Invoice', 'paid-memberships-pro' );?></a>
   	 	
   	 </div>
   	 <div class="clearfix"></div>
   <div class="col-sm-6 float-left invoice-left">
   	 	
   	 	
-  	 	<h4><?php printf(__('Invoice #%s', 'paid-memberships-pro' ), $pmpro_invoice->code);?></h4>
+  	 	<h4><?php printf(__('Invoice #BZP%s', 'paid-memberships-pro' ), $pmpro_invoice->id);?></h4>
   	 	<p><?php printf(__('on %s', 'paid-memberships-pro' ), date( 'Y-m-d', $pmpro_invoice->getTimestamp() ));?></p>
 
 	
@@ -186,6 +186,8 @@
 
 
     $_SESSION['user_type'] = 'supplier';
+    
+    //unset ($_SESSION['expire']);
 	}
 	else
 	{
@@ -221,10 +223,14 @@
 </div>
 <?php
 
+		
 	
-    $_SESSION['user_type'] = 'supplier';
+    $_SESSION['user_type'] = 'supplier';   
+    unset ($_SESSION['expire']);
 
 	}
+
+	
 ?>
 
 </div> <!-- end pmpro_confirmation_wrap -->

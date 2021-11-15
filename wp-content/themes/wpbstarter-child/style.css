@@ -250,16 +250,16 @@ label.gdpr-label span{position: relative;   top: 10px;   left: 10px;}
 
 #pmpro_pricing_fields p{
     color: #000;
-    font-size: 12px !important;
+    font-size: 16px !important;
     font-weight: 500 !important;
     font-family: 'Poppins';
         margin-bottom: 5px;
 }
 
-.pmpro_checkout h3 span.pmpro_checkout-h3-name{ font-size: 18px; font-weight: 600 !important;
+.pmpro_checkout h3 span.pmpro_checkout-h3-name{ font-size: 28px; font-weight: 600 !important;
     color: #000;margin-bottom: 10px !important; }
 
-    span.pmpro_checkout-h3-msg{ display: block;margin-bottom: 25px !important; }
+    span.pmpro_checkout-h3-msg{ display: block;margin-bottom: 25px !important;font-size: 16px !important; }
 
 
 /*responsive*/
@@ -280,9 +280,20 @@ label.gdpr-label span{position: relative;   top: 10px;   left: 10px;}
 
    .col-sm-12.payment-main.mt-4 {margin-top: 20px !important;}
 
+   .pmpro_checkout-field.pmpro_checkout-field-gdpr { width: 100% !important; }
+
 
 }
 
+@media screen and (max-width: 479px){
+
+#pmpro_user_fields .pmpro_checkout-field, #pmpro_billing_address_fields .pmpro_checkout-field{
+
+    width: 100%;
+}
+.pmpro_checkout-field select{width: 92% !important;}
+
+}
 @media screen and (max-width: 359px){
     table.payment-table tr td{font-size: 11px;}
     .invoice-message h3{    font-size: 20px;}

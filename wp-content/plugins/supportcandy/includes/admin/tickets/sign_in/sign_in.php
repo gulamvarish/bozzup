@@ -35,7 +35,12 @@ if( $_REQUEST['checkemail'] == 'confirm'){
 
 	echo "<div class='confirmemail col-md-12 text-center bg-success mb-3 p-1' style='color:#fff'>We sent an email to you with your login information and a link to reset
 your password. Back to <a href='/' style='color:#fff'>login</a></div>";
-} ?>
+}
+if( $_REQUEST['password'] == 'changed'){
+
+	echo "<div class='confirmemail col-md-12 text-center bg-success mb-3 p-1' style='color:#fff'>  Your password reset Successfuly. Back to <a href='/' style='color:#fff'>login</a></div>";
+} 
+ ?>
 
 <div class="login-right col-md-8">
 
@@ -43,7 +48,7 @@ your password. Back to <a href='/' style='color:#fff'>login</a></div>";
 
   <div class="logo-img"><a href="/"><img  src="<?php echo plugin_dir_url('/').'supportcandy/asset/images/login.png'; ?>"></a></div>
 
-  <h3 class="logo-img-title">Easily manage, organize and keep under control the review and approval of your customers’ mockups with just one glance and few clicks!</h3>
+  <h3 class="logo-img-title" style="color: #11107c !important;">Easily manage, organize and keep under control the review and approval of your customers’ mockups with just one glance and few clicks!</h3>
 
 
 
@@ -388,7 +393,8 @@ Automatically your dashboard will be updated</div>
 
       
 
-       
+     
+     
 
        
 
@@ -488,7 +494,7 @@ if($title == 'Monthly Plan'){
 
 
 <!-- <a href="<?php echo home_url(); ?>/registration-supplier/?level=4" class="btn">Choose</a> -->
-<div class="col-md-3 pagesfooter">
+<!--<div class="col-md-3 pagesfooter">
 
 
 
@@ -504,7 +510,7 @@ if($title == 'Monthly Plan'){
 
 </div>
 
-<!--<div class="col-md-12 copyrightmain p-0">
+<div class="col-md-12 copyrightmain p-0">
 
   <p class="copyright">© 2021 BozzUp Francesco De Leo. All Rights Reserved</p>
 
@@ -530,32 +536,40 @@ if($title == 'Monthly Plan'){
 
 
 
+</div>
+
 </div>-->
 
+
+
+
+
 </div> 
-
-
-
-
-
+ <div class="row">
+<div class="col-md-12 mt-3 text-center">
+	<p>Monthly fee: €6,97 Annual plan: €69,70/year</p>
+	<p style="color: #478E00 ">Get 2 months free when you purchase a one-year plan.</p>
 </div>
-<div class="col-md-12 mt-3"><p style="color: #478E00 ">Get 2 months free when you purchase a one-year plan.</p></div>
+</div>
 
-
+    
 
   <div class="row">
 
+  	<div class="col-md-12 text-center">
+
+  		<h2 style="color: #11107c;">Are you a supplier of customised promotional products?</h2>
+  		<h3 style="color: #11107c; margin-top: 0;">Do you have mockups your customers have to approve?</h3>
+
+  		<p style="color: #11107c;text-align: left; width: 78%; margin: 20px auto; font-size: 24px;">With Bozzup you can easily manage, organise and keep under control the review and approval of your customers’ mockups with just one glance and a few clicks!</p>
+
+  	</div>
   	<div class="col-md-12">
-
-  		<h3>Features and Price plans</h3>
-  		<p><strong>Are you a supplier of customised promotional products?</strong></p>
-  		<p>Do you have mockups your customers have to approve?</p>
-
-  		<strong>With Bozzup you can easily manage, organise and keep under control the review and approval of your customers’ mockups with just one glance and a few clicks!</strong>
-
+  		<img src="<?php echo get_stylesheet_directory_uri();?>/images/SUPPLIER_DASHBOARD.png">
   	</div>
   	<div class="col-md-12 howbozzup">
   	  <h3 class="bozzupheading">How Bozzup Works</h3>
+  	  <div style="padding: 0 20px;">
   	  <h4>4 simple steps</h4>
   	  <ol>
   	  	<li>Create a customer.</li>
@@ -563,6 +577,7 @@ if($title == 'Monthly Plan'){
   	  	<li>Send the mockup to customer.</li>
   	  	<li>Wait! You’ll receive a message when your customer approves, rejects, or asks for a modification and your dashboard is automatically updated.</li>  	  
   	  </ol>
+  	  </div>
 
   	  <h3 class="text-center bozzupfunctions">Bozzup functions better than a software of a big company, at a much smaller price!</h3>
   	  <h4>Save time, avoid losing information</h4>
@@ -572,8 +587,8 @@ if($title == 'Monthly Plan'){
   	  	<li>Stop losing information about the mockups to make or getting frustrated looking for them in a lot of emails, messages your customers sent to you.</li>
   	  	<li>Never lose track of customers who still need to review and approve the mockups you sent. Bozzup will automatically send a reminder to your customers if they haven’t reviewed their mockups by any custom deadline you set! (coming soon)</li>  	  
   	  </ul>
-  	  <h3 class="bozzupheading">Easy-to-use, all-in-one dashboard</h3>
-  	  <h5 class="text-center getpeace">Get peace of mind and eliminate stress by keeping and managing <br>all the information in one place:<br>BozzUp – The Mockup Approval R-evolution!</h5>
+  	  <h3 class="bozzupheading" style="background-color:#ddd; text-align: center;">Easy-to-use, all-in-one dashboard</h3>
+  	  <h5 class="text-center getpeace">Get peace of mind and eliminate stress by keeping and managing all the information in one place<br> BozzUp – The Mockup Approval R-evolution!</h5>
 
   	  <div class="customerreceiving">If you are a customer receiving mockups to review from your suppliers: Bozzup is free for you.</div>
 
@@ -583,7 +598,10 @@ if($title == 'Monthly Plan'){
 
   </div>
   <div class="row freedashboard">
-  	<div class="col-md-6 ">
+  	<div class="col-md-12">
+  		<img src="<?php echo get_stylesheet_directory_uri();?>/images/CUSTOMER_DASHBOARD.png">
+  	</div>
+  	<div class="col-lg-6 col-md-12">
   		<strong>A free dashboard to review the mockups of your orders of promotional products</strong>
   		<ul>
   			<li>You receive a message when a supplier sends to you a mockup to review and approve.</li>
@@ -595,7 +613,7 @@ if($title == 'Monthly Plan'){
   			<li>With the Customer Pro Version you can also to re-order your products to your supplier with one click! (coming soon).</li>
   		</ul>
   	</div>
-  	<div class="col-md-6">
+  	<div class="col-lg-6 col-md-12">
   	<strong>Features / Roadmap:</strong>
   		<ul>
   			<li>Automatic sending of reminders (coming soon)</li>

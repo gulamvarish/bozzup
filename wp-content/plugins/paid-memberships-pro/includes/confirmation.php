@@ -65,7 +65,7 @@
   <div class="col-sm-6 float-left invoice-left">
   	 	
   	 	
-  	 	<h4><?php printf(__('Invoice #%s', 'paid-memberships-pro' ), $pmpro_invoice->code);?></h4>
+  	 	<h4><?php printf(__('Invoice #BZP%s', 'paid-memberships-pro' ), $pmpro_invoice->code);?></h4>
   	 	<p><?php printf(__('on %s', 'paid-memberships-pro' ), date_i18n(get_option('date_format'), $pmpro_invoice->getTimestamp()));?></p>
 
 	

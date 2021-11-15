@@ -27,24 +27,47 @@ if ($filter['label'] == 'deleted') {
 }
 
 /*Added By Gulam*/
-$agentid   = "SELECT DISTINCT `agent_created`  FROM ".$wpdb->prefix."wpsc_ticket WHERE `customer_email` = '".$current_user->user_email."' AND `active` = '1'";
+
+/*get agaent id*/
+
+
+
+          if($_SESSION['user_type'] == 'subscriber'){
+
+						   $agentid   = "SELECT DISTINCT `agent_created`  FROM ".$wpdb->prefix."wpsc_ticket WHERE `customer_email` = '".$current_user->user_email."' AND `active` = '1'";
+
+						}elseif($_SESSION['user_type'] == 'supplier'){
+
+							 $current_agent_id  = $wpscfunction->get_current_user_agent_id();							
+
+							  $agentid   = "SELECT *  FROM ".$wpdb->prefix."wpsc_ticket WHERE `agent_created` = '".$current_agent_id."' AND `active` = '1'";
+						}
+
+
+
+
 
 $agentids     = $wpdb->get_results($agentid);
 
 
-$agentuserid = array();
+     $agentuserid = array();
 
 				if (isset($agentids) && !empty($agentids)) {
 					
 					 foreach ($agentids as $key => $value) {
 
-					 	  $termuserid = $wpdb->get_results( "SELECT * FROM $wpdb->termmeta WHERE `term_id` = '".$value->agent_created."' AND `meta_key` LIKE 'user_id'");	
+					 
+
+					 	  $termuserid = $wpdb->get_results( "SELECT * FROM $wpdb->termmeta WHERE `term_id` = '".$value->agent_created."' AND `meta_key` = 'user_id'");	
 
 							 $user_id = $termuserid[0]->meta_value;
-							array_push($agentuserid,$user_id);
+							 array_push($agentuserid,$user_id);
 
 					 }
 				}
+
+			
+
 /*Added By Gulam*/
 
 $output = array();
@@ -167,45 +190,70 @@ switch ($field_slug) {
 			$agents = get_terms([
 				'taxonomy'   => 'wpsc_agents',
 				'hide_empty' => false,
-				'number'		=>	5,
+				'number'		=>	'',
 				'orderby'    => 'label',
 				'order'      => 'ASC',
 				'meta_query'     => $meta
 			]);
+/*echo "<pre>";
+			print_r($agents);*/
 
 
+			$useriduniq = array();
+			$agenttermid = array();
+			/*echo "<pre>";
+				print_r($agentuserid);*/
 			
 			foreach($agents as $agent){
 				
 
-				$termuserid = $wpdb->get_results( "SELECT * FROM $wpdb->termmeta WHERE `term_id` = '".$agent->term_id."' AND `meta_key` LIKE 'user_id'");
+				$termuserid = $wpdb->get_results( "SELECT * FROM $wpdb->termmeta WHERE `term_id` = '".$agent->term_id."' AND `meta_key` = 'user_id'");
 				
-			/*	echo "<pre>";
-				print_r($termuserid);*/
+				
+				//print_r($termuserid);
 
+				if(!in_array($termuserid[0]->meta_value, $useriduniq, true)){
+
+             array_push($useriduniq, $termuserid[0]->meta_value);
+             $agenttermid[$termuserid[0]->meta_value] =$agent->term_id;
+        }
 				
 				 
-				if(in_array($termuserid[0]->meta_value, $agentuserid))			 			
-  				{  							
-			 	   $company  = get_user_meta( $termuserid[0]->meta_value, 'company', true );
 				
-				$agent_name = get_term_meta($agent->term_id,'label',true);
+			}
+				//print_r($agenttermid);
+			foreach ($useriduniq as $key => $userid) {
+
+
+
+				if(in_array($userid, $agentuserid))			 			
+  				{  
+
+
+			 	  $company  = get_user_meta( $userid, 'company', true );
+				
+				
+
 				$output[]   = array(
 					'label'    => $company,
 					'value'    => '',
-					'flag_val' => $agent->term_id,
+					'flag_val' => $agenttermid[$userid],
 					'slug'     => $field_slug,
 				);
 			 }
+				 
 			}
-			if(!$agents){
+
+
+
+			/*if(!$agents){
 				$output[]   = array(
 					'label'    => __('None','supportcandy'),
 					'value'    => '',
 					'flag_val' => '0',
 					'slug'     => $field_slug,
 				);
-			}
+			}*/
 			break;
 			
 	case 'user_type':
@@ -223,7 +271,11 @@ switch ($field_slug) {
 			'slug'     => $field_slug,
 		);
 		break;
+
+
 		
+		
+				
 	default:
 		
 			$output = apply_filters('wpsc_filter_autocomplete',$output,$term,$field_slug);
@@ -247,11 +299,10 @@ switch ($field_slug) {
 
 				$where = "";
 
-				if($_SESSION['user_type'] == 'subscriber'){
-					
+				if($_SESSION['user_type'] == 'subscriber'){				
 
 					if(empty($_REQUEST['term'])){
-					 $where .= "WHERE t.customer_email = '".$current_user->user_email."' AND t.active = '1'";
+					 $where .= "WHERE t.customer_email = '".$current_user->user_email."' AND t.active = '1' AND t.ticket_status != '3'";
 					}
 				}elseif($_SESSION['user_type']== 'supplier'){
 
@@ -267,15 +318,22 @@ switch ($field_slug) {
 				
 				if(in_array($field_slug,$get_all_meta_keys)){
 
-
-					
-					if($term){
-
-								
+					if($term){	
+					$current_agent_id  = $wpscfunction->get_current_user_agent_id();							
 						
 						$join[] = $field_slug;
 						$alice  = str_replace('-','_',$field_slug);
-						$where .= " WHERE " .$alice.".meta_value LIKE '$term%'" ;
+
+
+						
+
+						if($_SESSION['user_type']== 'supplier'){
+
+     			     $where .= " WHERE " .$alice.".meta_value LIKE '$term%' AND t.agent_created = '$current_agent_id'"; ;
+     			 
+					 	}elseif($_SESSION['user_type']== 'subscriber'){
+					 		  $where .= " WHERE " .$alice.".meta_value LIKE '$term%' AND t.customer_email = '$current_user->user_email' AND t.active = '1' AND t.ticket_status != '3'";
+					 	}
 					
 					}
 					
@@ -291,6 +349,7 @@ switch ($field_slug) {
 
 				foreach ( $join as $slug ) {
 					$alice = str_replace('-','_',$slug);
+					
 					$join_str = "JOIN {$wpdb->prefix}wpsc_ticketmeta ".$alice." ON t.id = ".$alice.".ticket_id AND ".$alice.".meta_key = '".$slug."' ";
                 }
 		  
@@ -299,7 +358,7 @@ switch ($field_slug) {
 				  $sql = $sql . $join_str .$where  . $limit;
 				 $ticket_data = $wpdb->get_results($sql);
 				 			
-
+				// print_r($sql);
 				
 				$tickets = json_decode(json_encode($ticket_data), true);
 	 
@@ -330,19 +389,26 @@ switch ($field_slug) {
 			if($field_slug == 'customer_name'){
 
 
-				$users = get_users(array('search'=>'*'.$term.'*'));
+				  $users = get_users(array('search'=>'*'.$term.'*'));
 
+				  //print_r($users);
 
 
 
 	/*			 $createdbyexplode    = explode(",",$users->created_by);
 
 			 		 print_r($createdbyexplode);*/
+
+			 		 //print_r($agentuserid);
+
+
 			 	foreach ($users as $user) {	
+
+
 			 	 if($_SESSION['user_type']== 'supplier'){
 
-     			 $arraycheck          = explode(",",$user->created_by);
-     			 $useridcheck         = $current_user->ID;
+     			  $arraycheck          = explode(",",$user->created_by);
+     			  $useridcheck         = $current_user->ID;
      			 
 				 	}elseif($_SESSION['user_type']== 'subscriber'){
 				 		 $arraycheck         =  $agentuserid;
@@ -373,6 +439,134 @@ switch ($field_slug) {
 						'slug' => $field_slug,
 					);
 				}
+			}else if($field_slug == 'description'){
+
+				if($term){
+
+					  $ticketsid =array();
+					  if($_SESSION['user_type'] == 'subscriber'){
+
+						    $ticketdescriptionsql = "SELECT * FROM ".$wpdb->prefix."wpsc_ticket WHERE `customer_email` ='".$current_user->user_email."' AND `active`='1' AND `ticket_status` !='3'";
+						}elseif($_SESSION['user_type'] == 'supplier'){
+
+							$current_agent_id  = $wpscfunction->get_current_user_agent_id();
+
+							$ticketdescriptionsql = "SELECT * FROM ".$wpdb->prefix."wpsc_ticket WHERE `agent_created` ='".$current_agent_id."' AND `active`='1'";
+						}
+
+						$ticketdatadescription  = $wpdb->get_results($ticketdescriptionsql);
+
+
+						/*get ticket id form wp_wpsc_ticket*/
+						if(isset($ticketdatadescription) && !empty($ticketdatadescription)){
+							foreach ($ticketdatadescription as $key => $value) {
+								 array_push($ticketsid, $value->id);
+							}	
+						}//wp_wpsc_ticket
+
+
+				$sql555 = "SELECT * FROM ".$wpdb->prefix."posts WHERE `post_content` LIKE '%".$term."%' AND `post_type` ='wpsc_ticket_thread'";
+
+        $ticket_datasql555 = $wpdb->get_results($sql555);
+
+          $ticketsmatchid =array();
+          if(isset($ticket_datasql555) && !empty($ticket_datasql555)){
+          //get ticket id 	
+	        foreach ($ticket_datasql555 as $key => $postdata) {
+
+	              $ticket_id = get_post_meta($postdata->ID, 'ticket_id', true);
+
+	              if (in_array($ticket_id, $ticketsid))
+								  {
+								    
+								       array_push($ticketsmatchid, $ticket_id);
+								  }
+
+	           } 
+
+	         }//post 		
+
+	         if(isset($ticketsmatchid) && !empty($ticketsmatchid)){
+		          //get ticket id 	
+			         foreach ($ticketsmatchid as $key => $value) {
+			         	   
+			         			$args = array(
+														'post_type'      => 'wpsc_ticket_thread',
+														'post_status'    => 'publish',
+														'orderby'        => 'ID',
+														'order'          => 'ASC',
+														'posts_per_page' => -1,
+														'meta_query'     => array(
+															'relation' => 'AND',
+															array(
+															  'key'     => 'ticket_id',
+														      'value'   => $value,
+														      'compare' => '='
+															))
+														);
+													 $result = get_posts($args);
+													 $text =  substr($result[0]->post_content, 0, 100);
+													if($text != 'NA')
+													{
+														$content = strip_tags($text);
+													}
+
+										
+										if(!in_array($result,$output)){
+
+											$output[] = array(
+												'label'    => $content,
+												'value'    => '',
+												'flag_val' => $value,
+												'slug'     => 'description',
+											);
+										}
+
+			         }// end  of loop
+						
+					  }
+
+					  
+				}      
+
+        
+				foreach($tickets as $ticket){	
+
+					
+
+					$args = array(
+									'post_type'      => 'wpsc_ticket_thread',
+									'post_status'    => 'publish',
+									'orderby'        => 'ID',
+									'order'          => 'ASC',
+									'posts_per_page' => -1,
+									'meta_query'     => array(
+										'relation' => 'AND',
+										array(
+										  'key'     => 'ticket_id',
+									      'value'   => $ticket['id'],
+									      'compare' => '='
+										))
+									);
+								 $result = get_posts($args);
+								 $text =  substr($result[0]->post_content, 0, 100);
+								if($text != 'NA')
+								{
+									$content = strip_tags($text);
+								}
+
+					
+					if(!in_array($result,$output)){
+
+						$output[] = array(
+							'label'    => $content,
+							'value'    => '',
+							'flag_val' => $ticket['id'],
+							'slug'     => 'description',
+						);
+					}
+				}
+
 			}
 			
 			break;

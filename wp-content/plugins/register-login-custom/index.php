@@ -13,13 +13,13 @@ Version: 1.1.0
 class UserRegistration {
 
 
-	function init() {
-		
+    function init() {
+        
 
-		register_activation_hook(   __FILE__, array( __CLASS__, 'activate'   ) );
-		register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivate' ) );		
-		
-		
+        register_activation_hook(   __FILE__, array( __CLASS__, 'activate'   ) );
+        register_deactivation_hook( __FILE__, array( __CLASS__, 'deactivate' ) );       
+        
+        
         
         add_action( 'wp_footer', array($this,'my_style'));
 
@@ -55,7 +55,7 @@ class UserRegistration {
 
         
 
-		
+        
         /*Add shortcode */
 
         add_shortcode( 'registrationform', array($this,'user_listing' ));
@@ -66,26 +66,26 @@ class UserRegistration {
         
 
         
-	}
+    }
 
 
 
 
-	function my_style() {
+    function my_style() {
 
 
    // if (!is_admin()) {
 
-    	wp_enqueue_style( 'bootstrap-style', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' );
+        wp_enqueue_style( 'bootstrap-style', 'https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' );
 
          wp_enqueue_style( 'datatables-css', 'https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap4.min.css');    
-         wp_enqueue_style( 'dataTables-responsive-css', 'https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css');    	
-    	
+         wp_enqueue_style( 'dataTables-responsive-css', 'https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css');       
+        
 /*
-    	wp_enqueue_style( 'jquerysctipttop', 'http://www.shieldui.com/shared/components/latest/css/light/all.min.css' );*/
+        wp_enqueue_style( 'jquerysctipttop', 'http://www.shieldui.com/shared/components/latest/css/light/all.min.css' );*/
 
-    	
-    	  wp_enqueue_style( 'edittable-style', plugin_dir_url( __FILE__ ) . 'css/custom.css' );
+        
+          wp_enqueue_style( 'edittable-style', plugin_dir_url( __FILE__ ) . 'css/custom.css' );
 
           if(basename(get_permalink()) == 'customers'){
 
@@ -118,14 +118,14 @@ class UserRegistration {
   }
 
 
-	
+    
 
-// function to create the DB / Options / Defaults					
+// function to create the DB / Options / Defaults                   
 function activate() {
-   	global $wpdb;
-  	global $your_db_name;
+    global $wpdb;
+    global $your_db_name;
 
-  	$current_user = get_currentuserinfo(); 
+    $current_user = get_currentuserinfo(); 
  
  
 }
@@ -172,10 +172,13 @@ function page_access(){
 
 $user = wp_get_current_user();
 
+if ( in_array( 'supplier', (array) $user->roles )  ) { 
 global $wpdb;
 $resultdata = $wpdb->get_results( "SELECT * FROM $wpdb->pmpro_memberships_users WHERE `user_id` = '".$user->ID."' ORDER BY id  DESC");
 
 $id = $resultdata[0]->id;
+
+$resultdata[0]->cycle_period;
 
 if($resultdata[0]->cycle_period=='Month'){
   $expire = $resultdata[0]->membership_id == 4 ? '+14 Day' :  '+1 month';    
@@ -185,6 +188,9 @@ if($resultdata[0]->cycle_period=='Month'){
   $expire = '+1 week';
 }elseif($resultdata[0]->cycle_period=='Day'){
   $expire = '+1 day';
+}else{
+
+   $expire = $resultdata[0]->membership_id == 4 ? '+14 Day' :  0;
 }
 
 
@@ -193,7 +199,7 @@ $startdate  = strtotime($resultdata[0]->startdate);
 $expiredate = date(strtotime($expire, $startdate));
 
 if($today > $expiredate && !empty($expiredate)){
-  
+ 
   ?>
     <script type="text/javascript">
         window.location.href = "/";
@@ -218,7 +224,7 @@ if ( is_user_logged_in() ) {
         window.location.href = "/";
     </script>
     
- <?php } }
+ <?php } } }
 }
 
 function user_listing(){
@@ -397,7 +403,7 @@ function update_user(){
 
     
  /*check login*/
-$this->page_access();
+     $this->page_access();
 
       global $wpdb;
       $user = wp_get_current_user();
@@ -1272,24 +1278,24 @@ function register_supplier(){
             </div>';
 
 }
-	
+    
 
 
-	function deactivate() {
-	
+    function deactivate() {
+    
 
-		
+        
 
-	}
-
-
-
-	/**/
-		
-	
+    }
 
 
-	
+
+    /**/
+        
+    
+
+
+    
 
 }
 

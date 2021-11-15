@@ -89,7 +89,7 @@ if ($submit) {
     if (isset($_REQUEST['bvatno']))
         $bvatno = trim(sanitize_text_field($_REQUEST['bvatno']));
     if (isset($_REQUEST['gdpr']))
-        $gdpr = trim(sanitize_text_field($_REQUEST['gdpr']));
+        $gdpr = trim($_REQUEST['gdpr']);
     if (isset($_REQUEST['bcompany']))
         $bcompany = trim(sanitize_email($_REQUEST['bcompany']));
     if (isset($_REQUEST['bemail']))

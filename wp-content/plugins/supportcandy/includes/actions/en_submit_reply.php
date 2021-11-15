@@ -50,6 +50,10 @@ foreach ($email_templates as $email) :
     $extra_recipients = get_term_meta($email->term_id,'extra_recipients',true);
 
     $email_addresses = array();
+
+
+
+
     foreach ($recipients as $recipient) {
       if(is_numeric($recipient)){
         $agents = get_terms([
@@ -64,11 +68,21 @@ foreach ($email_templates as $email) :
             ),
           ),
         ]);
-        foreach ($agents as $agent) {
-          $user_id = get_term_meta($agent->term_id,'user_id',true);
+        foreach ($agents as $agent) {          
+
+          //$user_id = get_term_meta($agent->term_id,'user_id',true);
+          global $wpdb;
+          $wpdb_prefix = $wpdb->prefix;
+
+          $wpdb_tablename = $wpdb_prefix.'wpsc_ticket';          
+          $agent = $wpdb->get_results('SELECT `agent_created` FROM '.$wpdb_tablename.' WHERE `id` ='.$ticket_id);        
+           $user_id = get_term_meta($agent[0]->agent_created,'user_id',true); 
           if($user_id){
             $user = get_user_by('id',$user_id);
-            $email_addresses[] = $user->user_email;
+
+            if(!empty($user->user_email)){
+               $email_addresses[] = $user->user_email;
+            }
           }
         }
       } else {
@@ -123,8 +137,29 @@ foreach ($email_templates as $email) :
     $email_addresses = array_unique($email_addresses);
     $email_addresses = array_values($email_addresses);
 
-    $to =  isset($email_addresses[0])? $email_addresses[0] : '';
+
+    /*Added By Gulam*/
+         /* global $wpdb;
+          $wpdb_prefix = $wpdb->prefix;
+
+          $wpdb_tablename = $wpdb_prefix.'wpsc_ticket';          
+          $agent = $wpdb->get_results('SELECT `agent_created` FROM '.$wpdb_tablename.' WHERE `id` ='.$ticket_id);        
+           $user_id = get_term_meta($agent[0]->agent_created,'user_id',true);         
+          if($user_id){
+            $userdata = get_user_by('id',$user_id);
+              
+          }*/
+
+        /*Added By Gulam*/
+
+
+
+    $to  =  isset($email_addresses[0])? $email_addresses[0] : '';
+
+    //$to =  isset($userdata)? $userdata->user_email : '';
+
     if($to){
+      //unset($userdata->user_email);
       unset($email_addresses[0]);
     } else {
       continue; // no email address found to send. So go to next foreach iteration.
@@ -145,8 +180,7 @@ foreach ($email_templates as $email) :
       'reply_to'      => $reply_to,
       'email_subject' => $subject,
       'email_body'    => $body,
-      'to_email'      => $to,
-      'bcc_email'     => $bcc,
+      'to_email'      => $to,      
       'date_created'  => date("Y-m-d H:i:s"),
       'mail_status'   => 0,
       'email_type'    => 'submit_reply',
@@ -160,10 +194,12 @@ foreach ($email_templates as $email) :
       
       $headers  = "From: {$from_name} <{$from_email}>\r\n";
       $headers .= "Reply-To: {$reply_to}\r\n";
-      $email_addresses = explode(',',$bcc);
+
+      /*$email_addresses = explode(',',$bcc);
       foreach ($email_addresses as $email_address) {
         $headers .= "BCC: {$email_address}\r\n";
-      }
+      }*/
+      //$headers .= "BCC: gvarish@tecziq.com\r\n";
   
       $headers .= "Content-Type: text/html; charset=utf-8\r\n";
   

@@ -7,6 +7,8 @@ global $current_user, $wpscfunction;
 
 if (!$current_user->ID) die();
 
+
+
 $filter = $wpscfunction->get_current_filter();
 $filter['custom_filter'] = isset($_POST['custom_filter']) && is_array($_POST['custom_filter']) ? $wpscfunction->sanitize_array($_POST['custom_filter']) : array();
 $filter['page'] = isset($_POST['page_no']) ? intval($_POST['page_no']) : 1;

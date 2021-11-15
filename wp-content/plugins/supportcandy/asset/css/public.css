@@ -213,7 +213,7 @@ top: 0;
 
     z-index: 999999;
 
-    top: 7%;
+    top: 50px;
 
     right: 15px;
 
@@ -530,7 +530,7 @@ p.nofoundp{ width: 70%; margin: 0 auto;font-family: 'Poppins', sans-serif !impor
 
   padding-top: 40px;
 
-  min-height: 500px !important;
+  min-height: 100vh !important;
 
 }
 
@@ -1502,9 +1502,10 @@ margin-top: 8px;
 
 .customersupplier{
 
-    background: none !important;
+    background: #ddd !important;
+  
 
-    color: #707070 !important;
+    color: #000 !important;
 
     font-size: 16px !important;
 
@@ -1522,13 +1523,13 @@ margin-top: 8px;
 
 }
 
-.customersupplier:hover{background: #fff !important;color: #000 !important; border-color: #fff !important;border-radius: 20px;}
+.customersupplier:hover{border-color: #ddd !important;border-radius: 20px;}
 
 
 
  form input[type="radio"]:checked + label {
 
-   background: #ddd!important; border-color: #fff !important;color: #000 !important;
+   background: #040347 !important; border-color: #fff !important;color: #fff !important;
 
  }
 
@@ -2127,7 +2128,7 @@ background-position-y: 6px;
 
 
 
-.bozzupheading{ background-color: #80808075; padding: 25px; color: #040347 !important;margin: 30px 0 !important; }
+.bozzupheading{    font-size: 22px !important; font-weight: 700 !important; background-color: #fea803; padding: 25px 20px; color: #040347 !important;margin: 30px 0 !important; }
 
 .howbozzup h4{ margin: 20px 0 !important; }
 
@@ -2135,11 +2136,11 @@ background-position-y: 6px;
 
 .howbozzup ol li, .howbozzup ul li, .freedashboard ul li{margin-bottom: 5px;font-size: 16px !important; padding: 0;}
 
-.bozzupfunctions{ color: #000; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; }
+.bozzupfunctions{ color: #040347; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; }
 
-.getpeace{  color: #000; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; line-height: 22px !important; }
+.getpeace{ font-size: 16px !important; color: #000 !important; border: 1px solid #040347; padding: 20px 0; margin: 30px 0 !important; line-height: 22px !important; }
 
-.customerreceiving{background-color: #fea803; padding: 25px; color: #fff !important;margin: 30px 0 !important;font-size: 24px; text-align: center; }
+.customerreceiving{background-color: #fea803; padding: 15px; color: #fff !important;margin: 30px 0 !important;font-size: 22px; text-align: left; }
 
 .freedashboard strong{margin: 20px 0 !important;font-size: 18px; display: inline-block;}
 
@@ -2339,7 +2340,7 @@ new sidebar*/
 
   .pricing-box-main .col-md-3 {
         float: left;
-        max-width: 50% !important;
+        max-width: 33.33% !important;
 
         margin-bottom: 25px;
        

@@ -63,10 +63,20 @@ foreach ($email_templates as $email) :
           ),
         ]);
         foreach ($agents as $agent) {
-          $user_id = get_term_meta($agent->term_id,'user_id',true);
+         
+          //$user_id = get_term_meta($agent->term_id,'user_id',true);
+          global $wpdb;
+          $wpdb_prefix = $wpdb->prefix;
+
+          $wpdb_tablename = $wpdb_prefix.'wpsc_ticket';          
+          $agent = $wpdb->get_results('SELECT `agent_created` FROM '.$wpdb_tablename.' WHERE `id` ='.$ticket_id);        
+           $user_id = get_term_meta($agent[0]->agent_created,'user_id',true); 
           if($user_id){
             $user = get_user_by('id',$user_id);
-            $email_addresses[] = $user->user_email;
+
+            if(!empty($user->user_email)){
+               $email_addresses[] = $user->user_email;
+            }
           }
         }
       } else {
@@ -114,7 +124,10 @@ foreach ($email_templates as $email) :
     $email_addresses = array_unique($email_addresses);
     $email_addresses = array_values($email_addresses);
 
-    $to =  isset($email_addresses[0])? $email_addresses[0] : '';
+   $to =  isset($email_addresses[0])? $email_addresses[0] : '';
+
+
+  
     if($to){
       unset($email_addresses[0]);
     } else {
@@ -136,12 +149,14 @@ foreach ($email_templates as $email) :
       'email_subject' => $subject,
       'email_body'    => $body,
       'to_email'      => $to,
-      'bcc_email'     => $bcc,
+      
       'date_created'  => date("Y-m-d H:i:s"),
       'mail_status'   => 0,
       'email_type'    => 'change_status',
 
     );
+
+   /* 'bcc_email'     => $bcc,*/
 
     if($wpsc_email_sending_method){
       
@@ -151,10 +166,10 @@ foreach ($email_templates as $email) :
       
       $headers  = "From: {$from_name} <{$from_email}>\r\n";
       $headers .= "Reply-To: {$reply_to}\r\n";
-      $email_addresses = explode(',',$bcc);
+      /*$email_addresses = explode(',',$bcc);
       foreach ($email_addresses as $email_address) {
         $headers .= "BCC: {$email_address}\r\n";
-      }
+      }*/
   
       $headers .= "Content-Type: text/html; charset=utf-8\r\n";
   

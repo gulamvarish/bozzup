@@ -422,9 +422,9 @@ if ( ! function_exists( 'pmproet_init' ) ) {
 				$new_data['expirationmonth'] = $invoice->expirationmonth;
 				$new_data['expirationyear'] = $invoice->expirationyear;
 				$new_data['instructions'] = wpautop(pmpro_getOption('instructions'));
-				$new_data['invoice_id'] = $invoice->code;
+				$new_data['invoice_id'] = $invoice->id;
 				$new_data['invoice_total'] = $pmpro_currency_symbol . number_format($invoice->total, 2);
-				$new_data['invoice_link'] = pmpro_url('invoice', '?invoice=' . $invoice->code);
+				$new_data['invoice_link'] = pmpro_url('invoice', '?invoice=' . $invoice->id);
 				
 				 //billing address
 				$new_data["billing_address"] = pmpro_formatAddress($invoice->billing->name,

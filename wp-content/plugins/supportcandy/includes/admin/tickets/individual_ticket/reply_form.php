@@ -61,7 +61,7 @@ $allow_reply = false;
 
 
 
-if($allow_reply || $_SESSION['user_type'] == 'supplier'){
+if(($allow_reply || $_SESSION['user_type'] == 'supplier') && $_SESSION['expire'] !='account-expire'){
 
 
 ?>

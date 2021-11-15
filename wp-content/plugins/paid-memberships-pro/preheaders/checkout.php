@@ -117,6 +117,9 @@ if ( $tospage ) {
 //load em up (other fields)
 global $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bcompany, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth, $ExpirationYear;
 
+
+
+
 if ( isset( $_REQUEST['order_id'] ) ) {
 	$order_id = intval( $_REQUEST['order_id'] );
 } else {
@@ -189,7 +192,8 @@ if ( isset( $_REQUEST['bvatno'] ) ) {
 	$bvatno = "";
 }
 if ( isset( $_REQUEST['gdpr'] ) ) {
-	$gdpr = sanitize_text_field( stripslashes( $_REQUEST['gdpr'] ) );
+	 $gdpr =  $_REQUEST['gdpr'];
+
 } else {
 	$gdpr = "";
 }
@@ -274,6 +278,8 @@ if ( isset( $_REQUEST['tos'] ) ) {
 	$tos = "";
 }
 
+
+
 $submit = pmpro_was_checkout_form_submitted();
 
 /**
@@ -290,9 +296,9 @@ $pmpro_required_billing_fields = array(
 	"bcity"           => $bcity,
 	"bstate"          => $bstate,
 	"bzipcode"        => $bzipcode,
-	"bphone"          => $bphone,
-	"bvatno"          => $bvatno,
+	"bphone"          => $bphone,	
 	"gdpr"            => $gdpr,
+	
 	"bemail"          => $bemail,
 	"bcompany"        => $bcompany,
 	"bcountry"        => $bcountry,
@@ -309,7 +315,18 @@ $pmpro_required_user_fields    = array(
 	"password2"     => $password2,
 	"bemail"        => $bemail,
 	"bconfirmemail" => $bconfirmemail,
-	"bcompany"      => $bcompany
+	"bcompany"      => $bcompany,
+	"bvatno"          => $bvatno,
+	"gdpr"          => $gdpr,
+	"bfirstname"      => $bfirstname,
+	"blastname"       => $blastname,
+	"baddress1"       => $baddress1,
+	"bcity"           => $bcity,
+	"bstate"          => $bstate,
+	"bzipcode"        => $bzipcode,
+	"bphone"          => $bphone,
+	"bcountry"        => $bcountry,
+	
 
 	
 
@@ -697,7 +714,7 @@ if ( ! empty( $pmpro_confirmed ) ) {
 				$morder->InitialPayment = 0;
 				$morder->Email          = $bemail;
 				$morder->gateway        = 'free';
-				$morder->status			= 'success';
+				$morder->status			= 'success';				
 				$morder = apply_filters( "pmpro_checkout_order_free", $morder );
 			}
 
@@ -705,6 +722,7 @@ if ( ! empty( $pmpro_confirmed ) ) {
 			if ( ! empty( $morder ) ) {
 				$morder->user_id       = $user_id;
 				$morder->membership_id = $pmpro_level->id;
+				$morder->billing_name	= "tttt";
 				$morder->saveOrder();
 			}
 

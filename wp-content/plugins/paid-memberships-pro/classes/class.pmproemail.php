@@ -286,7 +286,7 @@
 				//BUG: Didn't apply template filter before it was being used in sendEmail()
 				$this->template = apply_filters("pmpro_email_template", $this->template, $this);
 
-				$this->data["invoice_id"] = $invoice->code;
+				$this->data["invoice_id"] = $invoice->id;
 				$this->data["invoice_total"] = pmpro_formatPrice($invoice->total);
 				$this->data["invoice_date"] =  date( 'Y-m-d', $invoice->getTimestamp() );
 				$this->data["billing_name"] = $invoice->billing->name;
@@ -386,7 +386,7 @@
 
 				$this->template = apply_filters( "pmpro_email_template", $this->template, $this );
 
-				$this->data["invoice_id"] = $invoice->code;
+				$this->data["invoice_id"] = $invoice->id;
 				$this->data["invoice_total"] = pmpro_formatPrice($invoice->total);
 				$this->data["invoice_date"] = date( 'Y-m-d', $invoice->getTimestamp() );
 				$this->data["billing_name"] = $invoice->billing->name;
@@ -712,7 +712,7 @@
 								"membership_level_name" => $user->membership_level->name,
 								"display_name" => $user->display_name,
 								"user_email" => $user->user_email,	
-								"invoice_id" => $invoice->code,
+								"invoice_id" => $invoice->id,
 								"invoice_total" => pmpro_formatPrice($invoice->total),
 								"invoice_date" => date( 'Y-m-d', $invoice->getTimestamp() ),
 								"billing_name" => $invoice->billing->name,
@@ -727,7 +727,7 @@
 								"expirationmonth" => $invoice->expirationmonth,
 								"expirationyear" => $invoice->expirationyear,
 								"login_link" => pmpro_login_url(),
-								"invoice_link" => pmpro_login_url(pmpro_url("invoice", "?invoice=" . $invoice->code)
+								"invoice_link" => pmpro_login_url(pmpro_url("invoice", "?invoice=" . $invoice->id)
 							));
 			$this->data["billing_address"] = pmpro_formatAddress($invoice->billing->name,
 																 $invoice->billing->street,
@@ -882,7 +882,7 @@
 
 			if(!empty($user->membership_level->enddate))
 			{
-					$this->data["membership_change"] .= ". " . sprintf(__("This membership will expire on %s", 'paid-memberships-pro' ), date('Y-m-d', strtotime($membership_level->enddate)));
+					$this->data["membership_change"] .= ". " . sprintf(__("This membership will expire on %s", 'paid-memberships-pro' ), date('Y-m-d', $membership_level->enddate));
 			}
 			elseif(!empty($this->expiration_changed))
 			{
@@ -987,7 +987,7 @@
 			$this->data = array(
 				'order_code' => $order->code,
 				'login_link' => pmpro_login_url(),
-				'invoice_link' => pmpro_login_url(pmpro_url("invoice", "?invoice=" . $order->code)),
+				'invoice_link' => pmpro_login_url(pmpro_url("invoice", "?invoice=" . $order->id)),
 				'invoice' => $invoice
 			);
 

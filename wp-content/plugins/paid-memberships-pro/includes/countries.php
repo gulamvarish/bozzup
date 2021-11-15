@@ -1,7 +1,7 @@
 <?php
 	//thanks JigoShop
 	global $pmpro_countries, $pmpro_default_country;
-	$pmpro_default_country = apply_filters("pmpro_default_country", "US");
+	$pmpro_default_country = apply_filters("pmpro_default_country", "IT");
 
 	$pmpro_countries = array(
 		'AD' => __( 'Andorra', 'paid-memberships-pro' ),

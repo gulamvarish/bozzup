@@ -147,7 +147,7 @@ if ( ! class_exists( 'WPSC_Admin' ) ) :
         'wpsc-support-agents',
         array($this,'support_agents')
       );
-      add_submenu_page(
+      /*add_submenu_page(
         'wpsc-orders',
         __( 'Custom Fields', 'supportcandy' ),
         __( 'Custom Fields', 'supportcandy' ),
@@ -162,7 +162,7 @@ if ( ! class_exists( 'WPSC_Admin' ) ) :
         'manage_options',
         'wpsc-ticket-list',
         array($this,'ticket_list')
-      );
+      );*/
       
       add_submenu_page(
         'wpsc-orders',
@@ -173,18 +173,18 @@ if ( ! class_exists( 'WPSC_Admin' ) ) :
         array($this,'email_notifications')
       );
       
-      add_submenu_page(
+      /*add_submenu_page(
         'wpsc-orders',
         __( 'Appearance', 'supportcandy' ),
         __( 'Appearance', 'supportcandy' ),
         'manage_options',
         'wpsc-appearance',
         array($this,'appearance_settings')
-      );
+      );*/
       
       do_action('wpsc_add_submenu_page');
       
-      add_submenu_page(
+      /*add_submenu_page(
         'wpsc-orders',
         __( 'Settings', 'supportcandy' ),
         __( 'Settings', 'supportcandy' ),
@@ -209,7 +209,7 @@ if ( ! class_exists( 'WPSC_Admin' ) ) :
         'manage_options',
         'wpsc-add-ons',
         array($this,'addons')
-      );
+      );*/
       
       
     }

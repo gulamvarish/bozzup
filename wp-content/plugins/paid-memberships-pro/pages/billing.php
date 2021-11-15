@@ -356,7 +356,7 @@
 
 							<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bstate', 'pmpro_checkout-field-bstate' ); ?>">
 
-								<label for="bstate"><?php _e('State', 'paid-memberships-pro' );?></label>
+								<label for="bstate"><?php _e('State/Province/Region', 'paid-memberships-pro' );?></label>
 
 								<input id="bstate" name="bstate" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bstate' ); ?>" size="30" value="<?php echo esc_attr($bstate)?>" />
 

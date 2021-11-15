@@ -28,7 +28,7 @@
                            
 
 
-                            if($_SESSION['user_type']=='supplier' && isset($_SESSION['user_type'])){
+                            if($_SESSION['user_type']=='supplier' && isset($_SESSION['user_type']) && $_SESSION['expire'] !='account-expire'){
                                 ?>               
                                 <a href="/" class="sidebar-link"><img onclick="sidebar_menu();" src = "<?php echo plugin_dir_url('/').'supportcandy/asset/images/icon/dashboard.png'; ?>" alt="Dashboard"/><p class="text">Dashboard</p></a>
                                 <a href="/customers" class="sidebar-link"><img onclick="sidebar_menu();" src = "<?php echo plugin_dir_url('/').'supportcandy/asset/images/icon/customer.png'; ?>" alt="Customers"/><p class="text">Customers</p></a>

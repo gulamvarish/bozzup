@@ -15,7 +15,7 @@ $wpsc_appearance_modal_window = get_option('wpsc_modal_window');
 
 // Initialize meta query
 
-
+  
 
 /*Added by Gulam*/
 
@@ -35,9 +35,10 @@ $wpsc_appearance_modal_window = get_option('wpsc_modal_window');
 				'value'          => $termid[0]->term_id,
 				'compare'        => '='
 			),
+			
 		);
 
-
+		
 		
 		$ticketexit = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}wpsc_ticket WHERE `agent_created` ='".$termid[0]->term_id."'");
 
@@ -55,22 +56,56 @@ $wpsc_appearance_modal_window = get_option('wpsc_modal_window');
 				'value'          => $termid[0]->term_id,
 				'compare'        => '!='
 			),
+			array(
+			'key'            => 'customer_email',
+			'value'          => $current_user->user_email,
+			'compare'        => '='
+		    ),
 		);
 
 		$ticketexit = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}wpsc_ticket WHERE `customer_email` ='".$current_user->user_email."'");
 	}
 
-	
+
+//print_r($filter);
+	/*for Description filter*/
+	if(!empty($filter['custom_filter']['description'])){
+
+		$ticketiddescription = array();
+
+		foreach ($filter['custom_filter']['description'] as $key => $value) {
+
+			
+			array_push($ticketiddescription, $value);
+			
+		}
+
+		 
+
+			$meta_query = array(
+			'relation' => 'AND',
+			array(
+				'key'            => 'id',
+				'value'          => $ticketiddescription,
+				'compare'        => 'IN'
+			)
+		   );
+			
+		}
 
 /*Added by Gulam*/
 
 if ( !is_multisite() || !is_super_admin($current_user->ID)) {
 	// Initialie restrictions. Everyone should able to see their own tickets.
+	
+
+
+
 	$restrict_rules = array(
 		'relation' => 'OR',
 		array(
-			'key'            => 'customer_email',
-			'value'          => $current_user->user_email,
+			'key'            => 'active',
+			'value'          => 1,
 			'compare'        => '='
 		),
 		
@@ -87,10 +122,10 @@ if ( !is_multisite() || !is_super_admin($current_user->ID)) {
 		
 		if(!$current_agent_id) die();
 		
-		if ($agent_permissions['view_unassigned'] && $filter['label']!='mine') {
+		/*if ($agent_permissions['view_unassigned'] && $filter['label']!='mine') {
 			$restrict_rules[] = array(
 				'key'            => 'assigned_agent',
-				'value'          => 0,
+				'value'          => $current_agent_id,
 				'compare'        => '='
 			);
 		}
@@ -109,7 +144,7 @@ if ( !is_multisite() || !is_super_admin($current_user->ID)) {
 				'value'          => array(0,$current_agent_id),
 				'compare'        => 'NOT IN'
 			);
-		}
+		}*/
 		
 		$restrict_rules = apply_filters('wpsc_tl_agent_restrict_rules',$restrict_rules);		
 	} else {
@@ -123,7 +158,7 @@ if ( !is_multisite() || !is_super_admin($current_user->ID)) {
 	$wpsc_ticket_public_mode = get_option('wpsc_ticket_public_mode');
 
 	if( !$current_user->has_cap('wpsc_agent') && $wpsc_ticket_public_mode){
-		$restrict_rules[] = array(
+		$restrict_rules = array(
 			'key'            => 'active',
 			'value'          => 1,
 			'compare'        => '='
@@ -154,7 +189,7 @@ $offset = ($filter['page']-1)*$post_per_page;
 <form id="frm_additional_filters" action="javascript:wpsc_set_custom_filter();" method="post">
 	<div class="wpsc_ticket_search_box d-flex align-items-center" style="margin-bottom:20px;padding:0;">
 		<!-- <div class="float-right" style="width: 100px;"> -->
-		<input type="text" id="wpsc_ticket_search" class="form-control w-auto" name="custom_filter[s]" value="<?php echo trim($filter['custom_filter']['s'])?>" autocomplete="off" placeholder="<?php _e('FILTERS...','supportcandy')?>" onclick="show_custom_filters();">
+		<input type="text" id="wpsc_ticket_search" class="form-control w-auto" name="custom_filter[s]" value="<?php echo trim($filter['custom_filter']['s'])?>" autocomplete="off" placeholder="FILTERS" onclick="show_custom_filters();" readonly>
 
 		<!-- <i class="fa fa-search wpsc_search_btn wpsc_search_btn_sarch"></i> -->
 		<i class="fa fa-caret-down wpsc_search_btn wpsc_search_btn_filter" onclick="show_custom_filters();"></i>
@@ -472,6 +507,15 @@ $offset = ($filter['page']-1)*$post_per_page;
 						
 					}
 					?>
+
+					<div id="tf_description" class="form-group col-sm-12">
+								<label><?php echo __('Description','supportcandy');?></label>
+								<input type="text" data-field="description" class="form-control wpsc_search_autocomplete" placeholder="<?php _e('Search...','supportcandy')?>">
+
+								<ul class="wpsp_filter_display_container">
+															
+								</ul>
+							</div>
 		  </div>
 		     <script>
 				    jQuery(document).ready(function(){
@@ -617,24 +661,26 @@ $select_str   = 'SQL_CALC_FOUND_ROWS DISTINCT t.*';
 
 $sql          = $wpscfunction->get_sql_query( $select_str, $meta_query, $search, $orderby, $order, $post_per_page, $current_page );
 $sql1          = $wpscfunction->get_sql_query( $select_str, $meta_query, $search, $orderby, $order); 
-
-/*echo "<pre>";
-print_r($filter);
+/*
+echo "<pre>";
+print_r($meta_query);
 echo "<pre>";*/
 
 
 
 $tickets      = $wpdb->get_results($sql);
 /*echo "<pre>";
-print_r($meta_query);
-echo "<pre>";
-*/
+print_r($sql);
+echo "<pre>";*/
+
 
 $tickets1      = $wpdb->get_results($sql1);
 $total_items  = $wpdb->get_var("SELECT FOUND_ROWS()");
 $ticket_list  = json_decode(json_encode($tickets), true);
 $ticket_list1  = json_decode(json_encode($tickets1), true);
 $total_pages  = ceil($total_items/$post_per_page);
+
+//print_r($post_per_page);
 
 if( $total_items<=$current_page*$post_per_page){
  $no_of_tickets = $total_items;
@@ -745,9 +791,29 @@ $ret = $conterArr = [];
 <?php 
 /*echo '<pre>';
 print_r($ticket_list); 
-echo '</pre>';
-echo $filter['custom_filter']['ticket_status'][0];*/
+echo '</pre>';*/
+//echo $filter['custom_filter']['ticket_status'][0];
+//print_r($_POST);
 
+ 
+
+/*foreach ($ticket_list as $key => $ticket) {
+	
+	$args = array(
+    'post_type' => 'wpsc_ticket_thread',
+    'meta_query' => array(
+        array(
+            'key' => 'ticket_id',
+            'value' => $ticket['id'],
+            'compare' => 'LIKE'
+        )
+    )
+ );
+
+	$threads1 = get_posts($args);
+
+	//print_r($threads1);
+}*/
 
 
 
@@ -845,6 +911,8 @@ echo $filter['custom_filter']['ticket_status'][0];*/
 	
 		if($ticket_list){
 			foreach($ticket_list as $ticket){
+
+
 				?>
 				<tr class="wpsc_tl_row_item" data-id="<?php echo $ticket['id']?>" onclick="if(link)wpsc_get_individual_ticket(this);">
 					<td onmouseover="link=false;" onmouseout="link=true;">
@@ -925,7 +993,7 @@ echo $filter['custom_filter']['ticket_status'][0];*/
 		
 			<!-- Role -->
 			       <?php 
-					if($_SESSION['user_type'] == 'supplier'){ ?>
+					if($_SESSION['user_type'] == 'supplier' && $_SESSION['expire'] !='account-expire'){ ?>
 						
 					<button type="button" id="wpsc_load_list_new_ticket_btn" onclick="wpsc_get_create_ticket();" class="btn btn-sm wpsc_create_ticket_btn" ><i class="fa fa-plus"></i> <?php _e('New Order','supportcandy')?></button>
 					<?php } ?>

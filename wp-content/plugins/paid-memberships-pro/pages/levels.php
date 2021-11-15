@@ -34,7 +34,7 @@ if($pmpro_msg)
 <table id="pmpro_levels_table" class="<?php echo pmpro_get_element_class( 'pmpro_table pmpro_checkout', 'pmpro_levels_table' ); ?>">
 <thead>
   <tr>
-	<th><?php _e('Level', 'paid-memberships-pro' );?></th>
+	<th><?php _e('Plans', 'paid-memberships-pro' );?></th>
 	<th><?php _e('Price', 'paid-memberships-pro' );?></th>	
 	<th>&nbsp;</th>
   </tr>
@@ -48,6 +48,8 @@ if($pmpro_msg)
 		$user_level = pmpro_getSpecificMembershipLevelForUser( $current_user->ID, $level->id );
 		$has_level = ! empty( $user_level );
 		$has_any_level = $has_level ?: $has_any_level;
+
+	if($level->id !=4){
 	?>
 	<tr class="<?php if($count++ % 2 == 0) { ?>odd<?php } ?><?php if( $has_level ) { ?> active<?php } ?>">
 		<td><?php echo $has_level ? "<strong>{$level->name}</strong>" : $level->name?></td>
@@ -65,7 +67,7 @@ if($pmpro_msg)
 		</td>
 		<td>
 		<?php if ( ! $has_level ) { ?>                	
-			<a class="<?php echo pmpro_get_element_class( 'pmpro_btn pmpro_btn-select', 'pmpro_btn-select' ); ?>" href="<?php echo home_url(); ?>/registration-supplier?level=<?php echo $level->id; ?>"><?php _e('Select', 'paid-memberships-pro' );?></a>
+			<a class="<?php echo pmpro_get_element_class( 'pmpro_btn pmpro_btn-select', 'pmpro_btn-select' ); ?>" href="<?php echo home_url(); ?>/registration-supplier?level=<?php echo $level->id; ?>&&renew=1"><?php _e('Select', 'paid-memberships-pro' );?></a>
 		<?php } else { ?>      
 			<?php
 				//if it's a one-time-payment level, offer a link to renew	
@@ -83,6 +85,7 @@ if($pmpro_msg)
 		</td>
 	</tr>
 	<?php
+	}
 	}
 	?>
 </tbody>

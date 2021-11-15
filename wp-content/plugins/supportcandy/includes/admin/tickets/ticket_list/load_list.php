@@ -127,7 +127,7 @@ include WPSC_ABSPATH.'includes/admin/tickets/ticket_list/filters/get_label_count
 			$reset_type     = $default_filter;
 		?>
 
-			<?php if(apply_filters('wpsc_show_create_ticket_button',$flag = true) && $allow_create && $_SESSION['user_type'] == 'supplier'){?>
+			<?php if(apply_filters('wpsc_show_create_ticket_button',$flag = true) && $allow_create && $_SESSION['user_type'] == 'supplier' && $_SESSION['expire'] !='account-expire'){?>
     <button type="button" id="wpsc_load_list_new_ticket_btn" onclick="wpsc_get_create_ticket();" class="btn btn-sm wpsc_create_ticket_btn" style="<?php echo $create_ticket_btn_css?>"><i class="fa fa-plus"></i> <?php _e('New Order','supportcandy')?></button>
 	  <?php } ?>
 		<button type="button" class="btn btn-sm wpsc_action_btn" id="wpsc_load_list_reset_filters_btn" onclick="wpsc_set_default_filter('<?php echo $reset_type?>');" style="<?php echo $action_default_btn_css?>"><i class="fa fa-retweet"></i> <?php _e('Reset Filters','supportcandy')?></button>

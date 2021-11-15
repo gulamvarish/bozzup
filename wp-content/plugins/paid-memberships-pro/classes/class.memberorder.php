@@ -785,6 +785,18 @@
 				}
 				
 				//insert
+
+
+					                  /*Backup By gulam*/
+				                       /*'" . esc_sql(trim($this->billing->name)) . "',
+									   '" . esc_sql(trim($this->billing->street)) . "',
+									   '" . esc_sql($this->billing->city) . "',
+									   '" . esc_sql($this->billing->state) . "',
+									   '" . esc_sql($this->billing->zip) . "',
+									   '" . esc_sql($this->billing->country) . "',
+									   '" . esc_sql( cleanPhone($this->billing->phone) ) . "',*/
+									   /*Backup*/
+
 				$this->sqlQuery = "INSERT INTO $wpdb->pmpro_membership_orders
 								(`code`, `session_id`, `user_id`, `membership_id`, `paypal_token`, `billing_name`, `billing_street`, `billing_city`, `billing_state`, `billing_zip`, `billing_country`, `billing_phone`, `subtotal`, `tax`, `couponamount`, `certificate_id`, `certificateamount`, `total`, `payment_type`, `cardtype`, `accountnumber`, `expirationmonth`, `expirationyear`, `status`, `gateway`, `gateway_environment`, `payment_transaction_id`, `subscription_transaction_id`, `timestamp`, `affiliate_id`, `affiliate_subid`, `notes`, `checkout_id`)
 								VALUES('" . esc_sql( $this->code ) . "',
@@ -792,13 +804,13 @@
 									   " . intval($this->user_id) . ",
 									   " . intval($this->membership_id) . ",
 									   '" . esc_sql( $this->paypal_token ) . "',
-									   '" . esc_sql(trim($this->billing->name)) . "',
-									   '" . esc_sql(trim($this->billing->street)) . "',
-									   '" . esc_sql($this->billing->city) . "',
-									   '" . esc_sql($this->billing->state) . "',
-									   '" . esc_sql($this->billing->zip) . "',
-									   '" . esc_sql($this->billing->country) . "',
-									   '" . esc_sql( cleanPhone($this->billing->phone) ) . "',
+									   '" . esc_sql(trim($_POST['bfirstname'].' '.$_POST['blastname'])) . "',
+									   '" . esc_sql(trim($_POST['baddress1'])) . "',
+									   '" . esc_sql($_POST['bcity']) . "',
+									   '" . esc_sql($_POST['bstate']) . "',
+									   '" . esc_sql($_POST['bzipcode']) . "',
+									   '" . esc_sql($_POST['bcountry']) . "',
+									   '" . esc_sql( cleanPhone($_POST['bphone']) ) . "',
 									   '" . esc_sql( $this->subtotal ) . "',
 									   '" . esc_sql( $tax ) . "',
 									   '" . esc_sql( $this->couponamount ). "',
@@ -827,7 +839,25 @@
 			if($wpdb->query($this->sqlQuery) !== false)
 			{
 				if(empty($this->id))
-					$this->id = $wpdb->insert_id;
+					 $this->id = $wpdb->insert_id;
+
+				/*if($_POST['level'] == '4'){
+
+					echo $_POST['bfirstname'].' '.$_POST['blastname'];
+
+					$this->sqlQuery = "UPDATE $wpdb->pmpro_membership_orders
+									SET 
+									`billing_name` = '" . esc_sql($this->billing->name) . "',
+									`billing_street` = '" . esc_sql($this->billing->street) . "',
+									`billing_city` = '" . esc_sql($this->billing->city) . "',
+									`billing_state` = '" . esc_sql($this->billing->state) . "',
+									`billing_zip` = '" . esc_sql($this->billing->zip) . "',
+									`billing_country` = '" . esc_sql($this->billing->country) . "',
+									`billing_phone` = '" . esc_sql($this->billing->phone) . "',	
+									WHERE id = '" . esc_sql( $this->id ) . "'
+									LIMIT 1";
+				}
+				exit;*/
 				do_action($after_action, $this);
 				return $this->getMemberOrderByID($this->id);
 			}

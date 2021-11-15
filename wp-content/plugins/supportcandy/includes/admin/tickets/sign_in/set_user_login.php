@@ -57,17 +57,22 @@ $user = wp_signon( $creds, false );
 global $wpdb;
 $resultdata = $wpdb->get_results( "SELECT * FROM $wpdb->pmpro_memberships_users WHERE `user_id` = '".$user->ID."' ORDER BY id  DESC");
 
-$id = $resultdata[0]->id;
 
-if($resultdata[0]->cycle_period=='Month'){
+
+$id = $resultdata[0]->id;
+//echo $user->ID;
+//print_r($resultdata);
+
+
+
+
+if(isset($resultdata[0]) && $resultdata[0]->cycle_period=='Month'){
   $expire = $resultdata[0]->membership_id == 4 ? '+14 Day' :  '+1 month';    
-}elseif($resultdata[0]->cycle_period=='Year'){
-   $expire = '+1 year'; 
-}elseif($resultdata[0]->cycle_period=='Week'){
-  $expire = '+1 week';
-}elseif($resultdata[0]->cycle_period=='Day'){
-  $expire = '+1 day';
+}elseif(isset($resultdata[0]) && $resultdata[0]->cycle_period==''){
+  
+   $expire = '+14 Day'; 
 }
+
 
 
 $today      = strtotime("today midnight");
@@ -76,27 +81,55 @@ $expiredate = date(strtotime($expire, $startdate));
 
 if($today > $expiredate && !empty($expiredate)){
 
+    session_start();
+    $cookie_name  = "current_user_type";
+    $cookie_value = $usertype;
+    $_SESSION['user_type'] = $usertype;
+    
+    
 
+    setcookie($cookie_name, $cookie_value, time() + 31556926, "/"); // 31556926 = 1 Year
+
+    if($usertype == 'supplier'){
+      $_SESSION['expire'] = 'account-expire';
+      $expire_cookie_name  = "expire_current_user_type";
+      $expire_cookie_value = 'account-expire';
+      setcookie($expire_cookie_name, $expire_cookie_value, time() + 31556926, "/"); // 31556926 = 1 Year
+   }
+    
+    
      
 }else{
 
-
 if (in_array($usertype, $user->roles))
-  {
+  {    
     session_start();
+    $cookie_name  = "current_user_type";
+    $cookie_value = $usertype;
     $_SESSION['user_type'] = $usertype;
+
+    setcookie($cookie_name, $cookie_value, time() + 31556926, "/"); // 31556926 = 1 Year
     
   }else{
 
      wp_logout(); 
 
   }
+
+
+  /*Check expire */
+
+   if($usertype == 'supplier'){
+      $_SESSION['expire'] = 'account-not-expire';
+   }
+
 }
 
  if($usertype == 'subscriber'){
     $usertype1 = "customer";
  }else{
-    $usertype1 = "supplier";
+    $usertype1 = "supplier";  
+    
  }
  
 /*added Bu Gulam*/
@@ -105,10 +138,27 @@ $response = array();
 
 if (is_wp_error($user)) {  
   $response['error'] = '1';
-  $response['message'] = $user->get_error_message();
+  $err_codes = $user->get_error_codes();
+
+  if($err_codes[0]=='invalid_username'){
+    $response['message'] = "Unknown username. Check again or try your email address.";
+  }else if($err_codes[0]=='incorrect_password'){
+      $response['message'] = "The password you entered for the user is incorrect. Please try again.";
+  }else{
+    $response['message'] = $user->get_error_message();
+  }
+  
 }elseif($today > $expiredate && !empty($expiredate)){
-  $response['error'] = '2';
-  $response['message'] = __('Your account is inactive!','supportcandy');
+  
+  if($usertype == 'supplier'){
+    $response['error'] = '2';
+    $response['message'] = __('Your account is inactive!','supportcandy');
+    
+  }else{
+
+      $response['error'] = '0';
+      $response['message'] = __('Success!','supportcandy');
+  }
   
 }elseif(!in_array($usertype, $user->roles)){
 
@@ -116,12 +166,12 @@ if (is_wp_error($user)) {
   $response['message'] = __('Credentials do not match '.$usertype1.' account','supportcandy');
 
 }else {
+ 
+
+
   $response['error'] = '0';
   $response['message'] = __('Success!','supportcandy');
 }
-
-
-
 
 
 echo json_encode( $response );

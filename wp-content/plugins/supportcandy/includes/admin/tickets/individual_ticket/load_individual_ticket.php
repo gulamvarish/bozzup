@@ -97,10 +97,10 @@ $after_close_redirect = apply_filters('wpsc_after_close_redirect', true, $ticket
 
 ?>
 
-<div class="row wpsc_tl_action_bar" >
+<div class="row wpsc_tl_action_bar">
   
 	<div class="col-sm-12">
-		<?php if(apply_filters('wpsc_show_create_ticket_button',$flag = true) && $allow_create){?>
+		<?php if(apply_filters('wpsc_show_create_ticket_button',$flag = true) && $allow_create && $_SESSION['expire'] != 'account-expire'){?>
 			<button type="button" id="wpsc_individual_new_ticket_btn" onclick="wpsc_get_create_ticket();" class="btn btn-sm wpsc_create_ticket_btn" style="<?php echo $create_ticket_btn_css?>"><i class="fa fa-plus"></i> <?php _e('New Order','supportcandy')?></button>
 		<?php }?>
 		<?php if ($current_user->ID):?>
@@ -126,7 +126,7 @@ $after_close_redirect = apply_filters('wpsc_after_close_redirect', true, $ticket
 
 
 		
-		<?php if ($wpscfunction->has_permission('delete_ticket',$ticket_id) && $ticket_status && $_SESSION['user_type'] == 'supplier' ):?>
+		<?php if ($wpscfunction->has_permission('delete_ticket',$ticket_id) && $ticket_status && $_SESSION['user_type'] == 'supplier' && $_SESSION['expire'] !='account-expire'):?>
     	<button type="button" id="wpsc_individual_delete_btn" onclick="wpsc_get_delete_ticket(<?php echo $ticket_id ?>);" class="btn btn-sm wpsc_action_btn" style="<?php //echo $action_default_btn_css?>"><i class="fa fa-trash"></i> <?php _e('Delete','supportcandy')?></button>
 		<?php endif;?>
 		
@@ -145,6 +145,8 @@ $after_close_redirect = apply_filters('wpsc_after_close_redirect', true, $ticket
   </div>
 	
 </div>
+
+
 
 <div class="row" style="padding-top: 10px;color:<?php echo $general_appearance['wpsc_text_color']?> !important;">
 

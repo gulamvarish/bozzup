@@ -94,9 +94,14 @@ function pmpro_shortcode_account($atts, $content=null, $code="")
 										// Build the links to return.
 										$pmpro_member_action_links = array();
 
+										
+
+
 										/*if( array_key_exists($level->id, $pmpro_levels) && pmpro_isLevelExpiringSoon( $level ) ) {
 											$pmpro_member_action_links['renew'] = sprintf( '<a id="pmpro_actionlink-renew" href="%s">%s</a>', esc_url( add_query_arg( 'level', $level->id, pmpro_url( 'checkout', '', 'https' ) ) ), esc_html__( 'Renew', 'paid-memberships-pro' ) );
 										}*/
+
+									
 
 										/*if((isset($order->status) && $order->status == "success") && (isset($order->gateway) && in_array($order->gateway, array("authorizenet", "paypal", "stripe", "braintree", "payflow", "cybersource"))) && pmpro_isLevelRecurring($level)) {
 											$pmpro_member_action_links['update-billing'] = sprintf( '<a id="pmpro_actionlink-update-billing" href="%s">%s</a>', pmpro_url( 'billing', '', 'https' ), esc_html__( 'Update Billing Info', 'paid-memberships-pro' ) );
@@ -273,7 +278,7 @@ function pmpro_shortcode_account($atts, $content=null, $code="")
 						}
 						?>
 						<tr id="pmpro_account-invoice-<?php echo $invoice->code; ?>">
-							<td><a href="<?php echo pmpro_url("invoice", "?invoice=" . $invoice->code)?>"><?php echo date_i18n(date( 'Y-m-d', $invoice->getTimestamp()))?></a></td>
+							<td><a href="<?php echo pmpro_url("invoice", "?invoice=" . $invoice->id)?>"><?php echo date_i18n(date( 'Y-m-d', $invoice->getTimestamp()))?></a></td>
 							<td><?php if(!empty($invoice->membership_level)) echo $invoice->membership_level->name; else echo __("N/A", 'paid-memberships-pro' );?></td>
 							<td><?php echo pmpro_escape_price( pmpro_formatPrice($invoice->total) ); ?></td>
 							<td><?php echo $display_status; ?></td>

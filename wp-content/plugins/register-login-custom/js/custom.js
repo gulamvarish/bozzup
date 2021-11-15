@@ -529,6 +529,12 @@ jQuery(document).on('change','#email',function(e){
 
           
                       }else if(data.status==0){
+
+                         jQuery("#username").val(data.username).removeAttr('readonly');
+                          jQuery("#fname").val(data.fname).removeAttr('readonly');
+                          jQuery("#lname").val(data.lname).removeAttr('readonly');
+                          jQuery("#company").attr('placeholder', 'Company Name').removeAttr('readonly');
+                          jQuery("#password, #cpassword").removeAttr('readonly');
                         //document.location.href="/customers";
                           jQuery("#email").attr('emailexit', '0');   
                           jQuery("#email").after('<span class="errorcustom">'+data.message+'</span>');

@@ -1,6 +1,8 @@
 <?php
 	global $gateway, $pmpro_review, $skip_account_fields, $pmpro_paypal_token, $wpdb, $current_user, $pmpro_msg, $pmpro_msgt, $pmpro_requirebilling, $pmpro_level, $pmpro_levels, $tospage, $pmpro_show_discount_code, $pmpro_error_fields;
-	global $discount_code, $username, $password, $password2, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth,$ExpirationYear;
+	global $discount_code, $username, $password, $password2, $bcompany, $bfirstname, $blastname, $baddress1, $baddress2, $bcity, $bstate, $bzipcode, $bcountry, $bphone, $bvatno, $gdpr, $bemail, $bconfirmemail, $CardType, $AccountNumber, $ExpirationMonth,$ExpirationYear;
+
+		
 
 	/**
 	 * Filter to set if PMPro uses email or text as the type for email field inputs.
@@ -52,7 +54,7 @@
 				<span class="<?php echo pmpro_get_element_class( 'pmpro_checkout-h3-name' ); ?>">
 					<?php 
 						if($_GET['level']==4){
-							_e('Do you want paid membership', 'paid-memberships-pro' );
+							_e('Do you want paid membership?', 'paid-memberships-pro' );
 						}else{
 						  _e('Membership Level', 'paid-memberships-pro' );
 						}
@@ -60,21 +62,29 @@
 					?>
 
 				</span>
-				<?php if(count($pmpro_levels) > 1) { ?><span class="<?php echo pmpro_get_element_class( 'pmpro_checkout-h3-msg' ); ?>"><a href="<?php echo home_url(); ?>">
+				<?php if(count($pmpro_levels) > 1) { ?><span class="<?php echo pmpro_get_element_class( 'pmpro_checkout-h3-msg' ); ?>">
 
-					<?php 
+                  <?php if($_GET['renew'] ==1){?>
 
+                  	<a href="<?php echo home_url(); ?>/membership-account/membership-levels/">
+                  		<?php _e('Change Plan', 'paid-memberships-pro' ); ?>
+                  	</a>
+
+                  <?php }else{ ?>
+
+                  
+					<a href="<?php echo home_url(); ?>">
+					<?php
 						if($_GET['level']==4){
 							_e('Choose your plan', 'paid-memberships-pro' );
 						}else{
 						  _e('Change Plan', 'paid-memberships-pro' );
 						}
-
-					   
-
 					?>
+					</a>
+				<?php } ?>
 
-					</a></span><?php } ?>
+					</span><?php } ?>
 			</h3>
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-fields' ); ?>">
 				<p>
@@ -174,10 +184,11 @@
 			?>
 
 			<!-- Added by Gulam -->
+			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bcompany', 'pmpro_checkout-field-bcompany' ); ?>">
 
-			<div class="pmpro_checkout-field pmpro_checkout-field-bcompany">
+			
 				<label for="bcompany"><?php _e('Company Name', 'paid-memberships-pro' );?></label>
-				<input id="bcompany" name="bcompany" type="text" class="input pmpro_required" value="" />
+				<input id="bcompany" name="bcompany" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bcompany' ); ?>" value="" />
 
 				
 
@@ -278,7 +289,7 @@
 						<input id="bcity" name="bcity" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bcity' ); ?>" size="30" value="<?php echo esc_attr($bcity); ?>" />
 					</div> <!-- end pmpro_checkout-field-bcity -->
 					<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bstate', 'pmpro_checkout-field-bstate' ); ?>">
-						<label for="bstate"><?php _e('State', 'paid-memberships-pro' );?></label>
+						<label for="bstate"><?php _e('State/Province/Region', 'paid-memberships-pro' );?></label>
 						<input id="bstate" name="bstate" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bstate' ); ?>" size="30" value="<?php echo esc_attr($bstate); ?>" />
 					</div> <!-- end pmpro_checkout-field-bstate -->
 					<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bzipcode', 'pmpro_checkout-field-bzipcode' ); ?>">
@@ -346,7 +357,7 @@
 
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-bvatno', 'pmpro_checkout-field-bvatno' ); ?>">
 				<label for="bvatno"><?php _e('Vat Number', 'paid-memberships-pro' );?></label>
-				<input id="bvatno" name="bvatno" type="text" class="<?php echo pmpro_get_element_class( 'input'); if (in_array("bvatno", $pmpro_error_fields)) {  echo " pmpro_error";  } ?> pmpro_required"  value="<?php echo esc_attr($bvatno); ?>" />
+				<input id="bvatno" name="bvatno" type="text" class="<?php echo pmpro_get_element_class( 'input', 'bvatno');  ?>"  value="<?php echo esc_attr($bvatno); ?>" />
 			</div> <!-- end pmpro_checkout-field-bvatno -->
 
 			
@@ -382,14 +393,20 @@
 				<?php } else { ?>
 					<input type="hidden" name="bconfirmemail_copy" value="1" />
 				<?php } ?>
-			<?php } ?>
+			<?php } 
+
+
+			?>
 			<div class="<?php echo pmpro_get_element_class( 'pmpro_checkout-field pmpro_checkout-field-gdpr', 'pmpro_checkout-field-gdpr' ); ?>">
 				<label for="gdpr" class="gdpr-label">
-				<input id="gdpr" name="gdpr" type="radio" class="<?php echo pmpro_get_element_class('gdpr' ); ?>" checked  value="1" / ><span><?php _e('I agree to the GDPR terms', 'paid-memberships-pro' );?></span></label>
+				<input id="gdpr" name="gdpr" type="checkbox" class="<?php echo pmpro_get_element_class('gdpr');  ?>" <?php if($gdpr){ echo 'checked';}?>   value="1" / ><span><?php _e('I agree to the GDPR <a href="'.home_url('/gdpr').'" target="_blank">terms</a>', 'paid-memberships-pro' );?></span></label>
 			</div> <!-- end pmpro_checkout-field-gdpr -->
 		</div> <!-- end pmpro_checkout-fields -->
 	</div> <!--end pmpro_billing_address_fields -->
-	<?php } ?>
+	<?php } //print_r($pmpro_error_fields); ?>
+
+
+	
 
 	<?php do_action("pmpro_checkout_after_billing_fields"); ?>
 
@@ -539,7 +556,7 @@
 
 	<?php do_action("pmpro_checkout_before_submit_button"); ?>
 
-	<div class="<?php echo pmpro_get_element_class( 'pmpro_submit' ); ?>">
+	<div class="<?php echo pmpro_get_element_class( 'pmpro_submit' ); ?>" style="display: inline-block; width:100%">
 		<hr />
 		<?php if ( $pmpro_msg ) { ?>
 			<div id="pmpro_message_bottom" class="<?php echo pmpro_get_element_class( 'pmpro_message ' . $pmpro_msgt, $pmpro_msgt ); ?>"><?php echo $pmpro_msg; ?></div>

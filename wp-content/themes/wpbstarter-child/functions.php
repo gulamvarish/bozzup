@@ -64,7 +64,7 @@ function custom_wp_new_user_notification_email( $wp_new_user_notification_email,
     $wp_new_user_notification_email['subject'] = sprintf( 'Login and Password to manage your mockups', $blogname );
     $headers = "MIME-Version: 1.0" . "\r\n";
     $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-    $headers .= 'From: Bozzup <support@bozzup.net>'; 
+    $headers .= 'From: Bozzup <bozzup@bozzup.net>'; 
     $wp_new_user_notification_email['headers'] = $headers;    
     $wp_new_user_notification_email['message'] = $message;
  
@@ -110,10 +110,44 @@ function myStartSession() {
     if(!session_id()) {
         session_start();       
         $user = wp_get_current_user();
-
+        //$_COOKIE['expire_current_user_type'];
        
-        if (empty($_SESSION['user_type']) ) {
-           $_SESSION['user_type']='supplier';
+        if (isset($_COOKIE['current_user_type']) && !empty($_COOKIE['current_user_type']) ) {
+            //echo 'tttttttt'.$_SESSION['user_type'];
+             $_SESSION['user_type']= $_COOKIE['current_user_type'];
+             
+             if(isset($_COOKIE['expire_current_user_type']) && $_COOKIE['current_user_type'] =='supplier'){
+
+                //$expire = 'expire_'.$_COOKIE['expire_current_user_type'];
+                 $_SESSION['expire']= $_COOKIE['expire_current_user_type'];
+             }
+
+             /*for renew*/
+                global $wpdb;
+                $resultdata = $wpdb->get_results( "SELECT * FROM $wpdb->pmpro_memberships_users WHERE `user_id` = '".$user->ID."' ORDER BY id  DESC");
+                $id = $resultdata[0]->id;
+               
+
+                if(isset($resultdata[0]) && $resultdata[0]->cycle_period=='Month'){
+                  $expire = $resultdata[0]->membership_id == 4 ? '+14 Day' :  '+1 month';    
+                }elseif(isset($resultdata[0]) && $resultdata[0]->cycle_period==''){
+                  
+                   $expire = '+14 Day'; 
+                }
+
+                $today      = strtotime("today midnight");
+                $startdate  = strtotime($resultdata[0]->startdate);
+                $expiredate = date(strtotime($expire, $startdate));
+                if($today > $expiredate && !empty($expiredate)){
+                    $_SESSION['expire']= 'account-expire';
+                }else{
+                    
+                     $_SESSION['expire']= 'account-expire1';
+                }
+
+                /*for renew*/
+             
+           
         }
 
     }
@@ -121,7 +155,12 @@ function myStartSession() {
 
 function myEndSession() {
 
-    
+    if (isset($_COOKIE['current_user_type'])) {
+        unset($_COOKIE['current_user_type']);
+      setcookie('current_user_type', '', time() - 3600, '/'); // empty value and old timestamp
+   }
+
+   
     session_destroy ();
 }
 
@@ -131,6 +170,12 @@ function custom_user_profile_fields($user){
     if( is_object($user) && isset($user->ID) ) {
         $previous_value = get_user_meta( $user->ID, 'company', true );
     }
+    if( is_object($user) && isset($user->ID) ) {
+         $bvatno = get_user_meta($user->ID, 'pmpro_bvatno', true);
+                       
+
+    }
+
     ?>
 
     <table class="form-table">
@@ -138,6 +183,13 @@ function custom_user_profile_fields($user){
             <th><label for="company">Company Name</label></th>
             <td>
                 <input type="text" class="regular-text" name="company" value="<?php echo esc_attr( $previous_value ); ?>" id="company" /><br />
+                <span class="description"></span>
+            </td>
+        </tr>
+         <tr>
+            <th><label for="bvatno">VAT NO.</label></th>
+            <td>
+                <input type="text" class="regular-text" name="bvatno" value="<?php echo esc_attr( $bvatno ); ?>" id="bvatno" /><br />
                 <span class="description"></span>
             </td>
         </tr>
@@ -166,6 +218,13 @@ function save_custom_user_profile_fields($user_id){
         //Delete the company field if $_POST['company'] is not set
         delete_user_meta( $user_id, 'company', $meta_value );
     }
+
+    if( isset($_POST['bvatno']) ) {
+        update_user_meta( $user_id, 'pmpro_bvatno', sanitize_text_field( $_POST['bvatno'] ) );
+    } else {
+        //Delete the company field if $_POST['company'] is not set
+        delete_user_meta( $user_id, 'pmpro_bvatno', $meta_value );
+    }
 }
 add_action('user_register', 'save_custom_user_profile_fields');
 add_action( 'personal_options_update', 'save_custom_user_profile_fields' );
@@ -182,6 +241,8 @@ function crf_user_profile_update_errors( $errors, $update, $user ) {
     if ( empty( $_POST['company'] ) ) {
         $errors->add( 'company_error', __( '<strong>ERROR</strong>: Please enter company name.', 'crf' ) );
     }
+
+    
 }
 
 
@@ -392,7 +453,7 @@ function help_email(){
         $compay   =  $_POST['data'][3];
         $message1 =  $_POST['data'][4];
 
-        $to = "gvarish@tecziq.com";
+        $to = "support@bozzup.net";
         $subject = "Need Help For ".$role;
 
         $message = "
@@ -760,5 +821,34 @@ To reset your password, visit the following address:
 }
 
 
- 
+
+/*disable plugin update*/
+add_filter('site_transient_update_plugins', '__return_false');
+
+
+/*set expired 1 Year*/
+
+add_filter('auth_cookie_expiration', 'my_expiration_filter', 99, 3);
+function my_expiration_filter($seconds, $user_id, $remember){
+
+//if "remember me" is checked;
+if ( $remember ) {
+//WP defaults to 2 weeks;
+$expiration = 14*24*60*60; //UPDATE HERE;
+} else {
+//WP defaults to 48 hrs/2 days;
+$expiration = 365*24*60*60; //UPDATE HERE;
+}
+
+//http://en.wikipedia.org/wiki/Year_2038_problem
+if ( PHP_INT_MAX - time() < $expiration ) {
+//Fix to a little bit earlier!
+$expiration = PHP_INT_MAX - time() - 5;
+}
+
+return $expiration;
+}
+
+
+
 
